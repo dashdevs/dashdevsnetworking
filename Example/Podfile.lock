@@ -1,0 +1,16 @@
+PODS:
+  - DashdevsNetworking (0.1.0)
+
+DEPENDENCIES:
+  - DashdevsNetworking (from `../`)
+
+EXTERNAL SOURCES:
+  DashdevsNetworking:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  DashdevsNetworking: 5697760ff9e6a2ac52bc88d62899ce36aa7962fb
+
+PODFILE CHECKSUM: 2be2200ac172d7389afec7faed29c09c3f7141a0
+
+COCOAPODS: 1.7.0

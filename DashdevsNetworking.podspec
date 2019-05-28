@@ -9,17 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'DashdevsNetworking'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of DashdevsNetworking.'
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
+  s.summary          = 'Library for organising network layer in iOS apps'
 
   s.homepage         = 'https://dashdevs.com'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -28,13 +18,5 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'DashdevsNetworking/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'DashdevsNetworking' => ['DashdevsNetworking/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.source_files = 'DashdevsNetworking/Classes/**/*'  
 end

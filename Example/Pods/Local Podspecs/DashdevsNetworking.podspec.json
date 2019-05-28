@@ -1,0 +1,22 @@
+{
+  "name": "DashdevsNetworking",
+  "version": "0.1.0",
+  "summary": "A short description of DashdevsNetworking.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://dashdevs.com",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "dashdevs llc": "hello@dashdevs.com"
+  },
+  "source": {
+    "git": "https://bitbucket.org/itomych/DashdevsNetworking.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "DashdevsNetworking/Classes/**/*"
+}

@@ -1,0 +1,6 @@
+framework module Pods_DashdevsNetworking_Tests {
+  umbrella header "Pods-DashdevsNetworking_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
