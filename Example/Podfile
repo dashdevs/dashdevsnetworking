@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'DashdevsNetworking_Example' do
+  pod 'DashdevsNetworking', :path => '../'
+
+  target 'DashdevsNetworking_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
