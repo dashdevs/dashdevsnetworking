@@ -33,16 +33,29 @@ public class NetworkClient: SessionNetworking {
     /// - Parameter endpoint: part of URL to append
     /// - Returns: complete URL of resource
     public func buildURL(_ endpoint: Endpoint) -> URL {
-        var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
-        components?.path = endpoint.path
-        if !endpoint.queryItems.isEmpty {
-            components?.queryItems = endpoint.queryItems
-        }
-        
-        guard let url = components?.url else {
-            preconditionFailure("Incorrect url!")
-        }
-        return url
+        return baseURL.appendingEndpoint(endpoint)
+    }
+    
+    public func get<A>(_ endpoint: Endpoint, deserialise: Deserializator<A>, handler: @escaping (Response<A>, HTTPURLResponse?) -> ()) -> URLSessionTask {
+        let descriptor = URLRequestComponents(url: buildURL(endpoint))
+        return urlSession.load(descriptor, handler: { (responseData, response, responseError) in
+            let validated = self.validate(data: responseData, response: response, error: responseError)
+            
+            DispatchQueue.main.async {
+                handler(validated.result.map(deserialise.parse), validated.response)
+            }
+        })
+    }
+    
+    public func post<A, B>(_ endpoint: Endpoint, parameters: A, deserialise: Deserializator<B>, handler: @escaping (Response<B>, HTTPURLResponse?) -> ()) -> URLSessionTask
+        where A: Encodable, B: Decodable {
+        let descriptor = URLRequestComponents(url: buildURL(endpoint), params: parameters, method: .post)
+        return urlSession.send(descriptor, handler: { (responseData, response, responseError) in
+            let validated = self.validate(data: responseData, response: response, error: responseError)
+            DispatchQueue.main.async {
+                handler(validated.result.map(deserialise.parse), validated.response)
+            }
+        })
     }
         
     /// This property describes range of acceptable HTTP status codes

@@ -32,6 +32,19 @@ public extension URL {
         
         self = url
     }
+    
+    func appendingEndpoint(_ endpoint: Endpoint) -> URL {
+        var components = URLComponents(url: self, resolvingAgainstBaseURL: true)
+        components?.path = endpoint.path
+        if !endpoint.queryItems.isEmpty {
+            components?.queryItems = endpoint.queryItems
+        }
+        
+        guard let url = components?.url else {
+            preconditionFailure("Incorrect url!")
+        }
+        return url
+    }
 }
 
 /// This struct describes way to encode parameters in http request body
