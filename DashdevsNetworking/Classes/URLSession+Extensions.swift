@@ -15,7 +15,6 @@ extension URLSession {
     ///   - deserialise: parameter describing how response will be parsed
     ///   - handler: The completion handler to call when the load request and response data parsing is complete
     /// - Returns: The new session data task
-    @discardableResult
     public func load(_ descriptor: URLRequestComponents, handler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         return dataTask(with: descriptor.request, completionHandler: handler)
     }
@@ -26,7 +25,6 @@ extension URLSession {
     ///   - descriptor: parameter describing request
     ///   - handler: The completion handler to call when request and response data parsing is complete
     /// - Returns: The new session upload task
-    @discardableResult
     public func send(_ descriptor: URLRequestComponents, handler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionUploadTask {
         return uploadTask(with: descriptor.request, from: descriptor.body, completionHandler: handler)
     }

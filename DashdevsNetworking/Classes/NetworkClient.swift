@@ -35,6 +35,7 @@ public class NetworkClient: SessionNetworking {
     ///   - deserialise: Parameter describing how response will be parsed
     ///   - handler: The completion handler to call when the load request and response data parsing is complete
     /// - Returns: The new session data task
+    @discardableResult
     public func get<A>(_ endpoint: Endpoint, deserialise: Deserializator<A>, handler: @escaping (Response<A>, HTTPURLResponse?) -> ()) -> URLSessionTask {
         let descriptor = URLRequestComponents(url: baseURL.appendingEndpoint(endpoint))
         let task = urlSession.load(descriptor, handler: { (responseData, response, responseError) in
@@ -57,6 +58,7 @@ public class NetworkClient: SessionNetworking {
     ///   - deserialise: Parameter describing how response will be parsed
     ///   - handler: The completion handler to call when the load request and response data parsing is complete
     /// - Returns: The new session data task
+    @discardableResult
     public func post<A, B>(_ endpoint: Endpoint, parameters: A, deserialise: Deserializator<B>, handler: @escaping (Response<B>, HTTPURLResponse?) -> ()) -> URLSessionTask
         where A: Encodable, B: Decodable {
         let task = sendData(endpoint, method: .post, parameters: parameters, deserialise: deserialise, handler: handler)
