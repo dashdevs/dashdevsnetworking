@@ -7,13 +7,13 @@
 
 import Foundation
 
-/// This protocol provides describes basic wrapper functionality
+/// This protocol provides describes basic networking functionality
 public protocol SessionNetworking {
     var baseURL: URL { get }
     var urlSession: URLSession { get }
 }
 
-/// This class wraps URLSession functionality and provides neat functionality
+/// This class uses URLSession for organising networking
 public class NetworkClient: SessionNetworking {
     public let baseURL: URL
     public let urlSession: URLSession
@@ -28,6 +28,13 @@ public class NetworkClient: SessionNetworking {
         self.urlSession = URLSession(configuration: sessionConfiguration)
     }
     
+    /// Method for retrieving data from server with specified endpoint
+    ///
+    /// - Parameters:
+    ///   - endpoint: Parameter describing resource location
+    ///   - deserialise: Parameter describing how response will be parsed
+    ///   - handler: The completion handler to call when the load request and response data parsing is complete
+    /// - Returns: The new session data task
     public func get<A>(_ endpoint: Endpoint, deserialise: Deserializator<A>, handler: @escaping (Response<A>, HTTPURLResponse?) -> ()) -> URLSessionTask {
         let descriptor = URLRequestComponents(url: baseURL.appendingEndpoint(endpoint))
         let task = urlSession.load(descriptor, handler: { (responseData, response, responseError) in
@@ -41,14 +48,21 @@ public class NetworkClient: SessionNetworking {
         task.resume()
         return task
     }
-    
+
+    /// This method should be used for loading data from server
+    ///
+    /// - Parameters:
+    ///   - endpoint: Parameter describing resource location
+    ///   - parameters: These are options that are included in request body
+    ///   - deserialise: Parameter describing how response will be parsed
+    ///   - handler: The completion handler to call when the load request and response data parsing is complete
+    /// - Returns: The new session data task
     public func post<A, B>(_ endpoint: Endpoint, parameters: A, deserialise: Deserializator<B>, handler: @escaping (Response<B>, HTTPURLResponse?) -> ()) -> URLSessionTask
         where A: Encodable, B: Decodable {
         let task = sendData(endpoint, method: .post, parameters: parameters, deserialise: deserialise, handler: handler)
         task.resume()
         return task
     }
-    
     
     private func sendData<A, B>(_ endpoint: Endpoint, method: HTTPMethod, parameters: A, deserialise: Deserializator<B>, handler: @escaping (Response<B>, HTTPURLResponse?) -> ()) -> URLSessionTask where A: Encodable, B: Decodable {
         let descriptor = URLRequestComponents(url: baseURL.appendingEndpoint(endpoint), params: parameters, method: method)
