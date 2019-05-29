@@ -30,18 +30,23 @@ public class NetworkClient: SessionNetworking {
     
     public func get<A>(_ endpoint: Endpoint, deserialise: Deserializator<A>, handler: @escaping (Response<A>, HTTPURLResponse?) -> ()) -> URLSessionTask {
         let descriptor = URLRequestComponents(url: baseURL.appendingEndpoint(endpoint))
-        return urlSession.load(descriptor, handler: { (responseData, response, responseError) in
+        let task = urlSession.load(descriptor, handler: { (responseData, response, responseError) in
             let validated = self.validate(data: responseData, response: response, error: responseError)
             
             DispatchQueue.main.async {
                 handler(validated.result.map(deserialise.parse), validated.response)
             }
         })
+        
+        task.resume()
+        return task
     }
     
     public func post<A, B>(_ endpoint: Endpoint, parameters: A, deserialise: Deserializator<B>, handler: @escaping (Response<B>, HTTPURLResponse?) -> ()) -> URLSessionTask
         where A: Encodable, B: Decodable {
-        return sendData(endpoint, method: .post, parameters: parameters, deserialise: deserialise, handler: handler)
+        let task = sendData(endpoint, method: .post, parameters: parameters, deserialise: deserialise, handler: handler)
+        task.resume()
+        return task
     }
     
     
