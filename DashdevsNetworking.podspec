@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'DashdevsNetworking'
-  s.version          = '0.0.1'
+  s.version          = '0.0.2'
   s.summary          = 'Library for organising network layer in iOS apps'
 
   s.homepage         = 'https://dashdevs.com'
