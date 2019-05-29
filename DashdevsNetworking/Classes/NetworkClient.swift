@@ -28,16 +28,8 @@ public class NetworkClient: SessionNetworking {
         self.urlSession = URLSession(configuration: sessionConfiguration)
     }
     
-    /// Method for building resource URL
-    ///
-    /// - Parameter endpoint: part of URL to append
-    /// - Returns: complete URL of resource
-    public func buildURL(_ endpoint: Endpoint) -> URL {
-        return baseURL.appendingEndpoint(endpoint)
-    }
-    
     public func get<A>(_ endpoint: Endpoint, deserialise: Deserializator<A>, handler: @escaping (Response<A>, HTTPURLResponse?) -> ()) -> URLSessionTask {
-        let descriptor = URLRequestComponents(url: buildURL(endpoint))
+        let descriptor = URLRequestComponents(url: baseURL.appendingEndpoint(endpoint))
         return urlSession.load(descriptor, handler: { (responseData, response, responseError) in
             let validated = self.validate(data: responseData, response: response, error: responseError)
             
@@ -49,7 +41,12 @@ public class NetworkClient: SessionNetworking {
     
     public func post<A, B>(_ endpoint: Endpoint, parameters: A, deserialise: Deserializator<B>, handler: @escaping (Response<B>, HTTPURLResponse?) -> ()) -> URLSessionTask
         where A: Encodable, B: Decodable {
-        let descriptor = URLRequestComponents(url: buildURL(endpoint), params: parameters, method: .post)
+        return sendData(endpoint, method: .post, parameters: parameters, deserialise: deserialise, handler: handler)
+    }
+    
+    
+    private func sendData<A, B>(_ endpoint: Endpoint, method: HTTPMethod, parameters: A, deserialise: Deserializator<B>, handler: @escaping (Response<B>, HTTPURLResponse?) -> ()) -> URLSessionTask where A: Encodable, B: Decodable {
+        let descriptor = URLRequestComponents(url: baseURL.appendingEndpoint(endpoint), params: parameters, method: method)
         return urlSession.send(descriptor, handler: { (responseData, response, responseError) in
             let validated = self.validate(data: responseData, response: response, error: responseError)
             DispatchQueue.main.async {
