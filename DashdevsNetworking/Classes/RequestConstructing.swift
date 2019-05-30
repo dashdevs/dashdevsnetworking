@@ -24,11 +24,14 @@ public struct HTTPHeader {
 
 extension HTTPHeader {
     
-    /// Factory method which returns pre-defined JSON header used to define request body content
-    ///
-    /// - Returns: JSON content header
-    static func jsonContent() -> HTTPHeader {
+    /// Factory property which returns pre-defined JSON header used to define request body content
+    static var jsonContent: HTTPHeader {
         return HTTPHeader(field: "Content-Type", value: "application/json")
+    }
+    
+    /// Factory property which returns pre-defined plain text header used to define request body content
+    static var textContent: HTTPHeader {
+        return HTTPHeader(field: "Content-Type", value: "text/plain")
     }
 }
 
