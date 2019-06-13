@@ -5,6 +5,24 @@
 //  Copyright (c) 2019 dashdevs.com. All rights reserved.
 //
 
+public struct Path {
+    var components: [String]
+    
+    init(_ components: [String]) {
+        self.components = components
+    }
+    
+    var rendered: String {
+        return "/" + components.joined(separator: "/")
+    }
+}
+
+public extension Path {
+    func appending(_ path: Path) -> Path {
+        return Path(components + path.components)
+    }
+}
+
 /// This struct describes endpoint - end of communication channel
 public struct Endpoint {
     
@@ -16,6 +34,13 @@ public struct Endpoint {
     
     public init(path: String, queryItems: [URLQueryItem] = []) {
         self.path = path
+        self.queryItems = queryItems
+    }
+}
+
+public extension Endpoint {
+    init(_ path: Path, queryItems: [URLQueryItem] = []) {
+        self.path = path.rendered
         self.queryItems = queryItems
     }
 }
@@ -33,7 +58,7 @@ public extension URL {
         self = url
     }
     
-    func appendingEndpoint(_ endpoint: Endpoint) -> URL {
+    func appending(_ endpoint: Endpoint) -> URL {
         var components = URLComponents(url: self, resolvingAgainstBaseURL: true)
         components?.path = endpoint.path
         if !endpoint.queryItems.isEmpty {

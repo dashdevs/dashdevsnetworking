@@ -16,6 +16,11 @@ public enum HTTPMethod: String {
     case put = "PUT"
 }
 
+public enum MIMEType: String {
+    case applicationJSON = "application/json"
+    case plainText = "text/plain"
+}
+
 /// This struct describes mechanism which allows the client and the server to pass additional information with the request or the response.
 public struct HTTPHeader {
     let field: String
@@ -26,13 +31,22 @@ extension HTTPHeader {
     
     /// Factory property which returns pre-defined JSON header used to define request body content
     static var jsonContent: HTTPHeader {
-        return HTTPHeader(field: "Content-Type", value: "application/json")
+        return HTTPHeader(field: "Content-Type", value: MIMEType.applicationJSON.rawValue)
     }
     
     /// Factory property which returns pre-defined plain text header used to define request body content
     static var textContent: HTTPHeader {
-        return HTTPHeader(field: "Content-Type", value: "text/plain")
+        return HTTPHeader(field: "Content-Type", value: MIMEType.plainText.rawValue)
     }
+    
+    static var acceptJSON: HTTPHeader {
+        return HTTPHeader(field: "Accept", value: MIMEType.applicationJSON.rawValue)
+    }
+    
+    static var acceptText: HTTPHeader {
+        return HTTPHeader(field: "Accept", value: MIMEType.plainText.rawValue)
+    }
+
 }
 
 /// This structure describes request to resource using HTTP protocol
@@ -86,6 +100,6 @@ public extension URLRequestComponents {
         self.method = method
         let encoding = ParamEncoding<E>.json()
         self.body = encoding.encode(params)
-        self.headers = [HTTPHeader.jsonContent()]
+        self.headers = [HTTPHeader.jsonContent]
     }
 }

@@ -37,7 +37,7 @@ public class NetworkClient: SessionNetworking {
     /// - Returns: The new session data task
     @discardableResult
     public func get<A>(_ endpoint: Endpoint, deserialise: Deserializator<A>, handler: @escaping (Response<A>, HTTPURLResponse?) -> ()) -> URLSessionTask {
-        let descriptor = URLRequestComponents(url: baseURL.appendingEndpoint(endpoint))
+        let descriptor = URLRequestComponents(url: baseURL.appending(endpoint))
         let task = urlSession.load(descriptor, handler: { (responseData, response, responseError) in
             let validated = self.validate(data: responseData, response: response, error: responseError)
             
@@ -67,7 +67,7 @@ public class NetworkClient: SessionNetworking {
     }
     
     private func sendData<A, B>(_ endpoint: Endpoint, method: HTTPMethod, parameters: A, deserialise: Deserializator<B>, handler: @escaping (Response<B>, HTTPURLResponse?) -> ()) -> URLSessionTask where A: Encodable, B: Decodable {
-        let descriptor = URLRequestComponents(url: baseURL.appendingEndpoint(endpoint), params: parameters, method: method)
+        let descriptor = URLRequestComponents(url: baseURL.appending(endpoint), params: parameters, method: method)
         return urlSession.send(descriptor, handler: { (responseData, response, responseError) in
             let validated = self.validate(data: responseData, response: response, error: responseError)
             DispatchQueue.main.async {
@@ -98,8 +98,10 @@ public class NetworkClient: SessionNetworking {
             return (Response.failure(error), httpResponse)
         }
         
-        guard httpResponse.validateStatusCode(acceptableHTTPCodes) else {
-            return (Response.failure(NetworkError.HTTP(httpResponse.statusCode)), httpResponse)
+        let statusCode = httpResponse.statusCode
+        
+        guard acceptableHTTPCodes.contains(statusCode) else {
+            return (Response.failure(NetworkError.HTTP(statusCode)), httpResponse)
         }
         
         guard let data = data else {
