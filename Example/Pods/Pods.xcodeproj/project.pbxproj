@@ -22,6 +22,7 @@
 		E8A9D056229D81AA0005B7A8 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A9D051229D81AA0005B7A8 /* Response.swift */; };
 		E8A9D058229D83570005B7A8 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A9D057229D83570005B7A8 /* NetworkClient.swift */; };
 		E8A9D05C229D83CB0005B7A8 /* HTTPResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A9D05B229D83CB0005B7A8 /* HTTPResponse+Extensions.swift */; };
+		E8A9DEFD22B2C2F400AE4870 /* Deserialisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A9DEFC22B2C2F400AE4870 /* Deserialisation.swift */; };
 		FF54E13837FD9845990C77BF832B7D4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,7 @@
 		E8A9D051229D81AA0005B7A8 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Response.swift; path = DashdevsNetworking/Classes/Response.swift; sourceTree = "<group>"; };
 		E8A9D057229D83570005B7A8 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkClient.swift; path = DashdevsNetworking/Classes/NetworkClient.swift; sourceTree = "<group>"; };
 		E8A9D05B229D83CB0005B7A8 /* HTTPResponse+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "HTTPResponse+Extensions.swift"; path = "DashdevsNetworking/Classes/HTTPResponse+Extensions.swift"; sourceTree = "<group>"; };
+		E8A9DEFC22B2C2F400AE4870 /* Deserialisation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Deserialisation.swift; path = DashdevsNetworking/Classes/Deserialisation.swift; sourceTree = "<group>"; };
 		FB9D1BAA0EB3A2AA23C05B74EB3FBFE5 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,6 +168,7 @@
 				E8A9D04F229D81AA0005B7A8 /* RequestConstructing.swift */,
 				E8A9D051229D81AA0005B7A8 /* Response.swift */,
 				E8A9D04E229D81AA0005B7A8 /* URLConstructing.swift */,
+				E8A9DEFC22B2C2F400AE4870 /* Deserialisation.swift */,
 				0EB7C4DFD1D721723229D64E89773343 /* Pod */,
 				D76A34F55820D869F96CA82EF4919F7F /* Support Files */,
 			);
@@ -388,6 +391,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8A9D054229D81AA0005B7A8 /* RequestConstructing.swift in Sources */,
+				E8A9DEFD22B2C2F400AE4870 /* Deserialisation.swift in Sources */,
 				E8A9D053229D81AA0005B7A8 /* URLConstructing.swift in Sources */,
 				E8A9D05C229D83CB0005B7A8 /* HTTPResponse+Extensions.swift in Sources */,
 				E8A9D052229D81AA0005B7A8 /* URLSession+Extensions.swift in Sources */,
