@@ -59,7 +59,7 @@ public struct URLRequestComponents {
     public var method: HTTPMethod
     
     /// Headers of particular request
-    public var headers: [HTTPHeader]?
+    public var headers: [HTTPHeader]
     
     /// Binary data that is contained in body of request
     public var body: Data?
@@ -69,9 +69,7 @@ public struct URLRequestComponents {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
         
-        if let head = headers {
-            head.forEach({ urlRequest.setValue($0.value, forHTTPHeaderField: $0.field) })
-        }
+        headers.forEach({ urlRequest.setValue($0.value, forHTTPHeaderField: $0.field) })
         
         return urlRequest
     }
@@ -81,9 +79,10 @@ public struct URLRequestComponents {
     /// - Parameters:
     ///   - url: resource URL
     ///   - method: HTTP method to use
-    public init(url: URL, method: HTTPMethod = .get) {
+    public init(url: URL, method: HTTPMethod = .get, headers: [HTTPHeader] = []) {
         self.url = url
         self.method = method
+        self.headers = headers
     }
 }
 
@@ -95,11 +94,11 @@ public extension URLRequestComponents {
     ///   - url: resource URL
     ///   - params: parameters to send in request body
     ///   - method: HTTP method to use
-    init<E: Encodable>(url: URL, params: E, method: HTTPMethod = .post) {
+    init<E: Encodable>(url: URL, params: E, method: HTTPMethod = .post, headers: [HTTPHeader] = []) {
         self.url = url
         self.method = method
         let encoding = ParamEncoding<E>.json()
         self.body = encoding.encode(params)
-        self.headers = [HTTPHeader.jsonContent]
+        self.headers = [HTTPHeader.jsonContent] + headers
     }
 }

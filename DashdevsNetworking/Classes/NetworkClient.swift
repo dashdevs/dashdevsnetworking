@@ -36,11 +36,12 @@ public class NetworkClient: SessionNetworking {
     ///   - handler: The completion handler to call when the load request and response data parsing is complete
     /// - Returns: The new session data task
     @discardableResult
-    public func get<A>(_ endpoint: Endpoint, deserialise: Deserializator<A>, handler: @escaping (Response<A>, HTTPURLResponse?) -> ()) -> URLSessionTask {
-        let descriptor = URLRequestComponents(url: baseURL.appending(endpoint))
+    public func get<A>(_ endpoint: Endpoint, deserialise: Deserializator<A>, headers: [HTTPHeader] = [], handler: @escaping (Response<A>, HTTPURLResponse?) -> ()) -> URLSessionTask
+        where A: Decodable {
+        let descriptor = makeDescriptor(endpoint: endpoint, headers: headers + deserialise.headers)
         let task = urlSession.load(descriptor, handler: { (responseData, response, responseError) in
             let validated = self.validate(data: responseData, response: response, error: responseError)
-            
+                        
             DispatchQueue.main.async {
                 handler(validated.result.map(deserialise.parse), validated.response)
             }
@@ -59,15 +60,15 @@ public class NetworkClient: SessionNetworking {
     ///   - handler: The completion handler to call when the load request and response data parsing is complete
     /// - Returns: The new session data task
     @discardableResult
-    public func post<A, B>(_ endpoint: Endpoint, parameters: A, deserialise: Deserializator<B>, handler: @escaping (Response<B>, HTTPURLResponse?) -> ()) -> URLSessionTask
+    public func post<A, B>(_ endpoint: Endpoint, parameters: A, headers: [HTTPHeader] = [], deserialise: Deserializator<B>, handler: @escaping (Response<B>, HTTPURLResponse?) -> ()) -> URLSessionTask
         where A: Encodable, B: Decodable {
         let task = sendData(endpoint, method: .post, parameters: parameters, deserialise: deserialise, handler: handler)
         task.resume()
         return task
     }
     
-    private func sendData<A, B>(_ endpoint: Endpoint, method: HTTPMethod, parameters: A, deserialise: Deserializator<B>, handler: @escaping (Response<B>, HTTPURLResponse?) -> ()) -> URLSessionTask where A: Encodable, B: Decodable {
-        let descriptor = URLRequestComponents(url: baseURL.appending(endpoint), params: parameters, method: method)
+    private func sendData<A, B>(_ endpoint: Endpoint, method: HTTPMethod, parameters: A, headers: [HTTPHeader] = [], deserialise: Deserializator<B>, handler: @escaping (Response<B>, HTTPURLResponse?) -> ()) -> URLSessionTask where A: Encodable, B: Decodable {
+        let descriptor = makeDescriptor(endpoint, params: parameters, headers: headers + deserialise.headers, method: method)
         return urlSession.send(descriptor, handler: { (responseData, response, responseError) in
             let validated = self.validate(data: responseData, response: response, error: responseError)
             DispatchQueue.main.async {
@@ -75,7 +76,21 @@ public class NetworkClient: SessionNetworking {
             }
         })
     }
-        
+    
+    public func makeDescriptor<A>(_ endpoint: Endpoint, params: A, headers: [HTTPHeader], method: HTTPMethod) -> URLRequestComponents where A: Encodable {
+        let url = constructURL(endpoint)
+        return URLRequestComponents(url: url, params: params, method: method, headers: headers)
+    }
+    
+    public func makeDescriptor(endpoint: Endpoint, headers: [HTTPHeader]) -> URLRequestComponents {
+        let url = constructURL(endpoint)
+        return URLRequestComponents(url: url, method: .get, headers: headers)
+    }
+    
+    public func constructURL(_ endpoint: Endpoint) -> URL {
+        return baseURL.appending(endpoint)
+    }
+    
     /// This property describes range of acceptable HTTP status codes
     public var acceptableHTTPCodes: [Int] {
         let codes = [Int](200...300)
