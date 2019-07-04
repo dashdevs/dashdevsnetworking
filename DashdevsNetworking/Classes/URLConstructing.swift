@@ -1,6 +1,6 @@
 //
 //  URLConstructing.swift
-//  URLSessionWrapper
+//  DashdevsNetworking
 //
 //  Copyright (c) 2019 dashdevs.com. All rights reserved.
 //
@@ -8,7 +8,7 @@
 public struct Path {
     var components: [String]
     
-    init(_ components: [String]) {
+    public init(_ components: [String]) {
         self.components = components
     }
     

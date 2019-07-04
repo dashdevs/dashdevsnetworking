@@ -30,6 +30,16 @@ public extension Deserializator where A: Decodable {
     }
 }
 
+public extension Deserializator where A == Void {
+    /// Factory method which returns pre-defined object for ignoring server response
+    ///
+    /// - Returns: object for ignoring server response
+    static var none: Deserializator {
+        return Deserializator({ _ in
+        }, headers: [])
+    }
+}
+
 public extension Deserializator where A == String {
     
     /// Factory method which returns pre-defined object for parsing plain text content
