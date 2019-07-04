@@ -25,6 +25,11 @@ public enum MIMEType: String {
 public struct HTTPHeader {
     let field: String
     let value: String
+    
+    public init(field: String, value: String) {
+        self.field = field
+        self.value = value
+    }
 }
 
 extension HTTPHeader {

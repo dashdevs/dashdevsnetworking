@@ -36,8 +36,7 @@ public class NetworkClient: SessionNetworking {
     ///   - handler: The completion handler to call when the load request and response data parsing is complete
     /// - Returns: The new session data task
     @discardableResult
-    public func get<A>(_ endpoint: Endpoint, deserialise: Deserializator<A>, headers: [HTTPHeader] = [], handler: @escaping (Response<A>, HTTPURLResponse?) -> ()) -> URLSessionTask
-        where A: Decodable {
+    public func get<A>(_ endpoint: Endpoint, deserialise: Deserializator<A>, headers: [HTTPHeader] = [], handler: @escaping (Response<A>, HTTPURLResponse?) -> ()) -> URLSessionTask {
         let descriptor = makeDescriptor(endpoint: endpoint, headers: headers + deserialise.headers)
         let task = urlSession.load(descriptor, handler: { (responseData, response, responseError) in
             let validated = self.validate(data: responseData, response: response, error: responseError)
@@ -61,13 +60,13 @@ public class NetworkClient: SessionNetworking {
     /// - Returns: The new session data task
     @discardableResult
     public func post<A, B>(_ endpoint: Endpoint, parameters: A, headers: [HTTPHeader] = [], deserialise: Deserializator<B>, handler: @escaping (Response<B>, HTTPURLResponse?) -> ()) -> URLSessionTask
-        where A: Encodable, B: Decodable {
+        where A: Encodable {
         let task = sendData(endpoint, method: .post, parameters: parameters, deserialise: deserialise, handler: handler)
         task.resume()
         return task
     }
     
-    private func sendData<A, B>(_ endpoint: Endpoint, method: HTTPMethod, parameters: A, headers: [HTTPHeader] = [], deserialise: Deserializator<B>, handler: @escaping (Response<B>, HTTPURLResponse?) -> ()) -> URLSessionTask where A: Encodable, B: Decodable {
+    private func sendData<A, B>(_ endpoint: Endpoint, method: HTTPMethod, parameters: A, headers: [HTTPHeader] = [], deserialise: Deserializator<B>, handler: @escaping (Response<B>, HTTPURLResponse?) -> ()) -> URLSessionTask where A: Encodable {
         let descriptor = makeDescriptor(endpoint, params: parameters, headers: headers + deserialise.headers, method: method)
         return urlSession.send(descriptor, handler: { (responseData, response, responseError) in
             let validated = self.validate(data: responseData, response: response, error: responseError)
