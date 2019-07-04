@@ -1,6 +1,6 @@
 //
 //  Response.swift
-//  URLSessionWrapper
+//  DashdevsNetworking
 //
 //  Copyright (c) 2019 dashdevs.com. All rights reserved.
 //
