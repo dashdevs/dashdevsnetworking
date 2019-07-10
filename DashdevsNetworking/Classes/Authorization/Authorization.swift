@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// This protocol declare method for updating URLRequestComponents with authorization parameters
 public protocol Authorization {
     func authorize(_ requestComponents: inout URLRequestComponents)
 }
