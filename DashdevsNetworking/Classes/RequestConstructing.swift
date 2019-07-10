@@ -69,12 +69,15 @@ public struct URLRequestComponents {
     /// Binary data that is contained in body of request
     public var body: Data?
     
+    public let authorization: Authorization?
+    
     /// Read-only property which constructs URLRequest from filled fields
     public var request: URLRequest {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
         
         headers.forEach({ urlRequest.setValue($0.value, forHTTPHeaderField: $0.field) })
+        urlRequest.authorize(authorization: authorization)
         
         return urlRequest
     }
@@ -84,10 +87,11 @@ public struct URLRequestComponents {
     /// - Parameters:
     ///   - url: resource URL
     ///   - method: HTTP method to use
-    public init(url: URL, method: HTTPMethod = .get, headers: [HTTPHeader] = []) {
+    public init(url: URL, method: HTTPMethod = .get, headers: [HTTPHeader] = [], authorization: Authorization? = nil) {
         self.url = url
         self.method = method
         self.headers = headers
+        self.authorization = authorization
     }
 }
 
@@ -99,11 +103,12 @@ public extension URLRequestComponents {
     ///   - url: resource URL
     ///   - params: parameters to send in request body
     ///   - method: HTTP method to use
-    init<E: Encodable>(url: URL, params: E, method: HTTPMethod = .post, headers: [HTTPHeader] = []) {
+    init<E: Encodable>(url: URL, params: E, method: HTTPMethod = .post, headers: [HTTPHeader] = [], authorization: Authorization? = nil) {
         self.url = url
         self.method = method
         let encoding = ParamEncoding<E>.json()
         self.body = encoding.encode(params)
         self.headers = [HTTPHeader.jsonContent] + headers
+        self.authorization = authorization
     }
 }

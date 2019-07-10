@@ -11,21 +11,24 @@ import Foundation
 public protocol SessionNetworking {
     var baseURL: URL { get }
     var urlSession: URLSession { get }
+    var authorization: Authorization? { get }
 }
 
 /// This class uses URLSession for organising networking
 public class NetworkClient: SessionNetworking {
     public let baseURL: URL
     public let urlSession: URLSession
+    public var authorization: Authorization?
     
     /// Constructor method
     ///
     /// - Parameters:
     ///   - base: base URL to use
     ///   - sessionConfiguration: configuration of URL session to use
-    public init(_ base: URL, sessionConfiguration: URLSessionConfiguration = .default) {
+    public init(_ base: URL, sessionConfiguration: URLSessionConfiguration = .default, authorization: Authorization? = nil) {
         self.baseURL = base
         self.urlSession = URLSession(configuration: sessionConfiguration)
+        self.authorization = authorization
     }
     
     /// Method for retrieving data from server with specified endpoint
@@ -78,12 +81,12 @@ public class NetworkClient: SessionNetworking {
     
     public func makeDescriptor<A>(_ endpoint: Endpoint, params: A, headers: [HTTPHeader], method: HTTPMethod) -> URLRequestComponents where A: Encodable {
         let url = constructURL(endpoint)
-        return URLRequestComponents(url: url, params: params, method: method, headers: headers)
+        return URLRequestComponents(url: url, params: params, method: method, headers: headers, authorization: authorization)
     }
     
     public func makeDescriptor(endpoint: Endpoint, headers: [HTTPHeader]) -> URLRequestComponents {
         let url = constructURL(endpoint)
-        return URLRequestComponents(url: url, method: .get, headers: headers)
+        return URLRequestComponents(url: url, method: .get, headers: headers, authorization: authorization)
     }
     
     public func constructURL(_ endpoint: Endpoint) -> URL {
