@@ -15,7 +15,7 @@ public protocol SessionNetworking {
 }
 
 /// This class uses URLSession for organising networking
-public class NetworkClient: SessionNetworking {
+open class NetworkClient: SessionNetworking {
     public let baseURL: URL
     public let urlSession: URLSession
     public var authorization: Authorization?
@@ -99,7 +99,7 @@ public class NetworkClient: SessionNetworking {
     }
     
     /// This property describes range of acceptable HTTP status codes
-    public var acceptableHTTPCodes: [Int] {
+    open var acceptableHTTPCodes: [Int] {
         let codes = [Int](200...300)
         return codes
     }
@@ -111,7 +111,7 @@ public class NetworkClient: SessionNetworking {
     ///   - response: An object that provides response metadata, such as HTTP headers and status code
     ///   - error: An error object that indicates why the request failed, or nil if the request was successful
     /// - Returns: Tuple with response data and url response
-    public func validate(data: Data?, response: URLResponse?, error: Error?) -> (result: Response<Data>, response: HTTPURLResponse?) {
+    open func validate(data: Data?, response: URLResponse?, error: Error?) -> (result: Response<Data>, response: HTTPURLResponse?) {
         guard let httpResponse = response as? HTTPURLResponse else {
             return (Response.failure(NetworkError.emptyResponse), nil)
         }
