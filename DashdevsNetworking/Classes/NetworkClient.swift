@@ -80,21 +80,21 @@ open class NetworkClient: SessionNetworking {
         })
     }
     
-    public func makeDescriptor<A>(_ endpoint: Endpoint, params: A, headers: [HTTPHeader], method: HTTPMethod) -> URLRequestComponents where A: Encodable {
+    open func makeDescriptor<A>(_ endpoint: Endpoint, params: A, headers: [HTTPHeader], method: HTTPMethod) -> URLRequestComponents where A: Encodable {
         let url = constructURL(endpoint)
         var components = URLRequestComponents(url: url, params: params, method: method, headers: headers)
         authorization?.authorize(&components)
         return components
     }
     
-    public func makeDescriptor(endpoint: Endpoint, headers: [HTTPHeader]) -> URLRequestComponents {
+    open func makeDescriptor(endpoint: Endpoint, headers: [HTTPHeader]) -> URLRequestComponents {
         let url = constructURL(endpoint)
         var components = URLRequestComponents(url: url, method: .get, headers: headers)
         authorization?.authorize(&components)
         return components
     }
     
-    public func constructURL(_ endpoint: Endpoint) -> URL {
+    open func constructURL(_ endpoint: Endpoint) -> URL {
         return baseURL.appending(endpoint)
     }
     
