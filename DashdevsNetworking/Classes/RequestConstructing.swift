@@ -86,6 +86,6 @@ public extension URLRequestComponents {
         self.method = method
         let encoding = ParamEncoding<E>.json()
         self.body = encoding.encode(params)
-        self.headers = [HTTPHeader.jsonContent()]
+        self.headers = [HTTPHeader.jsonContent]
     }
 }
