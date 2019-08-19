@@ -102,7 +102,7 @@ public extension URLRequestComponents {
     init<E: Encodable>(url: URL, params: E, method: HTTPMethod = .post, headers: [HTTPHeader] = []) {
         self.url = url
         self.method = method
-        let encoding = ParamEncoding<E>.json()
+        let encoding = ParamEncoding<E>.json
         self.body = encoding.encode(params)
         self.headers = [HTTPHeader.jsonContent] + headers
     }

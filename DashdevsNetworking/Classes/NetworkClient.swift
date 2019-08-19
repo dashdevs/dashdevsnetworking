@@ -80,6 +80,24 @@ open class NetworkClient: SessionNetworking {
         })
     }
     
+    func load<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, handler: @escaping (Response<Descriptor.Resource>, HTTPURLResponse?) -> ()) -> URLSessionTask where Descriptor.Resource: Decodable {
+        return urlSession.load(baseURL, descriptor: descriptor, handler: { (data, response, error) in
+            let validated = self.validate(data: data, response: response, error: error)
+            DispatchQueue.main.async {
+                handler(validated.result.map(descriptor.response.parse), validated.response)
+            }
+        })
+    }
+    
+    func send<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, handler: @escaping (Response<Descriptor.Resource>, HTTPURLResponse?) -> ()) -> URLSessionTask where Descriptor.Resource: Decodable, Descriptor.Parameters: Encodable {
+        return urlSession.send(baseURL, descriptor: descriptor, handler: { (data, response, error) in
+            let validated = self.validate(data: data, response: response, error: error)
+            DispatchQueue.main.async {
+                handler(validated.result.map(descriptor.response.parse), validated.response)
+            }
+        })
+    }
+    
     open func makeDescriptor<A>(_ endpoint: Endpoint, params: A, headers: [HTTPHeader], method: HTTPMethod) -> URLRequestComponents where A: Encodable {
         let url = constructURL(endpoint)
         var components = URLRequestComponents(url: url, params: params, method: method, headers: headers)

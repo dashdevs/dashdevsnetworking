@@ -28,4 +28,36 @@ extension URLSession {
     public func send(_ descriptor: URLRequestComponents, handler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionUploadTask {
         return uploadTask(with: descriptor.request, from: descriptor.body, completionHandler: handler)
     }
+    
+    func request<Descriptor: RequestDescriptor>(base: URL, descriptor: Descriptor) -> URLRequest where Descriptor.Parameters: Encodable {
+        let url = base.appending(descriptor.path)
+        var request = URLRequest(url: url)
+        request.httpMethod = descriptor.method.rawValue
+        request.httpBody = descriptor.encoding?.encode(descriptor.parameters)
+        
+        descriptor.headers.forEach({ request.setValue($0.value, forHTTPHeaderField: $0.field) })
+        
+        return request
+    }
+    
+    func request<Descriptor: RequestDescriptor>(base: URL, descriptor: Descriptor) -> URLRequest where Descriptor.Resource: Decodable {
+        let url = base.appending(descriptor.path)
+        var request = URLRequest(url: url)
+        request.httpMethod = descriptor.method.rawValue
+        descriptor.headers.forEach({ request.setValue($0.value, forHTTPHeaderField: $0.field) })
+        
+        return request
+    }
+    
+    func load<Descriptor: RequestDescriptor>(_ baseURL: URL, descriptor: Descriptor, handler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionTask
+    where Descriptor.Resource: Decodable {
+        let request = self.request(base: baseURL, descriptor: descriptor)
+        return dataTask(with: request, completionHandler: handler)
+    }
+
+    func send<Descriptor: RequestDescriptor>(_ baseURL: URL, descriptor: Descriptor, handler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionTask
+        where Descriptor.Parameters: Encodable {
+        let request = self.request(base: baseURL, descriptor: descriptor)
+        return uploadTask(with: request, from: request.httpBody!)
+    }    
 }

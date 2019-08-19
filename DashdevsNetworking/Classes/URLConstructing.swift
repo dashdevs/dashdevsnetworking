@@ -84,9 +84,21 @@ public extension ParamEncoding where A: Encodable {
     /// Factory method which returns pre-defined object for encoding JSON parameters
     ///
     /// - Returns: object for encoding parameters
-    static func json() -> ParamEncoding {
+    static var json: ParamEncoding {
         return ParamEncoding(encode: { enc -> Data? in
             try? JSONEncoder().encode(enc)
         })
     }
+}
+
+protocol RequestDescriptor {
+    associatedtype Parameters
+    associatedtype Resource
+    
+    var path: Endpoint { get }
+    var method: HTTPMethod { get }
+    var encoding: ParamEncoding<Parameters>? { get }
+    var headers: [HTTPHeader] { get }
+    var response: Deserializator<Resource> { get }
+    var parameters: Parameters { get }
 }
