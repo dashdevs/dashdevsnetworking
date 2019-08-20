@@ -33,10 +33,13 @@ extension URLSession {
         let url = base.appending(descriptor.path)
         var request = URLRequest(url: url)
         request.httpMethod = descriptor.method.rawValue
-        if let params = descriptor.parameters {
-            request.httpBody = descriptor.encoding?.encode(params)
+        
+        if let params = descriptor.parameters, let encoding = descriptor.encoding {
+            encoding.headers.forEach({ request.setValue($0.value, forHTTPHeaderField: $0.field) })
+            request.httpBody = encoding.encode(params)
         }
         
+        descriptor.response.headers.forEach({ request.setValue($0.value, forHTTPHeaderField: $0.field) })
         descriptor.headers.forEach({ request.setValue($0.value, forHTTPHeaderField: $0.field) })
         
         return request

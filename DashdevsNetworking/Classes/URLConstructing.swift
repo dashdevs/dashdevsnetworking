@@ -77,6 +77,8 @@ public struct ParamEncoding<A> {
     
     /// Encoding parameters callback, may return nil if encoding fails
     let encode: (A) -> Data?
+    
+    let headers: [HTTPHeader]
 }
 
 public extension ParamEncoding where A: Encodable {
@@ -87,7 +89,7 @@ public extension ParamEncoding where A: Encodable {
     static var json: ParamEncoding {
         return ParamEncoding(encode: { enc -> Data? in
             try? JSONEncoder().encode(enc)
-        })
+        }, headers: [HTTPHeader.jsonContent])
     }
 }
 
