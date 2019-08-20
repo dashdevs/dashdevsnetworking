@@ -29,28 +29,15 @@ extension URLSession {
         return uploadTask(with: descriptor.request, from: descriptor.body, completionHandler: handler)
     }
     
-    func request<Descriptor: RequestDescriptor>(base: URL, descriptor: Descriptor) -> URLRequest where Descriptor.Parameters: Encodable {
+    func request<Descriptor: RequestDescriptor>(base: URL, descriptor: Descriptor) -> URLRequest {
         let url = base.appending(descriptor.path)
         var request = URLRequest(url: url)
         request.httpMethod = descriptor.method.rawValue
         
-        if let params = descriptor.parameters, let encoding = descriptor.encoding {
+        if let encoding = descriptor.encoding {
             encoding.headers.forEach({ request.setValue($0.value, forHTTPHeaderField: $0.field) })
-            request.httpBody = encoding.encode(params)
         }
-        
         descriptor.response.headers.forEach({ request.setValue($0.value, forHTTPHeaderField: $0.field) })
-        descriptor.headers.forEach({ request.setValue($0.value, forHTTPHeaderField: $0.field) })
-        
-        return request
-    }
-    
-    func request<Descriptor: RequestDescriptor>(base: URL, descriptor: Descriptor) -> URLRequest where Descriptor.Resource: Decodable {
-        let url = base.appending(descriptor.path)
-        var request = URLRequest(url: url)
-        request.httpMethod = descriptor.method.rawValue
-        descriptor.headers.forEach({ request.setValue($0.value, forHTTPHeaderField: $0.field) })
-        
         return request
     }
     
@@ -63,6 +50,12 @@ extension URLSession {
     func send<Descriptor: RequestDescriptor>(_ baseURL: URL, descriptor: Descriptor, handler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionTask
         where Descriptor.Parameters: Encodable {
         let request = self.request(base: baseURL, descriptor: descriptor)
-        return uploadTask(with: request, from: request.httpBody!)
+            
+        var body: Data? = nil
+        if let params = descriptor.parameters, let encoding = descriptor.encoding {
+            body = encoding.encode(params)
+        }
+            
+        return uploadTask(with: request, from: body, completionHandler: handler)
     }    
 }

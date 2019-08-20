@@ -11,6 +11,8 @@ import DashdevsNetworking
 class ViewController: UITableViewController {
     let apiClient: NetworkClient = NetworkClient(URL(staticString: "https://itunes.apple.com"))
     
+    let apiClient2: NetworkClient = NetworkClient(URL(staticString: "https://httpbin.org"))
+    
     var items: [ItunesItem] = [] {
         didSet {
             tableView.reloadData()
@@ -24,13 +26,20 @@ class ViewController: UITableViewController {
                                                               URLQueryItem(name: "entity", value: "song"),
                                                               URLQueryItem(name: "term", value: "aaron smith")])
         
-        apiClient.get(endpoint, deserialise: Deserializator<ItunesResults>.json) { (response, _) in
-            switch response {
-            case let .success(results):
-                self.items = results.results
-            case let .failure(error):
-                print(error)
-            }
+//        apiClient.get(endpoint, deserialise: Deserializator<ItunesResults>.json) { (response, _) in
+//            switch response {
+//            case let .success(results):
+//                self.items = results.results
+//            case let .failure(error):
+//                print(error)
+//            }
+//        }
+        
+//        let model = AuthEmailModel(email: "email@email.com", source: "ios")
+        let model = AuthByEmailDescriptor(email: "email@email.com")
+        apiClient2.send(model) { (result, response) in
+            print(result)
+            print(response)
         }
     }
 

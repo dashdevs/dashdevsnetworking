@@ -93,7 +93,7 @@ public extension ParamEncoding where A: Encodable {
     }
 }
 
-protocol RequestDescriptor {
+public protocol RequestDescriptor {
     associatedtype Parameters
     associatedtype Resource
     
