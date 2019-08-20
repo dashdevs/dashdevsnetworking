@@ -34,9 +34,7 @@ extension URLSession {
         var request = URLRequest(url: url)
         request.httpMethod = descriptor.method.rawValue
         
-        if let encoding = descriptor.encoding {
-            encoding.headers.forEach({ request.setValue($0.value, forHTTPHeaderField: $0.field) })
-        }
+        descriptor.encoding.map({ $0.headers.forEach({ request.setValue($0.value, forHTTPHeaderField: $0.field) }) })
         descriptor.response.headers.forEach({ request.setValue($0.value, forHTTPHeaderField: $0.field) })
         return request
     }
@@ -57,5 +55,5 @@ extension URLSession {
         }
             
         return uploadTask(with: request, from: body, completionHandler: handler)
-    }    
+    }
 }
