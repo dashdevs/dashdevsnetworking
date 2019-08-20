@@ -100,5 +100,5 @@ protocol RequestDescriptor {
     var encoding: ParamEncoding<Parameters>? { get }
     var headers: [HTTPHeader] { get }
     var response: Deserializator<Resource> { get }
-    var parameters: Parameters { get }
+    var parameters: Parameters? { get }
 }
