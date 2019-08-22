@@ -30,7 +30,6 @@ struct ItunesRequestDescriptor: RequestDescriptor {
     }
     
     var method: HTTPMethod { return .get }
-    var headers: [HTTPHeader] = []
     var response: Deserializator<Resource> = .json
 }
 
@@ -54,7 +53,6 @@ struct AuthByEmailDescriptor: RequestDescriptor {
     var method: HTTPMethod
     var response: Deserializator<AuthCodeModel>
     var parameters: AuthEmailModel?
-    var headers: [HTTPHeader]
     var encoding: ParamEncoding<AuthEmailModel>?
     
     init(email: String) {
@@ -62,7 +60,6 @@ struct AuthByEmailDescriptor: RequestDescriptor {
         path = Endpoint(path: "/post")
         method = .post
         response = Deserializator<AuthCodeModel>.json
-        headers = []
         encoding = .json
     }
 }

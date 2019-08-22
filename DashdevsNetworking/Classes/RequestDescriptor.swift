@@ -15,7 +15,7 @@ public protocol RequestDescriptor {
     var path: Endpoint { get }
     var method: HTTPMethod { get }
     var encoding: ParamEncoding<Parameters>? { get }
-    var headers: [HTTPHeader] { get }
+    var headers: [HTTPHeader]? { get }
     var response: Deserializator<Resource> { get }
     var parameters: Parameters? { get }
     var versionPath: Path? { get }
@@ -23,6 +23,7 @@ public protocol RequestDescriptor {
 
 public extension RequestDescriptor {
     var versionPath: Path? { return nil }
+    var headers: [HTTPHeader]? { return nil }
     var encoding: ParamEncoding<Parameters>? { return nil }
     var parameters: Parameters? { return nil }
 }
