@@ -78,6 +78,7 @@ public struct ParamEncoding<A> {
     /// Encoding parameters callback, may return nil if encoding fails
     let encode: (A) -> Data?
     
+    /// Headers that describe format of encoding result
     let headers: [HTTPHeader]
 }
 
@@ -91,16 +92,4 @@ public extension ParamEncoding where A: Encodable {
             try? JSONEncoder().encode(enc)
         }, headers: [HTTPHeader.jsonContent])
     }
-}
-
-public protocol RequestDescriptor {
-    associatedtype Parameters
-    associatedtype Resource
-    
-    var path: Endpoint { get }
-    var method: HTTPMethod { get }
-    var encoding: ParamEncoding<Parameters>? { get }
-    var headers: [HTTPHeader] { get }
-    var response: Deserializator<Resource> { get }
-    var parameters: Parameters? { get }
 }
