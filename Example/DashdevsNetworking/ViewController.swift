@@ -21,25 +21,21 @@ class ViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let descr = AuthByEmailDescriptor(email: "email@email.com")
         
-        let endpoint = Endpoint(path: "/search", queryItems: [URLQueryItem(name: "media", value: "music"),
-                                                              URLQueryItem(name: "entity", value: "song"),
-                                                              URLQueryItem(name: "term", value: "aaron smith")])
-        
-//        apiClient.get(endpoint, deserialise: Deserializator<ItunesResults>.json) { (response, _) in
-//            switch response {
-//            case let .success(results):
-//                self.items = results.results
-//            case let .failure(error):
-//                print(error)
-//            }
-//        }
-        
-//        let model = AuthEmailModel(email: "email@email.com", source: "ios")
-        let model = AuthByEmailDescriptor(email: "email@email.com")
-        apiClient2.send(model) { (result, response) in
+        apiClient2.send(descr) { (result, _) in
             print(result)
-            print(response)
+        }
+        
+        let descriptor = ItunesRequestDescriptor()
+        apiClient.load(descriptor) { (response, _) in
+            switch response {
+            case let .success(results):
+                self.items = results.results
+            case let .failure(error):
+                print(error)
+            }
         }
     }
 

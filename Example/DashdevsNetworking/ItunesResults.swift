@@ -19,6 +19,23 @@ struct ItunesItem: Decodable {
     let trackName: String?
 }
 
+struct ItunesRequestDescriptor: RequestDescriptor {
+    typealias Parameters = Void
+    typealias Resource = ItunesResults
+    
+    var path: Endpoint {
+        return Endpoint(path: "/search", queryItems: [URLQueryItem(name: "media", value: "music"),
+                                                      URLQueryItem(name: "entity", value: "song"),
+                                                      URLQueryItem(name: "term", value: "aaron smith")])
+    }
+    
+    var method: HTTPMethod { return .get }
+    var encoding: ParamEncoding<Parameters>? = nil
+    var headers: [HTTPHeader] = []
+    var response: Deserializator<Resource> = .json
+    var parameters: Parameters? = nil
+}
+
 struct AuthCodeModel: Decodable {
 }
 
@@ -44,7 +61,7 @@ struct AuthByEmailDescriptor: RequestDescriptor {
     
     init(email: String) {
         parameters = AuthEmailModel(email: email, source: "")
-        path = Endpoint(path: "/auth/email")
+        path = Endpoint(path: "/post")
         method = .post
         response = Deserializator<AuthCodeModel>.json
         headers = []
