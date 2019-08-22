@@ -7,5 +7,5 @@
 
 /// This protocol declare method for updating URLRequestComponents with authorization parameters
 public protocol Authorization {
-    func authorize(_ requestComponents: inout URLRequestComponents)
+    func authorize(_ request: inout URLRequest)
 }
