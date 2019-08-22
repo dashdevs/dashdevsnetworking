@@ -101,7 +101,7 @@ open class NetworkClient: SessionNetworking {
     open func constructURL(_ endpoint: Endpoint, versioned: Path? = nil) -> URL {
         var resultPath = endpoint.path
         if let version = versioned {
-            resultPath = version.appending(resultPath)
+            resultPath = version + resultPath
         }
         
         let resultEndpoint = Endpoint(resultPath, queryItems: endpoint.queryItems)

@@ -17,9 +17,9 @@ public struct Path {
     }
 }
 
-public extension Path {
-    func appending(_ path: Path) -> Path {
-        return Path(components + path.components)
+public extension Path {    
+    static func + (left: Path, right: Path) -> Path {
+        return Path(left.components + right.components)
     }
 }
 
@@ -41,13 +41,6 @@ public struct Endpoint {
     public init(_ path: Path, queryItems: [URLQueryItem] = []) {
         self.path = path
         self.queryItems = queryItems
-    }
-}
-
-public extension Endpoint {
-    func appending(_ path: Path) -> Endpoint {
-        let result = path.appending(self.path)
-        return Endpoint(path: result.rendered, queryItems: queryItems)
     }
 }
 
