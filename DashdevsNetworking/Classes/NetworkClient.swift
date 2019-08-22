@@ -94,10 +94,12 @@ open class NetworkClient: SessionNetworking {
         return request
     }
     
-    /// Method which constructs result URL for request being sent
+    /// Method which constructs result URL for request to be sent
     ///
-    /// - Parameter path: part of 
-    /// - Returns: result URL for request being sent
+    /// - Parameters:
+    ///   - endpoint: object containing info about path to resource on remote location
+    ///   - versioned: object containing software versioning info
+    /// - Returns: URL object to resource on remote location
     open func constructURL(_ endpoint: Endpoint, versioned: Path? = nil) -> URL {
         var resultPath = endpoint.path
         if let version = versioned {
