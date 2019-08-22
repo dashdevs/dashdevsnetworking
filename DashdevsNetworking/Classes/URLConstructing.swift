@@ -26,22 +26,28 @@ public extension Path {
 /// This struct describes endpoint - end of communication channel
 public struct Endpoint {
     
-    /// Path that will be
-    let path: String
+    /// Component, consisting of a sequence of path segments separated by a slash
+    let path: Path
     
     /// Query items are basically key-value pairs
     let queryItems: [URLQueryItem]
     
     public init(path: String, queryItems: [URLQueryItem] = []) {
+        let components = path.components(separatedBy: "/")
+        self.path = Path(components)
+        self.queryItems = queryItems
+    }
+    
+    public init(_ path: Path, queryItems: [URLQueryItem] = []) {
         self.path = path
         self.queryItems = queryItems
     }
 }
 
 public extension Endpoint {
-    init(_ path: Path, queryItems: [URLQueryItem] = []) {
-        self.path = path.rendered
-        self.queryItems = queryItems
+    func appending(_ path: Path) -> Endpoint {
+        let result = path.appending(self.path)
+        return Endpoint(path: result.rendered, queryItems: queryItems)
     }
 }
 
@@ -60,7 +66,7 @@ public extension URL {
     
     func appending(_ endpoint: Endpoint) -> URL {
         var components = URLComponents(url: self, resolvingAgainstBaseURL: true)
-        components?.path = endpoint.path
+        components?.path = endpoint.path.rendered
         if !endpoint.queryItems.isEmpty {
             components?.queryItems = endpoint.queryItems
         }

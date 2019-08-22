@@ -30,10 +30,8 @@ struct ItunesRequestDescriptor: RequestDescriptor {
     }
     
     var method: HTTPMethod { return .get }
-    var encoding: ParamEncoding<Parameters>? = nil
     var headers: [HTTPHeader] = []
     var response: Deserializator<Resource> = .json
-    var parameters: Parameters? = nil
 }
 
 struct AuthCodeModel: Decodable {

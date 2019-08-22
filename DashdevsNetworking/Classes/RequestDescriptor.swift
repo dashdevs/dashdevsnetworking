@@ -18,4 +18,11 @@ public protocol RequestDescriptor {
     var headers: [HTTPHeader] { get }
     var response: Deserializator<Resource> { get }
     var parameters: Parameters? { get }
+    var versionPath: Path? { get }
+}
+
+public extension RequestDescriptor {
+    var versionPath: Path? { return nil }
+    var encoding: ParamEncoding<Parameters>? { return nil }
+    var parameters: Parameters? { return nil }
 }

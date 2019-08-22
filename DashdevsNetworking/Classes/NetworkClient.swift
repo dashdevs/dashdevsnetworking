@@ -98,8 +98,14 @@ open class NetworkClient: SessionNetworking {
     ///
     /// - Parameter path: part of 
     /// - Returns: result URL for request being sent
-    open func constructURL(_ path: Endpoint) -> URL {
-        return baseURL.appending(path)
+    open func constructURL(_ endpoint: Endpoint, versioned: Path? = nil) -> URL {
+        var resultPath = endpoint.path
+        if let version = versioned {
+            resultPath = version.appending(resultPath)
+        }
+        
+        let resultEndpoint = Endpoint(resultPath, queryItems: endpoint.queryItems)
+        return baseURL.appending(resultEndpoint)
     }
     
     /// This property describes range of acceptable HTTP status codes
