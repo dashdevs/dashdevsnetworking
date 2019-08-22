@@ -78,7 +78,7 @@ open class NetworkClient: SessionNetworking {
     /// - Parameter descriptor: object that describes outgoing request to remote location
     /// - Returns: request to remote location object
     open func makeRequest<Descriptor: RequestDescriptor>(from descriptor: Descriptor) -> URLRequest {
-        let url = constructURL(descriptor.path)
+        let url = constructURL(descriptor.path, versioned: descriptor.versionPath)
         var request = URLRequest(url: url)
         request.httpMethod = descriptor.method.rawValue
         
