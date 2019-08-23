@@ -11,6 +11,8 @@ import Foundation
 public struct Deserializator<A> {
     /// Parsing callback, may throw if parsing fails
     public let parse: (Data) throws -> A
+    
+    /// Headers that describe format of data passed
     public let headers: [HTTPHeader]
     
     public init(_ parse: @escaping (Data) throws -> A, headers: [HTTPHeader]) {

@@ -44,66 +44,14 @@ extension HTTPHeader {
         return HTTPHeader(field: "Content-Type", value: MIMEType.plainText.rawValue)
     }
     
+    /// Factory property which returns pre-defined header for accepting JSON response type
     static var acceptJSON: HTTPHeader {
         return HTTPHeader(field: "Accept", value: MIMEType.applicationJSON.rawValue)
     }
     
+    /// Factory property which returns pre-defined header for accepting plain text response type
     static var acceptText: HTTPHeader {
         return HTTPHeader(field: "Accept", value: MIMEType.plainText.rawValue)
     }
 
-}
-
-/// This structure describes request to resource using HTTP protocol
-public struct URLRequestComponents {
-    
-    /// Requested resource locator
-    public let url: URL
-    
-    /// HTTP method of request
-    public var method: HTTPMethod
-    
-    /// Headers of particular request
-    public var headers: [HTTPHeader]
-    
-    /// Binary data that is contained in body of request
-    public var body: Data?
-    
-    /// Read-only property which constructs URLRequest from filled fields
-    public var request: URLRequest {
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = method.rawValue
-        
-        headers.forEach({ urlRequest.setValue($0.value, forHTTPHeaderField: $0.field) })
-        
-        return urlRequest
-    }
-    
-    /// Constructor method for requesting resource representation
-    ///
-    /// - Parameters:
-    ///   - url: resource URL
-    ///   - method: HTTP method to use
-    public init(url: URL, method: HTTPMethod = .get, headers: [HTTPHeader] = []) {
-        self.url = url
-        self.method = method
-        self.headers = headers
-    }
-}
-
-public extension URLRequestComponents {
-    
-    /// Constructor method for submitting an entity to the specified resource
-    ///
-    /// - Parameters:
-    ///   - url: resource URL
-    ///   - params: parameters to send in request body
-    ///   - method: HTTP method to use
-    init<E: Encodable>(url: URL, params: E, method: HTTPMethod = .post, headers: [HTTPHeader] = []) {
-        self.url = url
-        self.method = method
-        let encoding = ParamEncoding<E>.json()
-        self.body = encoding.encode(params)
-        self.headers = [HTTPHeader.jsonContent] + headers
-    }
 }
