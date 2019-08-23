@@ -50,3 +50,7 @@ public enum NetworkError: LocalizedError {
         }
     }
 }
+
+public protocol DetailedErrorHandler {
+    func detailedError(from data: Data?, httpStatus: NetworkError.HTTP) -> Error
+}
