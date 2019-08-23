@@ -17,7 +17,7 @@
 		A4F38FCA320B2F37D7757AE0E693E0D7 /* DashdevsNetworking-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8279C31A93500BC96732B28A7F7E958A /* DashdevsNetworking-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D09FC7CBBACBACE1FFAF28230F6BC822 /* Pods-DashdevsNetworking_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 68795A987A94A8FDA2C477ECB0B9A357 /* Pods-DashdevsNetworking_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E38754BE3CC35F745DD40A4A74D17167 /* DashdevsNetworking-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 94EDDFD8DBF120C896DAEFEFF0ABA9C4 /* DashdevsNetworking-dummy.m */; };
-		E8A9D052229D81AA0005B7A8 /* URLSession+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A9D04D229D81A90005B7A8 /* URLSession+Extensions.swift */; };
+		E8A6E820230EA09000DB4683 /* RequestDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A6E81F230EA09000DB4683 /* RequestDescriptor.swift */; };
 		E8A9D053229D81AA0005B7A8 /* URLConstructing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A9D04E229D81AA0005B7A8 /* URLConstructing.swift */; };
 		E8A9D054229D81AA0005B7A8 /* RequestConstructing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A9D04F229D81AA0005B7A8 /* RequestConstructing.swift */; };
 		E8A9D055229D81AA0005B7A8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A9D050229D81AA0005B7A8 /* NetworkError.swift */; };
@@ -78,7 +78,7 @@
 		C57944F9A08B6937D5BC32235D448678 /* Pods-DashdevsNetworking_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DashdevsNetworking_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		D3F3023234080C26C70470BA77CCE638 /* DashdevsNetworking-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DashdevsNetworking-prefix.pch"; sourceTree = "<group>"; };
 		D825F2A6A341314BE034F1F5F3B3D3F1 /* DashdevsNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DashdevsNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E8A9D04D229D81A90005B7A8 /* URLSession+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "URLSession+Extensions.swift"; path = "DashdevsNetworking/Classes/URLSession+Extensions.swift"; sourceTree = "<group>"; };
+		E8A6E81F230EA09000DB4683 /* RequestDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestDescriptor.swift; path = DashdevsNetworking/Classes/RequestDescriptor.swift; sourceTree = "<group>"; };
 		E8A9D04E229D81AA0005B7A8 /* URLConstructing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = URLConstructing.swift; path = DashdevsNetworking/Classes/URLConstructing.swift; sourceTree = "<group>"; };
 		E8A9D04F229D81AA0005B7A8 /* RequestConstructing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestConstructing.swift; path = DashdevsNetworking/Classes/RequestConstructing.swift; sourceTree = "<group>"; };
 		E8A9D050229D81AA0005B7A8 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkError.swift; path = DashdevsNetworking/Classes/NetworkError.swift; sourceTree = "<group>"; };
@@ -176,9 +176,9 @@
 			isa = PBXGroup;
 			children = (
 				7544812922D628D400B51B1D /* Authorization */,
+				E8A6E81F230EA09000DB4683 /* RequestDescriptor.swift */,
 				E8A9D057229D83570005B7A8 /* NetworkClient.swift */,
 				E8A9D05B229D83CB0005B7A8 /* HTTPResponse+Extensions.swift */,
-				E8A9D04D229D81A90005B7A8 /* URLSession+Extensions.swift */,
 				E8A9D050229D81AA0005B7A8 /* NetworkError.swift */,
 				E8A9D04F229D81AA0005B7A8 /* RequestConstructing.swift */,
 				E8A9D051229D81AA0005B7A8 /* Response.swift */,
@@ -411,7 +411,7 @@
 				7544812D22D628F700B51B1D /* BearerTokenAuth.swift in Sources */,
 				E8A9D053229D81AA0005B7A8 /* URLConstructing.swift in Sources */,
 				E8A9D05C229D83CB0005B7A8 /* HTTPResponse+Extensions.swift in Sources */,
-				E8A9D052229D81AA0005B7A8 /* URLSession+Extensions.swift in Sources */,
+				E8A6E820230EA09000DB4683 /* RequestDescriptor.swift in Sources */,
 				E38754BE3CC35F745DD40A4A74D17167 /* DashdevsNetworking-dummy.m in Sources */,
 				E8A9D058229D83570005B7A8 /* NetworkClient.swift in Sources */,
 				E8A9D056229D81AA0005B7A8 /* Response.swift in Sources */,

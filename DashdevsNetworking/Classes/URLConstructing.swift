@@ -17,30 +17,29 @@ public struct Path {
     }
 }
 
-public extension Path {
-    func appending(_ path: Path) -> Path {
-        return Path(components + path.components)
+public extension Path {    
+    static func + (left: Path, right: Path) -> Path {
+        return Path(left.components + right.components)
     }
 }
 
 /// This struct describes endpoint - end of communication channel
 public struct Endpoint {
     
-    /// Path that will be
-    let path: String
+    /// Component, consisting of a sequence of path segments separated by a slash
+    let path: Path
     
     /// Query items are basically key-value pairs
     let queryItems: [URLQueryItem]
     
     public init(path: String, queryItems: [URLQueryItem] = []) {
-        self.path = path
+        let components = path.components(separatedBy: "/")
+        self.path = Path(components)
         self.queryItems = queryItems
     }
-}
-
-public extension Endpoint {
-    init(_ path: Path, queryItems: [URLQueryItem] = []) {
-        self.path = path.rendered
+    
+    public init(_ path: Path, queryItems: [URLQueryItem] = []) {
+        self.path = path
         self.queryItems = queryItems
     }
 }
@@ -60,7 +59,7 @@ public extension URL {
     
     func appending(_ endpoint: Endpoint) -> URL {
         var components = URLComponents(url: self, resolvingAgainstBaseURL: true)
-        components?.path = endpoint.path
+        components?.path = endpoint.path.rendered
         if !endpoint.queryItems.isEmpty {
             components?.queryItems = endpoint.queryItems
         }
@@ -77,6 +76,9 @@ public struct ParamEncoding<A> {
     
     /// Encoding parameters callback, may return nil if encoding fails
     let encode: (A) -> Data?
+    
+    /// Headers that describe format of encoding result
+    let headers: [HTTPHeader]
 }
 
 public extension ParamEncoding where A: Encodable {
@@ -84,9 +86,9 @@ public extension ParamEncoding where A: Encodable {
     /// Factory method which returns pre-defined object for encoding JSON parameters
     ///
     /// - Returns: object for encoding parameters
-    static func json() -> ParamEncoding {
+    static var json: ParamEncoding {
         return ParamEncoding(encode: { enc -> Data? in
             try? JSONEncoder().encode(enc)
-        })
+        }, headers: [HTTPHeader.jsonContent])
     }
 }
