@@ -124,12 +124,12 @@ open class NetworkClient: SessionNetworking {
     ///   - error: An error object that indicates why the request failed, or nil if the request was successful
     /// - Returns: Tuple with response data and url response
     open func validate(data: Data?, response: URLResponse?, error: Error?, errorHandler: DetailedErrorHandler?) -> (result: Response<Data>, response: HTTPURLResponse?) {
+        if let error = error {
+            return (Response.failure(error), nil)
+        }
+
         guard let httpResponse = response as? HTTPURLResponse else {
             return (Response.failure(NetworkError.emptyResponse), nil)
-        }
-        
-        if let error = error {
-            return (Response.failure(error), httpResponse)
         }
         
         let statusCode = httpResponse.statusCode
