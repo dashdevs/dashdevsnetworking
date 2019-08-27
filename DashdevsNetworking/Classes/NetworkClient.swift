@@ -135,7 +135,7 @@ open class NetworkClient: SessionNetworking {
         let statusCode = httpResponse.statusCode
         
         guard acceptableHTTPCodes.contains(statusCode) else {
-            let status = NetworkError.HTTP(statusCode)
+            let status = NetworkError.HTTPError(statusCode)
             if let hander = errorHandler {
                 let detailed = hander.detailedError(from: data, httpStatus: status)
                 return (Response.failure(detailed), httpResponse)
