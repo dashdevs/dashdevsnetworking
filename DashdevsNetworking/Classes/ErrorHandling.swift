@@ -25,12 +25,13 @@ public enum NetworkError: LocalizedError {
     /// - notFound: Server has not found resource matching URL
     /// - forbidden: The server understood the request, but is refusing to fulfill it.
     /// - server: The server encountered an unexpected condition which prevented it from fulfilling the request
-    public enum HTTP: LocalizedError {
+    public enum HTTPError: LocalizedError {
         case client
         case unautorized
         case notFound
         case forbidden
         case server
+        case unknown(Int)
         
         public init(_ statusCode: Int) {
             switch statusCode {
@@ -42,11 +43,15 @@ public enum NetworkError: LocalizedError {
                 self = .notFound
             case 403:
                 self = .forbidden
-            case 500:
+            case 500..<600:
                 self = .server
             default:
-                self = .server
+                self = .unknown(statusCode)
             }
         }
     }
+}
+
+public protocol DetailedErrorHandler {
+    func detailedError(from data: Data?, httpStatus: NetworkError.HTTPError) -> Error
 }

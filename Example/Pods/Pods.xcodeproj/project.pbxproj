@@ -20,7 +20,7 @@
 		E8A6E820230EA09000DB4683 /* RequestDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A6E81F230EA09000DB4683 /* RequestDescriptor.swift */; };
 		E8A9D053229D81AA0005B7A8 /* URLConstructing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A9D04E229D81AA0005B7A8 /* URLConstructing.swift */; };
 		E8A9D054229D81AA0005B7A8 /* RequestConstructing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A9D04F229D81AA0005B7A8 /* RequestConstructing.swift */; };
-		E8A9D055229D81AA0005B7A8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A9D050229D81AA0005B7A8 /* NetworkError.swift */; };
+		E8A9D055229D81AA0005B7A8 /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A9D050229D81AA0005B7A8 /* ErrorHandling.swift */; };
 		E8A9D056229D81AA0005B7A8 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A9D051229D81AA0005B7A8 /* Response.swift */; };
 		E8A9D058229D83570005B7A8 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A9D057229D83570005B7A8 /* NetworkClient.swift */; };
 		E8A9D05C229D83CB0005B7A8 /* HTTPResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A9D05B229D83CB0005B7A8 /* HTTPResponse+Extensions.swift */; };
@@ -81,7 +81,7 @@
 		E8A6E81F230EA09000DB4683 /* RequestDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestDescriptor.swift; path = DashdevsNetworking/Classes/RequestDescriptor.swift; sourceTree = "<group>"; };
 		E8A9D04E229D81AA0005B7A8 /* URLConstructing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = URLConstructing.swift; path = DashdevsNetworking/Classes/URLConstructing.swift; sourceTree = "<group>"; };
 		E8A9D04F229D81AA0005B7A8 /* RequestConstructing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestConstructing.swift; path = DashdevsNetworking/Classes/RequestConstructing.swift; sourceTree = "<group>"; };
-		E8A9D050229D81AA0005B7A8 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkError.swift; path = DashdevsNetworking/Classes/NetworkError.swift; sourceTree = "<group>"; };
+		E8A9D050229D81AA0005B7A8 /* ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorHandling.swift; path = DashdevsNetworking/Classes/ErrorHandling.swift; sourceTree = "<group>"; };
 		E8A9D051229D81AA0005B7A8 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Response.swift; path = DashdevsNetworking/Classes/Response.swift; sourceTree = "<group>"; };
 		E8A9D057229D83570005B7A8 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkClient.swift; path = DashdevsNetworking/Classes/NetworkClient.swift; sourceTree = "<group>"; };
 		E8A9D05B229D83CB0005B7A8 /* HTTPResponse+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "HTTPResponse+Extensions.swift"; path = "DashdevsNetworking/Classes/HTTPResponse+Extensions.swift"; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 				E8A6E81F230EA09000DB4683 /* RequestDescriptor.swift */,
 				E8A9D057229D83570005B7A8 /* NetworkClient.swift */,
 				E8A9D05B229D83CB0005B7A8 /* HTTPResponse+Extensions.swift */,
-				E8A9D050229D81AA0005B7A8 /* NetworkError.swift */,
+				E8A9D050229D81AA0005B7A8 /* ErrorHandling.swift */,
 				E8A9D04F229D81AA0005B7A8 /* RequestConstructing.swift */,
 				E8A9D051229D81AA0005B7A8 /* Response.swift */,
 				E8A9D04E229D81AA0005B7A8 /* URLConstructing.swift */,
@@ -415,7 +415,7 @@
 				E38754BE3CC35F745DD40A4A74D17167 /* DashdevsNetworking-dummy.m in Sources */,
 				E8A9D058229D83570005B7A8 /* NetworkClient.swift in Sources */,
 				E8A9D056229D81AA0005B7A8 /* Response.swift in Sources */,
-				E8A9D055229D81AA0005B7A8 /* NetworkError.swift in Sources */,
+				E8A9D055229D81AA0005B7A8 /* ErrorHandling.swift in Sources */,
 				7544812B22D628D400B51B1D /* Authorization.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
