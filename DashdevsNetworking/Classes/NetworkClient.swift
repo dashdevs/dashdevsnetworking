@@ -43,7 +43,7 @@ open class NetworkClient: SessionNetworking {
         let request = makeRequest(from: descriptor)
 
         let task = urlSession.dataTask(with: request) { (data, response, error) in
-            let validated = self.validate(data: data, response: response, error: error)
+            let validated = self.validate(data: data, response: response, error: error, errorHandler: descriptor.detailedErrorHandler)
             DispatchQueue.main.async {
                 handler(validated.result.map(descriptor.response.parse), validated.response)
             }
@@ -64,7 +64,7 @@ open class NetworkClient: SessionNetworking {
         let request = makeRequest(from: descriptor)
         
         let task = urlSession.uploadTask(with: request, from: request.httpBody) { (data, response, error) in
-            let validated = self.validate(data: data, response: response, error: error)
+            let validated = self.validate(data: data, response: response, error: error, errorHandler: descriptor.detailedErrorHandler)
             DispatchQueue.main.async {
                 handler(validated.result.map(descriptor.response.parse), validated.response)
             }
@@ -121,21 +121,26 @@ open class NetworkClient: SessionNetworking {
     /// - Parameters:
     ///   - data: The data returned by the server
     ///   - response: An object that provides response metadata, such as HTTP headers and status code
-    ///   - error: An error object that indicates why the request failed, or nil if the request was successful
+    ///   - error: An error object that indicates why the request failed, or nil if the request was successful. Apple doc states that error will be returned in the NSURLErrorDomain
     /// - Returns: Tuple with response data and url response
-    open func validate(data: Data?, response: URLResponse?, error: Error?) -> (result: Response<Data>, response: HTTPURLResponse?) {
+    open func validate(data: Data?, response: URLResponse?, error: Error?, errorHandler: DetailedErrorHandler?) -> (result: Response<Data>, response: HTTPURLResponse?) {
+        if let error = error as? URLError {
+            return (Response.failure(error), nil)
+        }
+
         guard let httpResponse = response as? HTTPURLResponse else {
             return (Response.failure(NetworkError.emptyResponse), nil)
-        }
-        
-        if let error = error {
-            return (Response.failure(error), httpResponse)
         }
         
         let statusCode = httpResponse.statusCode
         
         guard acceptableHTTPCodes.contains(statusCode) else {
-            return (Response.failure(NetworkError.HTTP(statusCode)), httpResponse)
+            let status = NetworkError.HTTPError(statusCode)
+            if let hander = errorHandler {
+                let detailed = hander.detailedError(from: data, httpStatus: status)
+                return (Response.failure(detailed), httpResponse)
+            }
+            return (Response.failure(status), httpResponse)
         }
         
         guard let data = data else {
