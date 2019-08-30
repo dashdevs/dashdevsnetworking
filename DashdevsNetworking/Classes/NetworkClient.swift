@@ -121,10 +121,10 @@ open class NetworkClient: SessionNetworking {
     /// - Parameters:
     ///   - data: The data returned by the server
     ///   - response: An object that provides response metadata, such as HTTP headers and status code
-    ///   - error: An error object that indicates why the request failed, or nil if the request was successful
+    ///   - error: An error object that indicates why the request failed, or nil if the request was successful. Apple doc states that error will be returned in the NSURLErrorDomain
     /// - Returns: Tuple with response data and url response
     open func validate(data: Data?, response: URLResponse?, error: Error?, errorHandler: DetailedErrorHandler?) -> (result: Response<Data>, response: HTTPURLResponse?) {
-        if let error = error {
+        if let error = error as? URLError {
             return (Response.failure(error), nil)
         }
 
