@@ -79,6 +79,11 @@ public struct ParamEncoding<A> {
     
     /// Headers that describe format of encoding result
     let headers: [HTTPHeader]
+    
+    public init(_ encode: @escaping (A) -> Data?, headers: [HTTPHeader]) {
+        self.encode = encode
+        self.headers = headers
+    }
 }
 
 public extension ParamEncoding where A: Encodable {
@@ -87,8 +92,8 @@ public extension ParamEncoding where A: Encodable {
     ///
     /// - Returns: object for encoding parameters
     static var json: ParamEncoding {
-        return ParamEncoding(encode: { enc -> Data? in
-            try? JSONEncoder().encode(enc)
+        return ParamEncoding({ encodable -> Data? in
+            try? JSONEncoder().encode(encodable)
         }, headers: [HTTPHeader.jsonContent])
     }
 }

@@ -10,10 +10,12 @@
 /// - get: Method requests a representation of the specified resource
 /// - post: Method is used to submit an entity to the specified resource
 /// - put: Method replaces all current representations of the target resource with the request payload.
+/// - delete: Method requests server to delete resource identified by URI
 public enum HTTPMethod: String {
     case get = "GET"
     case post = "POST"
     case put = "PUT"
+    case delete = "DELETE"
 }
 
 public enum MIMEType: String {
