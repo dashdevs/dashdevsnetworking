@@ -23,6 +23,26 @@ public struct MediaParamsMultipartBuilder: MultipartBuilder {
         params.forEach { mediaParameters in
             data.append(boundaryPrefix)
             
+            var contentDisposition = "Content-Disposition: form-data; name=\"\(mediaParameters.name)\""
+            if let fileName = mediaParameters.fileName {
+                contentDisposition.append("; filename=\"\(fileName)\"")
+            }
+            contentDisposition.append(EncodingCharacters.crlf)
+            guard let contentDispositionData = contentDisposition.data(using: .utf8) else { return }
+            data.append(contentDispositionData)
+            
+            if let mimeType = mediaParameters.mimeType, let contentType = "Content-Type: \(mimeType)\(EncodingCharacters.crlf)".data(using: .utf8) {
+                data.append(contentType)
+            }
+            
+            data.append(crlf)
+            
+            do {
+                data.append(try Data(contentsOf: mediaParameters.fileURL, options: []))
+            } catch {
+                return
+            }
+            
             data.append(crlf)
         }
         data.append(boundarySuffix)
