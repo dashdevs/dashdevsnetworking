@@ -20,6 +20,7 @@ public protocol RequestDescriptor {
     var parameters: Parameters? { get }
     var versionPath: Path? { get }
     var detailedErrorHandler: DetailedErrorHandler? { get }
+    var mediaParameters: MediaParameters? { get }
 }
 
 public extension RequestDescriptor {
@@ -28,4 +29,5 @@ public extension RequestDescriptor {
     var headers: [HTTPHeader]? { return nil }
     var encoding: ParamEncoding<Parameters>? { return nil }
     var parameters: Parameters? { return nil }
+    var mediaParameters: MediaParameters? { return nil }
 }
