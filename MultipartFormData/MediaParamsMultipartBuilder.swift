@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// This struct is used for updating URLRequest with multipart data for MediaParameters info
 public struct MediaParamsMultipartBuilder: MultipartBuilder {
     struct EncodingCharacters {
         static let crlf = "\r\n"

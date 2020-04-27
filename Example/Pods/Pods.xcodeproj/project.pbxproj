@@ -191,8 +191,8 @@
 		B143DA14A5862E4D313EF3FE20FC9323 /* DashdevsNetworking */ = {
 			isa = PBXGroup;
 			children = (
-				75B77D992456DE1F00A4B62F /* MultipartFormData */,
 				7544812922D628D400B51B1D /* Authorization */,
+				75B77D992456DE1F00A4B62F /* MultipartFormData */,
 				E8A6E81F230EA09000DB4683 /* RequestDescriptor.swift */,
 				E8A9D057229D83570005B7A8 /* NetworkClient.swift */,
 				E8A9D05B229D83CB0005B7A8 /* HTTPResponse+Extensions.swift */,
