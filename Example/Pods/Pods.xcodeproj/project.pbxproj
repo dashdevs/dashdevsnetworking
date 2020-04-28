@@ -15,6 +15,8 @@
 		75A0375C245836D300B299D6 /* MultipartFileParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A03759245836D300B299D6 /* MultipartFileParameters.swift */; };
 		75A0375D245836D300B299D6 /* MultipartBuilders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0375A245836D300B299D6 /* MultipartBuilders.swift */; };
 		75A03760245836E800B299D6 /* RequestRetrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0375F245836E800B299D6 /* RequestRetrier.swift */; };
+		75A0376224586E4E00B299D6 /* UnauthorisedRequestRetrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0376124586E4E00B299D6 /* UnauthorisedRequestRetrier.swift */; };
+		75A0376424586E8F00B299D6 /* SafeQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0376324586E8F00B299D6 /* SafeQueue.swift */; };
 		77AAC4B632DB90599FDFE32EAF2F0BB9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		7F650323ACB909DF47895A90FE17C6EE /* Pods-DashdevsNetworking_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1784F42941733A4F3DE313D2885741 /* Pods-DashdevsNetworking_Example-dummy.m */; };
 		9FE4DE117D36DD7CC967585A289445FE /* Pods-DashdevsNetworking_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 39963BC2E8EB180F9F3ED6AC16E4AF23 /* Pods-DashdevsNetworking_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -73,6 +75,8 @@
 		75A03759245836D300B299D6 /* MultipartFileParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipartFileParameters.swift; sourceTree = "<group>"; };
 		75A0375A245836D300B299D6 /* MultipartBuilders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipartBuilders.swift; sourceTree = "<group>"; };
 		75A0375F245836E800B299D6 /* RequestRetrier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestRetrier.swift; sourceTree = "<group>"; };
+		75A0376124586E4E00B299D6 /* UnauthorisedRequestRetrier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnauthorisedRequestRetrier.swift; sourceTree = "<group>"; };
+		75A0376324586E8F00B299D6 /* SafeQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeQueue.swift; sourceTree = "<group>"; };
 		77FD93115640328F28903541BDCA98FC /* Pods-DashdevsNetworking_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DashdevsNetworking_Example.release.xcconfig"; sourceTree = "<group>"; };
 		7D1784F42941733A4F3DE313D2885741 /* Pods-DashdevsNetworking_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DashdevsNetworking_Example-dummy.m"; sourceTree = "<group>"; };
 		7EB13565F7534601B746B97EE3D9A4B1 /* Pods-DashdevsNetworking_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DashdevsNetworking_Tests-dummy.m"; sourceTree = "<group>"; };
@@ -195,6 +199,8 @@
 			isa = PBXGroup;
 			children = (
 				75A0375F245836E800B299D6 /* RequestRetrier.swift */,
+				75A0376124586E4E00B299D6 /* UnauthorisedRequestRetrier.swift */,
+				75A0376324586E8F00B299D6 /* SafeQueue.swift */,
 			);
 			name = RequestRetrier;
 			path = DashdevsNetworking/Classes/RequestRetrier;
@@ -442,8 +448,10 @@
 				75A0375D245836D300B299D6 /* MultipartBuilders.swift in Sources */,
 				75A0375C245836D300B299D6 /* MultipartFileParameters.swift in Sources */,
 				7544812D22D628F700B51B1D /* BearerTokenAuth.swift in Sources */,
+				75A0376424586E8F00B299D6 /* SafeQueue.swift in Sources */,
 				E8A9D053229D81AA0005B7A8 /* URLConstructing.swift in Sources */,
 				E8A9D05C229D83CB0005B7A8 /* HTTPResponse+Extensions.swift in Sources */,
+				75A0376224586E4E00B299D6 /* UnauthorisedRequestRetrier.swift in Sources */,
 				E8A6E820230EA09000DB4683 /* RequestDescriptor.swift in Sources */,
 				E38754BE3CC35F745DD40A4A74D17167 /* DashdevsNetworking-dummy.m in Sources */,
 				E8A9D058229D83570005B7A8 /* NetworkClient.swift in Sources */,
