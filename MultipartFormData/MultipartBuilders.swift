@@ -7,6 +7,13 @@
 
 import Foundation
 
+enum MultipartBuildersError: Error {
+    case canNotCreateBoundary
+    case canNotCreateContentDisposition
+    case mimeTypeIsMissing
+    case canNotCreateContentType
+}
+
 public struct EncodingCharacters {
     static let crlf = "\r\n"
 }
@@ -14,16 +21,22 @@ public struct EncodingCharacters {
 public struct BoundaryBuilder {
     public let boundary = "Boundary-\(UUID().uuidString)"
     
-    public func buildPrefix() -> Data? {
-        return "--\(boundary)\(EncodingCharacters.crlf)".data(using: .utf8)
+    public func buildPrefix() throws -> Data {
+        guard let prefix = "--\(boundary)\(EncodingCharacters.crlf)".data(using: .utf8) else {
+            throw MultipartBuildersError.canNotCreateBoundary
+        }
+        return prefix
     }
     
-    public func buildSuffix() -> Data? {
-        return "--\(boundary)--\(EncodingCharacters.crlf)".data(using: .utf8)
+    public func buildSuffix() throws -> Data {
+        guard let suffix = "--\(boundary)--\(EncodingCharacters.crlf)".data(using: .utf8) else {
+            throw MultipartBuildersError.canNotCreateBoundary
+        }
+        return suffix
     }
 }
 
-public struct MultipartContentDescriptionBuilder {
+public struct MultipartContentBuilder {
     public let name: String
     public let fileName: String?
     public let mimeType: String?
@@ -34,50 +47,25 @@ public struct MultipartContentDescriptionBuilder {
         self.mimeType = mimeType
     }
 
-    public func buildContentDisposition() -> Data? {
+    public func buildContentDisposition() throws -> Data {
         var contentDisposition = "Content-Disposition: form-data; name=\"\(name)\""
         if let fileName = fileName {
             contentDisposition.append("; filename=\"\(fileName)\"")
         }
         contentDisposition.append(EncodingCharacters.crlf)
-        return contentDisposition.data(using: .utf8)
-    }
-    
-    public func buildContentType() -> Data? {
-        guard let mimeType = mimeType else { return nil }
-        return "Content-Type: \(mimeType)\(EncodingCharacters.crlf)".data(using: .utf8)
-    }
-}
-
-/// This struct is used for updating URLRequest with multipart data for MediaParameters info
-public struct MultipartBuilder {
-    public let boundaryBuilder = BoundaryBuilder()
-    
-    public func append(_ params: [MultipartFileParameters], to request: inout URLRequest) {
-        guard let boundaryPrefix = boundaryBuilder.buildPrefix() else { return }
-        guard let boundarySuffix = boundaryBuilder.buildSuffix() else { return }
-        guard let crlf = EncodingCharacters.crlf.data(using: .utf8) else { return }
-        var data = Data()
-        params.forEach { mediaParameters in
-            let contentBuilder = MultipartContentDescriptionBuilder(name: mediaParameters.name,
-                                                                    fileName: mediaParameters.fileName,
-                                                                    mimeType: mediaParameters.mimeType)
-            guard let contentDisposition = contentBuilder.buildContentDisposition() else { return }
-            guard let contentType = contentBuilder.buildContentType() else { return }
-            data.append(boundaryPrefix)
-            data.append(contentDisposition)
-            data.append(contentType)
-            data.append(crlf)
-            do {
-                data.append(try Data(contentsOf: mediaParameters.fileURL, options: []))
-            } catch {
-                return
-            }
-            data.append(crlf)
+        if let data = contentDisposition.data(using: .utf8) {
+            return data
+        } else {
+            throw MultipartBuildersError.canNotCreateContentDisposition
         }
-        data.append(boundarySuffix)
-        let header = HTTPHeader.multipartFormData(with: boundaryBuilder.boundary)
-        request.setValue(header.value, forHTTPHeaderField: header.field)
-        request.httpBody = data
+    }
+    
+    public func buildContentType() throws -> Data {
+        guard let mimeType = mimeType else { throw MultipartBuildersError.mimeTypeIsMissing }
+        if let data = "Content-Type: \(mimeType)\(EncodingCharacters.crlf)".data(using: .utf8) {
+            return data
+        } else {
+            throw MultipartBuildersError.canNotCreateContentType
+        }
     }
 }
