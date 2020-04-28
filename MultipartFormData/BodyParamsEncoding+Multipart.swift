@@ -7,7 +7,7 @@
 
 import Foundation
 
-public extension BodyParamEncoding where A == MultipartFileParameters {
+public extension BodyParamEncoding where BodyParameters == MultipartFileParameters {
     
     /// Factory method which returns pre-defined object for encoding multipart parameters
     ///
@@ -33,7 +33,7 @@ public extension BodyParamEncoding where A == MultipartFileParameters {
     }
 }
 
-public extension BodyParamEncoding where A == [MultipartFileParameters] {
+public extension BodyParamEncoding where BodyParameters == [MultipartFileParameters] {
     
     /// Factory method which returns pre-defined object for encoding multipart parameters
     ///
