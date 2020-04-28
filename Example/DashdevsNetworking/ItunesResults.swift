@@ -53,7 +53,7 @@ struct AuthByEmailDescriptor: RequestDescriptor {
     var method: HTTPMethod
     var response: Deserializator<AuthCodeModel>
     var parameters: AuthEmailModel?
-    var encoding: ParamEncoding<AuthEmailModel>?
+    var encoding: BodyParamEncoding<AuthEmailModel>?
     
     init(email: String) {
         parameters = AuthEmailModel(email: email, source: "")
