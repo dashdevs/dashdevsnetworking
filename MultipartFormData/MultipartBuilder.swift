@@ -18,7 +18,7 @@ public struct MultipartBuilder {
         guard let boundaryPrefix = "--\(boundary)\(EncodingCharacters.crlf)".data(using: .utf8) else { return }
         guard let boundarySuffix = "--\(boundary)--\(EncodingCharacters.crlf)".data(using: .utf8) else { return }
         guard let crlf = EncodingCharacters.crlf.data(using: .utf8) else { return }
-        let data = NSMutableData()
+        var data = Data()
         params.forEach { mediaParameters in
             data.append(boundaryPrefix)
             
@@ -47,6 +47,6 @@ public struct MultipartBuilder {
         data.append(boundarySuffix)
         let header = HTTPHeader.multipartFormData(with: boundary)
         request.setValue(header.value, forHTTPHeaderField: header.field)
-        request.httpBody = data as Data
+        request.httpBody = data
     }
 }
