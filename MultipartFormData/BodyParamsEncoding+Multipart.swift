@@ -8,6 +8,10 @@
 import Foundation
 
 public extension BodyParamEncoding where A == MultipartFileParameters {
+    
+    /// Factory method which returns pre-defined object for encoding multipart parameters
+    ///
+    /// - Returns: object for encoding parameters
     static var multipart: BodyParamEncoding {
         let boundaryBuilder = BoundaryBuilder()
         return BodyParamEncoding({ encodable -> Data? in
