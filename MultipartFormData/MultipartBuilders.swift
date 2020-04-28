@@ -12,10 +12,18 @@ public enum MultipartBuildersError: Error {
     case canNotCreateContentDisposition
     case mimeTypeIsMissing
     case canNotCreateContentType
+    case canNotCreateCrlf
 }
 
 public struct EncodingCharacters {
-    static let crlf = "\r\n"
+    public static let crlf = "\r\n"
+    
+    public static func crlfData() throws -> Data {
+        guard let crlf = crlf.data(using: .utf8) else {
+            throw MultipartBuildersError.canNotCreateCrlf
+        }
+        return crlf
+    }
 }
 
 public struct BoundaryBuilder {

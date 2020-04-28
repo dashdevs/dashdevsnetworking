@@ -16,15 +16,14 @@ public extension BodyParamEncoding where A == MultipartFileParameters {
         let boundaryBuilder = BoundaryBuilder()
         return BodyParamEncoding({ encodable -> Data? in
             let contentBuilder = MultipartContentBuilder(name: encodable.name, fileName: encodable.fileName, mimeType: encodable.mimeType)
-            guard let crlf = EncodingCharacters.crlf.data(using: .utf8) else { return nil }
             do {
                 var data = Data()
                 data.append(try boundaryBuilder.buildPrefix())
                 data.append(try contentBuilder.buildContentDisposition())
                 data.append(try contentBuilder.buildContentType())
-                data.append(crlf)
+                data.append(try EncodingCharacters.crlfData())
                 data.append(try Data(contentsOf: encodable.fileURL, options: []))
-                data.append(crlf)
+                data.append(try EncodingCharacters.crlfData())
                 data.append(try boundaryBuilder.buildSuffix())
                 return data
             } catch {
@@ -46,13 +45,12 @@ public extension BodyParamEncoding where A == [MultipartFileParameters] {
                 var data = Data()
                 try encodables.forEach { encodable in
                     let contentBuilder = MultipartContentBuilder(name: encodable.name, fileName: encodable.fileName, mimeType: encodable.mimeType)
-                    guard let crlf = EncodingCharacters.crlf.data(using: .utf8) else { return }
                     data.append(try boundaryBuilder.buildPrefix())
                     data.append(try contentBuilder.buildContentDisposition())
                     data.append(try contentBuilder.buildContentType())
-                    data.append(crlf)
+                    data.append(try EncodingCharacters.crlfData())
                     data.append(try Data(contentsOf: encodable.fileURL, options: []))
-                    data.append(crlf)
+                    data.append(try EncodingCharacters.crlfData())
                 }
                 data.append(try boundaryBuilder.buildSuffix())
                 return data
