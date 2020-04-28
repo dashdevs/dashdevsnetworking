@@ -13,6 +13,7 @@
 /// - delete: Method requests server to delete resource identified by URI
 public enum HTTPMethod: String {
     case get = "GET"
+    case patch = "PATCH"
     case post = "POST"
     case put = "PUT"
     case delete = "DELETE"
