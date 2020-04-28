@@ -47,19 +47,11 @@ open class NetworkClient: SessionNetworking {
 
         let task = urlSession.dataTask(with: request) { (data, response, error) in
             let validated = self.validate(data: data, response: response, error: error, errorHandler: descriptor.detailedErrorHandler)
-            if let retrier = self.retrier, case let Response.failure(error) = validated.result {
-                DispatchQueue.main.async {
-                    retrier.shouldRetry(request, with: error) { shouldRetry in
-                        if shouldRetry {
-                            self.load(descriptor, handler: handler)
-                        } else {
-                            DispatchQueue.main.async { handler(validated.result.map(descriptor.response.parse), validated.response) }
-                        }
-                    }
-                }
-            } else {
+            self.retryIfNeeded(request, result: validated.result, retry: {
+                self.load(descriptor, handler: handler)
+            }, completion: {
                 DispatchQueue.main.async { handler(validated.result.map(descriptor.response.parse), validated.response) }
-            }
+            })
         }
         task.resume()
         return task
@@ -78,9 +70,11 @@ open class NetworkClient: SessionNetworking {
         
         let task = urlSession.uploadTask(with: request, from: request.httpBody) { (data, response, error) in
             let validated = self.validate(data: data, response: response, error: error, errorHandler: descriptor.detailedErrorHandler)
-            DispatchQueue.main.async {
-                handler(validated.result.map(descriptor.response.parse), validated.response)
-            }
+            self.retryIfNeeded(request, result: validated.result, retry: {
+                self.send(descriptor, handler: handler)
+            }, completion: {
+                DispatchQueue.main.async { handler(validated.result.map(descriptor.response.parse), validated.response) }
+            })
         }
         task.resume()
         return task
@@ -164,5 +158,17 @@ open class NetworkClient: SessionNetworking {
     
     deinit {
         urlSession.invalidateAndCancel()
+    }
+    
+    open func retryIfNeeded(_ request: URLRequest, result: Response<Data>, retry: @escaping () -> Void, completion: @escaping () -> Void) {
+        if let retrier = retrier, case let Response.failure(error) = result {
+            DispatchQueue.main.async {
+                retrier.shouldRetry(request, with: error) { shouldRetry in
+                    shouldRetry ? retry() : completion()
+                }
+            }
+        } else {
+            completion()
+        }
     }
 }
