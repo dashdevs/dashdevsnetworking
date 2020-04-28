@@ -10,7 +10,7 @@
 /// - name:     The name to associate with the data in the `Content-Disposition` HTTP header.
 /// - fileName: The filename to associate with the data in the `Content-Disposition` HTTP header.
 /// - mimeType: The MIME type to associate with the data content type in the `Content-Type` HTTP header.
-public struct MultipartFileParameters: Codable {
+public struct MultipartFileParameters {
     public let fileURL: URL
     public let name: String
     public let fileName: String
