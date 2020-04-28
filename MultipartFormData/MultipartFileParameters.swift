@@ -1,5 +1,5 @@
 //
-//  MediaParameters.swift
+//  MultipartFileParameters.swift
 //  DashdevsNetworking
 //
 //  Copyright (c) 2019 dashdevs.com. All rights reserved.
@@ -10,9 +10,9 @@
 /// - name:     The name to associate with the data in the `Content-Disposition` HTTP header.
 /// - fileName: The filename to associate with the data in the `Content-Disposition` HTTP header.
 /// - mimeType: The MIME type to associate with the data content type in the `Content-Type` HTTP header.
-public struct MediaParameters {
+public struct MultipartFileParameters {
     let fileURL: URL
     let name: String
-    let fileName: String?
-    let mimeType: String?
+    let fileName: String
+    let mimeType: String
 }

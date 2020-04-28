@@ -13,7 +13,7 @@ public struct MultipartBuilder {
         static let crlf = "\r\n"
     }
     
-    public func append(_ params: [MediaParameters], to request: inout URLRequest) {
+    public func append(_ params: [MultipartFileParameters], to request: inout URLRequest) {
         let boundary = "Boundary-\(UUID().uuidString)"
         guard let boundaryPrefix = "--\(boundary)\(EncodingCharacters.crlf)".data(using: .utf8) else { return }
         guard let boundarySuffix = "--\(boundary)--\(EncodingCharacters.crlf)".data(using: .utf8) else { return }
@@ -23,14 +23,12 @@ public struct MultipartBuilder {
             data.append(boundaryPrefix)
             
             var contentDisposition = "Content-Disposition: form-data; name=\"\(mediaParameters.name)\""
-            if let fileName = mediaParameters.fileName {
-                contentDisposition.append("; filename=\"\(fileName)\"")
-            }
+            contentDisposition.append("; filename=\"\(mediaParameters.fileName)\"")
             contentDisposition.append(EncodingCharacters.crlf)
             guard let contentDispositionData = contentDisposition.data(using: .utf8) else { return }
             data.append(contentDispositionData)
             
-            if let mimeType = mediaParameters.mimeType, let contentType = "Content-Type: \(mimeType)\(EncodingCharacters.crlf)".data(using: .utf8) {
+            if let contentType = "Content-Type: \(mediaParameters.mimeType)\(EncodingCharacters.crlf)".data(using: .utf8) {
                 data.append(contentType)
             }
             
