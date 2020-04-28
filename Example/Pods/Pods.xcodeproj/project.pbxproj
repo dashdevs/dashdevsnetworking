@@ -11,7 +11,9 @@
 		2709F1A04B5C05CE16B117101E9A195A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		7544812B22D628D400B51B1D /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7544812A22D628D400B51B1D /* Authorization.swift */; };
 		7544812D22D628F700B51B1D /* BearerTokenAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7544812C22D628F700B51B1D /* BearerTokenAuth.swift */; };
-		75B77D962456C0E100A4B62F /* MediaParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B77D952456C0E100A4B62F /* MediaParameters.swift */; };
+		75A03751245800BE00B299D6 /* BodyParamsEncoding+Multipart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A03750245800BE00B299D6 /* BodyParamsEncoding+Multipart.swift */; };
+		75B77D962456C0E100A4B62F /* MultipartFileParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B77D952456C0E100A4B62F /* MultipartFileParameters.swift */; };
+		75B77D9B2456DEFD00A4B62F /* MultipartBuilders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B77D9A2456DEFD00A4B62F /* MultipartBuilders.swift */; };
 		77AAC4B632DB90599FDFE32EAF2F0BB9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		7F650323ACB909DF47895A90FE17C6EE /* Pods-DashdevsNetworking_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1784F42941733A4F3DE313D2885741 /* Pods-DashdevsNetworking_Example-dummy.m */; };
 		9FE4DE117D36DD7CC967585A289445FE /* Pods-DashdevsNetworking_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 39963BC2E8EB180F9F3ED6AC16E4AF23 /* Pods-DashdevsNetworking_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -66,7 +68,9 @@
 		7269E7411AB7AC610174BC5E2059F43D /* Pods-DashdevsNetworking_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DashdevsNetworking_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		7544812A22D628D400B51B1D /* Authorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
 		7544812C22D628F700B51B1D /* BearerTokenAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BearerTokenAuth.swift; sourceTree = "<group>"; };
-		75B77D952456C0E100A4B62F /* MediaParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MediaParameters.swift; path = DashdevsNetworking/Classes/MediaParameters.swift; sourceTree = "<group>"; };
+		75A03750245800BE00B299D6 /* BodyParamsEncoding+Multipart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BodyParamsEncoding+Multipart.swift"; sourceTree = "<group>"; };
+		75B77D952456C0E100A4B62F /* MultipartFileParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartFileParameters.swift; sourceTree = "<group>"; };
+		75B77D9A2456DEFD00A4B62F /* MultipartBuilders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartBuilders.swift; sourceTree = "<group>"; };
 		77FD93115640328F28903541BDCA98FC /* Pods-DashdevsNetworking_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DashdevsNetworking_Example.release.xcconfig"; sourceTree = "<group>"; };
 		7D1784F42941733A4F3DE313D2885741 /* Pods-DashdevsNetworking_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DashdevsNetworking_Example-dummy.m"; sourceTree = "<group>"; };
 		7EB13565F7534601B746B97EE3D9A4B1 /* Pods-DashdevsNetworking_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DashdevsNetworking_Tests-dummy.m"; sourceTree = "<group>"; };
@@ -174,11 +178,21 @@
 			path = DashdevsNetworking/Classes/Authorization;
 			sourceTree = "<group>";
 		};
+		75B77D992456DE1F00A4B62F /* MultipartFormData */ = {
+			isa = PBXGroup;
+			children = (
+				75A03750245800BE00B299D6 /* BodyParamsEncoding+Multipart.swift */,
+				75B77D9A2456DEFD00A4B62F /* MultipartBuilders.swift */,
+				75B77D952456C0E100A4B62F /* MultipartFileParameters.swift */,
+			);
+			path = MultipartFormData;
+			sourceTree = "<group>";
+		};
 		B143DA14A5862E4D313EF3FE20FC9323 /* DashdevsNetworking */ = {
 			isa = PBXGroup;
 			children = (
 				7544812922D628D400B51B1D /* Authorization */,
-				75B77D952456C0E100A4B62F /* MediaParameters.swift */,
+				75B77D992456DE1F00A4B62F /* MultipartFormData */,
 				E8A6E81F230EA09000DB4683 /* RequestDescriptor.swift */,
 				E8A9D057229D83570005B7A8 /* NetworkClient.swift */,
 				E8A9D05B229D83CB0005B7A8 /* HTTPResponse+Extensions.swift */,
@@ -410,10 +424,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8A9D054229D81AA0005B7A8 /* RequestConstructing.swift in Sources */,
+				75B77D9B2456DEFD00A4B62F /* MultipartBuilders.swift in Sources */,
 				E8A9DEFD22B2C2F400AE4870 /* Deserialisation.swift in Sources */,
 				7544812D22D628F700B51B1D /* BearerTokenAuth.swift in Sources */,
 				E8A9D053229D81AA0005B7A8 /* URLConstructing.swift in Sources */,
-				75B77D962456C0E100A4B62F /* MediaParameters.swift in Sources */,
+				75B77D962456C0E100A4B62F /* MultipartFileParameters.swift in Sources */,
 				E8A9D05C229D83CB0005B7A8 /* HTTPResponse+Extensions.swift in Sources */,
 				E8A6E820230EA09000DB4683 /* RequestDescriptor.swift in Sources */,
 				E38754BE3CC35F745DD40A4A74D17167 /* DashdevsNetworking-dummy.m in Sources */,
@@ -421,6 +436,7 @@
 				E8A9D056229D81AA0005B7A8 /* Response.swift in Sources */,
 				E8A9D055229D81AA0005B7A8 /* ErrorHandling.swift in Sources */,
 				7544812B22D628D400B51B1D /* Authorization.swift in Sources */,
+				75A03751245800BE00B299D6 /* BodyParamsEncoding+Multipart.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

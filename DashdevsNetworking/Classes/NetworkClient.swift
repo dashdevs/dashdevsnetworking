@@ -59,7 +59,7 @@ open class NetworkClient: SessionNetworking {
     ///   - handler: block of code to call after url request completes
     /// - Returns: A task, like downloading a specific resource, performed in a URL session
     @discardableResult
-    public func send<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, handler: @escaping (Response<Descriptor.Resource>, HTTPURLResponse?) -> ()) -> URLSessionTask where Descriptor.Resource: Decodable, Descriptor.BodyParameters: Encodable {
+    public func send<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, handler: @escaping (Response<Descriptor.Resource>, HTTPURLResponse?) -> ()) -> URLSessionTask where Descriptor.Resource: Decodable {
         
         let request = makeRequest(from: descriptor)
         
