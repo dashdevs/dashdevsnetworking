@@ -1,5 +1,5 @@
 //
-//  MultipartBuilder.swift
+//  MultipartBuilders.swift
 //  DashdevsNetworking
 //
 //  Copyright (c) 2019 dashdevs.com. All rights reserved.
@@ -7,16 +7,29 @@
 
 import Foundation
 
-/// This struct is used for updating URLRequest with multipart data for MediaParameters info
-public struct MultipartBuilder {
-    struct EncodingCharacters {
-        static let crlf = "\r\n"
+private struct EncodingCharacters {
+    static let crlf = "\r\n"
+}
+
+public struct BoundaryBuilder {
+    public let boundary = "Boundary-\(UUID().uuidString)"
+    
+    public var boundaryPrefix: Data? {
+        return "--\(boundary)\(EncodingCharacters.crlf)".data(using: .utf8)
     }
     
+    public var boundarySuffix: Data? {
+        return "--\(boundary)--\(EncodingCharacters.crlf)".data(using: .utf8)
+    }
+}
+
+/// This struct is used for updating URLRequest with multipart data for MediaParameters info
+public struct MultipartBuilder {
+    public let boundaryBuilder = BoundaryBuilder()
+    
     public func append(_ params: [MultipartFileParameters], to request: inout URLRequest) {
-        let boundary = "Boundary-\(UUID().uuidString)"
-        guard let boundaryPrefix = "--\(boundary)\(EncodingCharacters.crlf)".data(using: .utf8) else { return }
-        guard let boundarySuffix = "--\(boundary)--\(EncodingCharacters.crlf)".data(using: .utf8) else { return }
+        guard let boundaryPrefix = boundaryBuilder.boundaryPrefix else { return }
+        guard let boundarySuffix = boundaryBuilder.boundarySuffix else { return }
         guard let crlf = EncodingCharacters.crlf.data(using: .utf8) else { return }
         var data = Data()
         params.forEach { mediaParameters in
@@ -43,7 +56,7 @@ public struct MultipartBuilder {
             data.append(crlf)
         }
         data.append(boundarySuffix)
-        let header = HTTPHeader.multipartFormData(with: boundary)
+        let header = HTTPHeader.multipartFormData(with: boundaryBuilder.boundary)
         request.setValue(header.value, forHTTPHeaderField: header.field)
         request.httpBody = data
     }
