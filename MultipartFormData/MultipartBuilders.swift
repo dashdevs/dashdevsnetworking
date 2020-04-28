@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum MultipartBuildersError: Error {
+public enum MultipartBuildersError: Error {
     case canNotCreateBoundary
     case canNotCreateContentDisposition
     case mimeTypeIsMissing
