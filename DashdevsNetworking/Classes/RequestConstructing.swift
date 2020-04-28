@@ -21,6 +21,7 @@ public enum HTTPMethod: String {
 public enum MIMEType: String {
     case applicationJSON = "application/json"
     case plainText = "text/plain"
+    case multipartFormData = "multipart/form-data"
 }
 
 /// This struct describes mechanism which allows the client and the server to pass additional information with the request or the response.
@@ -44,6 +45,11 @@ extension HTTPHeader {
     /// Factory property which returns pre-defined plain text header used to define request body content
     static var textContent: HTTPHeader {
         return HTTPHeader(field: "Content-Type", value: MIMEType.plainText.rawValue)
+    }
+    
+    /// Factory property which returns pre-defined multipart form data header used to define request body content
+    static func multipartFormData(with boundary: String) -> HTTPHeader {
+        return HTTPHeader(field: "Content-Type", value: "\(MIMEType.multipartFormData.rawValue); boundary=\(boundary)")
     }
     
     /// Factory property which returns pre-defined header for accepting JSON response type
