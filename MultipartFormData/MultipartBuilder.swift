@@ -45,7 +45,8 @@ public struct MultipartBuilder {
             data.append(crlf)
         }
         data.append(boundarySuffix)
-        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        let header = HTTPHeader.multipartFormData(with: boundary)
+        request.setValue(header.value, forHTTPHeaderField: header.field)
         request.httpBody = data as Data
     }
 }
