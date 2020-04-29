@@ -162,10 +162,8 @@ open class NetworkClient: SessionNetworking {
     
     open func retryIfNeeded(_ request: URLRequest, result: Response<Data>, retry: @escaping () -> Void, completion: @escaping () -> Void) {
         if let retrier = retrier, case let Response.failure(error) = result {
-            DispatchQueue.main.async {
-                retrier.shouldRetry(request, with: error) { shouldRetry in
-                    shouldRetry ? retry() : completion()
-                }
+            retrier.shouldRetry(request, with: error) { shouldRetry in
+                shouldRetry ? retry() : completion()
             }
         } else {
             completion()
