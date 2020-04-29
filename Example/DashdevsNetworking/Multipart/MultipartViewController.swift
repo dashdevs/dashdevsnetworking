@@ -9,18 +9,21 @@ import UIKit
 import DashdevsNetworking
 import Photos
 
-class MultipartViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MultipartViewController: UIViewController {
     // http://ptsv2.com/t/5qsb7-1588148738 - it's place where you can see that your request was successfully send
     
     let networkClient = NetworkClient(URL(string: "http://ptsv2.com")!)
     
+    lazy var imagePicker: UIImagePickerController = {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .savedPhotosAlbum
+        return picker
+    }()
+    
     @IBAction func uploadImage() {
-        processPhotoLibraryPermission { [weak self] in
-            guard let strongSelf = self else { return }
-            let picker = UIImagePickerController()
-            picker.delegate = strongSelf
-            picker.sourceType = .savedPhotosAlbum
-            strongSelf.present(picker, animated: true)
+        processPhotoLibraryPermission {
+            self.present(self.imagePicker, animated: true)
         }
     }
     
@@ -28,8 +31,21 @@ class MultipartViewController: UIViewController, UIImagePickerControllerDelegate
         let fileParams = MultipartFileParameters(fileURL: url, name: "file", fileName: "image", mimeType: "image/jpeg")
         let requestDescriptor = MultipartRequestDescriptor(parameters: fileParams)
         networkClient.send(requestDescriptor) { result, response in
-            
+            switch result {
+            case .success(_):
+                print("Multipart File uploaded")
+            case .failure(let error):
+                print(error)
+            }
         }
+    }
+}
+
+extension MultipartViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let imageURL = info["UIImagePickerControllerImageURL"] as? URL else { return }
+        uploadImage(with: imageURL)
+        picker.dismiss(animated: true)
     }
 }
 
