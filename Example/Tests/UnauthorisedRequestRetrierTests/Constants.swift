@@ -6,6 +6,7 @@
 //
 
 let MockAuthorizedCredential = "Authorized"
+let MockBearerAuthorizedCredential = "Bearer Authorized"
 let MockUnauthorizedCredential = "Unauthorized"
 let MockCredentialHeaderField = "Authorization"
 let MockDurationKey = "Duration"

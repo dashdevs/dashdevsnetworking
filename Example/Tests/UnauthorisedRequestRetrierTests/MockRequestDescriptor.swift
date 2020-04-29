@@ -13,7 +13,7 @@ struct MockRequestDescriptor: RequestDescriptor {
     
     let duration: Int
     
-    let path: Endpoint = Endpoint(path: "/authorization")
+    let path: Endpoint = Endpoint(path: "authorization")
     let method: HTTPMethod = .get
     let response: Deserializator<Resource> = .none
     var headers: [HTTPHeader]? {

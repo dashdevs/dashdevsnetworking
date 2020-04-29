@@ -21,7 +21,7 @@ class MockURLProtocol: URLProtocol {
             guard let strongSelf = self else { return }
             let response: HTTPURLResponse
             
-            if request.value(forHTTPHeaderField: MockCredentialHeaderField) == MockAuthorizedCredential {
+            if request.value(forHTTPHeaderField: MockCredentialHeaderField) == MockBearerAuthorizedCredential {
                 response = HTTPURLResponse(url: request.url!, statusCode: MockAuthenticationSuccessCode, httpVersion: nil, headerFields: request.allHTTPHeaderFields)!
             } else {
                 response = HTTPURLResponse(url: request.url!, statusCode: MockAuthenticationFailureCode, httpVersion: nil, headerFields: request.allHTTPHeaderFields)!

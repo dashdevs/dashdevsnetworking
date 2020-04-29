@@ -33,14 +33,18 @@ class UnauthorisedRequestRetrierTests: XCTestCase {
         var retryCount = 0
         let authorization = BearerTokenAuth(MockUnauthorizedCredential)
         networkClient?.authorization = authorization
+        retrier?.credential = authorization.bearerToken
         retrier?.renewCredential = { success, failure in
-            success(MockAuthorizedCredential)
+            let authorization = BearerTokenAuth(MockAuthorizedCredential)
+            self.networkClient?.authorization = authorization
+            success(authorization.bearerToken)
             retryCount += 1
         }
         
         let expectation = XCTestExpectation()
         
-        networkClient?.send(requestDescriptor, handler: { result, response in
+        networkClient?.load(requestDescriptor, handler: { result, response in
+            XCTAssertNotNil(response)
             XCTAssert(response!.statusCode == MockAuthenticationSuccessCode)
             XCTAssert(retryCount == 1)
             expectation.fulfill()
