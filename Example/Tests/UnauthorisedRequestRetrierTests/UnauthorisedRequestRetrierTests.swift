@@ -122,4 +122,42 @@ class UnauthorisedRequestRetrierTests: XCTestCase {
 
         wait(for: [expectation], timeout: 30)
     }
+    
+    func testFailureRenewWithCleanCred() {
+        let requestDescriptor = MockRequestDescriptor(duration: 1)
+        let authorization = BearerTokenAuth(MockUnauthorizedCredential)
+        networkClient?.authorization = authorization
+        retrier?.credential = authorization.bearerToken
+        retrier?.renewCredential = { success, failure in
+            failure(true)
+        }
+        
+        let expectation = XCTestExpectation()
+        
+        networkClient?.load(requestDescriptor, handler: { result, response in
+            XCTAssertNil(self.retrier?.credential)
+            expectation.fulfill()
+        })
+        
+        wait(for: [expectation], timeout: 30)
+    }
+    
+    func testFailureRenewWithoutCleanCred() {
+        let requestDescriptor = MockRequestDescriptor(duration: 1)
+        let authorization = BearerTokenAuth(MockUnauthorizedCredential)
+        networkClient?.authorization = authorization
+        retrier?.credential = authorization.bearerToken
+        retrier?.renewCredential = { success, failure in
+            failure(false)
+        }
+        
+        let expectation = XCTestExpectation()
+        
+        networkClient?.load(requestDescriptor, handler: { result, response in
+            XCTAssertNotNil(self.retrier?.credential)
+            expectation.fulfill()
+        })
+        
+        wait(for: [expectation], timeout: 30)
+    }
 }
