@@ -13,7 +13,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		9306DCBE32B4F78A65692338 /* Pods_DashdevsNetworking_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D550F3083558C6BB9EE906C0 /* Pods_DashdevsNetworking_Example.framework */; };
-		E8A5CC3D230AD39700F91210 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A5CC3B230AD39600F91210 /* ViewController.swift */; };
+		E8A5CC3D230AD39700F91210 /* PlainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A5CC3B230AD39600F91210 /* PlainViewController.swift */; };
 		E8A5CC3E230AD39700F91210 /* ItunesResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A5CC3C230AD39600F91210 /* ItunesResults.swift */; };
 		E8A5CC41230AD3B400F91210 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8A5CC3F230AD3B400F91210 /* Main.storyboard */; };
 /* End PBXBuildFile section */
@@ -46,7 +46,7 @@
 		CCE89E7464977398633B86AB /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		D550F3083558C6BB9EE906C0 /* Pods_DashdevsNetworking_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DashdevsNetworking_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA6E45AE9C5413D7F2E6A1CF /* Pods-DashdevsNetworking_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DashdevsNetworking_Example.debug.xcconfig"; path = "Target Support Files/Pods-DashdevsNetworking_Example/Pods-DashdevsNetworking_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		E8A5CC3B230AD39600F91210 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E8A5CC3B230AD39600F91210 /* PlainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlainViewController.swift; sourceTree = "<group>"; };
 		E8A5CC3C230AD39600F91210 /* ItunesResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItunesResults.swift; sourceTree = "<group>"; };
 		E8A5CC40230AD3B400F91210 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F92F23F15E386197B9A9A22E /* Pods_DashdevsNetworking_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DashdevsNetworking_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,9 +107,8 @@
 		607FACD21AFB9204008FA782 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				7582F3BE245960B000FB8D1D /* Plain */,
 				E8A5CC3F230AD3B400F91210 /* Main.storyboard */,
-				E8A5CC3C230AD39600F91210 /* ItunesResults.swift */,
-				E8A5CC3B230AD39600F91210 /* ViewController.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -153,6 +152,15 @@
 				52B9744ACA3E5EBBA81B966E /* TODO.md */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		7582F3BE245960B000FB8D1D /* Plain */ = {
+			isa = PBXGroup;
+			children = (
+				E8A5CC3C230AD39600F91210 /* ItunesResults.swift */,
+				E8A5CC3B230AD39600F91210 /* PlainViewController.swift */,
+			);
+			path = Plain;
 			sourceTree = "<group>";
 		};
 		9153CF87A9B960FC49283742 /* Frameworks */ = {
@@ -335,7 +343,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8A5CC3D230AD39700F91210 /* ViewController.swift in Sources */,
+				E8A5CC3D230AD39700F91210 /* PlainViewController.swift in Sources */,
 				E8A5CC3E230AD39700F91210 /* ItunesResults.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
