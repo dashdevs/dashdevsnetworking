@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PlainViewController.swift
 //  DashdevsNetworking
 //
 //  Copyright (c) 2019 dashdevs.com. All rights reserved.
@@ -8,7 +8,7 @@
 import UIKit
 import DashdevsNetworking
 
-class ViewController: UITableViewController {
+class PlainViewController: UITableViewController {
     let apiClient: NetworkClient = NetworkClient(URL(staticString: "https://itunes.apple.com"))
     
     let apiClient2: NetworkClient = NetworkClient(URL(staticString: "https://httpbin.org"))
