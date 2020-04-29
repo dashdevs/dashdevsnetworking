@@ -12,6 +12,7 @@ public protocol SessionNetworking {
     var baseURL: URL { get }
     var urlSession: URLSession { get }
     var authorization: Authorization? { get }
+    var retrier: RequestRetrier? { get }
 }
 
 /// This class uses URLSession for organising networking
@@ -19,6 +20,7 @@ open class NetworkClient: SessionNetworking {
     public let baseURL: URL
     public let urlSession: URLSession
     public var authorization: Authorization?
+    public var retrier: RequestRetrier?
     
     /// Constructor method
     ///
@@ -26,10 +28,11 @@ open class NetworkClient: SessionNetworking {
     ///   - base: base URL to use
     ///   - sessionConfiguration: configuration of URL session to use
     ///   - authorization: authorization strategy to use
-    public init(_ base: URL, sessionConfiguration: URLSessionConfiguration = .default, authorization: Authorization? = nil) {
+    public init(_ base: URL, sessionConfiguration: URLSessionConfiguration = .default, authorization: Authorization? = nil, retrier: RequestRetrier? = nil) {
         self.baseURL = base
         self.urlSession = URLSession(configuration: sessionConfiguration)
         self.authorization = authorization
+        self.retrier = retrier
     }
     
     /// Method which should be used to load information from remote location
@@ -44,9 +47,11 @@ open class NetworkClient: SessionNetworking {
 
         let task = urlSession.dataTask(with: request) { (data, response, error) in
             let validated = self.validate(data: data, response: response, error: error, errorHandler: descriptor.detailedErrorHandler)
-            DispatchQueue.main.async {
-                handler(validated.result.map(descriptor.response.parse), validated.response)
-            }
+            self.retryIfNeeded(request, result: validated.result, retry: {
+                self.load(descriptor, handler: handler)
+            }, completion: {
+                DispatchQueue.main.async { handler(validated.result.map(descriptor.response.parse), validated.response) }
+            })
         }
         task.resume()
         return task
@@ -65,9 +70,11 @@ open class NetworkClient: SessionNetworking {
         
         let task = urlSession.uploadTask(with: request, from: request.httpBody) { (data, response, error) in
             let validated = self.validate(data: data, response: response, error: error, errorHandler: descriptor.detailedErrorHandler)
-            DispatchQueue.main.async {
-                handler(validated.result.map(descriptor.response.parse), validated.response)
-            }
+            self.retryIfNeeded(request, result: validated.result, retry: {
+                self.send(descriptor, handler: handler)
+            }, completion: {
+                DispatchQueue.main.async { handler(validated.result.map(descriptor.response.parse), validated.response) }
+            })
         }
         task.resume()
         return task
@@ -151,5 +158,15 @@ open class NetworkClient: SessionNetworking {
     
     deinit {
         urlSession.invalidateAndCancel()
+    }
+    
+    open func retryIfNeeded(_ request: URLRequest, result: Response<Data>, retry: @escaping () -> Void, completion: @escaping () -> Void) {
+        if let retrier = retrier, case let Response.failure(error) = result {
+            retrier.shouldRetry(request, with: error) { shouldRetry in
+                shouldRetry ? retry() : completion()
+            }
+        } else {
+            completion()
+        }
     }
 }
