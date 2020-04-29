@@ -52,4 +52,74 @@ class UnauthorisedRequestRetrierTests: XCTestCase {
         
         wait(for: [expectation], timeout: 30)
     }
+    
+    func testTwoUnauthorizedRequests() {
+        let firstRequestDescriptor = MockRequestDescriptor(duration: 100)
+        let secondRequestDescriptor = MockRequestDescriptor(duration: 300)
+        var retryCount = 0
+        let authorization = BearerTokenAuth(MockUnauthorizedCredential)
+        networkClient?.authorization = authorization
+        retrier?.credential = authorization.bearerToken
+        retrier?.renewCredential = { success, failure in
+            let authorization = BearerTokenAuth(MockAuthorizedCredential)
+            self.networkClient?.authorization = authorization
+            success(authorization.bearerToken)
+            retryCount += 1
+        }
+        
+        let expectation = XCTestExpectation()
+        expectation.expectedFulfillmentCount = 2
+        
+        networkClient?.load(firstRequestDescriptor, handler: { result, response in
+            XCTAssertNotNil(response)
+            XCTAssert(response!.statusCode == MockAuthenticationSuccessCode)
+            XCTAssert(retryCount == 1)
+            expectation.fulfill()
+        })
+        
+        networkClient?.load(secondRequestDescriptor, handler: { result, response in
+            XCTAssertNotNil(response)
+            XCTAssert(response!.statusCode == MockAuthenticationSuccessCode)
+            XCTAssert(retryCount == 1)
+            expectation.fulfill()
+        })
+        
+        wait(for: [expectation], timeout: 30)
+    }
+    
+    func testManyUnauthorizedRequests() {
+        var retryCount = 0
+        
+        let authorization = BearerTokenAuth(MockUnauthorizedCredential)
+        networkClient?.authorization = authorization
+        retrier?.credential = authorization.bearerToken
+        retrier?.renewCredential = { success, failure in
+            retryCount += 1
+            DispatchQueue.global().asyncAfter(deadline: .now() + 0.3) {
+                let authorization = BearerTokenAuth(MockAuthorizedCredential)
+                self.networkClient?.authorization = authorization
+                success(authorization.bearerToken)
+            }
+        }
+        
+        let expectation = XCTestExpectation()
+        expectation.expectedFulfillmentCount = 10
+        expectation.assertForOverFulfill = true
+        
+        (1...10).forEach { index in
+            let deadline = DispatchTime.now() + DispatchTimeInterval.milliseconds(index * 100)
+            DispatchQueue.global().asyncAfter(deadline: deadline) {
+                let requestDescriptor = MockRequestDescriptor(duration: 100)
+                
+                self.networkClient?.load(requestDescriptor, handler: { result, response in
+                    XCTAssertNotNil(response)
+                    XCTAssert(response!.statusCode == MockAuthenticationSuccessCode)
+                    XCTAssert(retryCount == 1)
+                    expectation.fulfill()
+                })
+            }
+        }
+
+        wait(for: [expectation], timeout: 30)
+    }
 }
