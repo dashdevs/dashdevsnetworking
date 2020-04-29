@@ -42,7 +42,7 @@ open class NetworkClient: SessionNetworking {
     ///   - handler: block of code to call after url request completes
     /// - Returns: A task, like downloading a specific resource, performed in a URL session
     @discardableResult
-    public func load<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, handler: @escaping (Response<Descriptor.Resource>, HTTPURLResponse?) -> ()) -> URLSessionTask where Descriptor.Resource: Decodable {
+    public func load<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, handler: @escaping (Response<Descriptor.Resource>, HTTPURLResponse?) -> ()) -> URLSessionTask {
         let request = makeRequest(from: descriptor)
 
         let task = urlSession.dataTask(with: request) { (data, response, error) in
@@ -64,7 +64,7 @@ open class NetworkClient: SessionNetworking {
     ///   - handler: block of code to call after url request completes
     /// - Returns: A task, like downloading a specific resource, performed in a URL session
     @discardableResult
-    public func send<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, handler: @escaping (Response<Descriptor.Resource>, HTTPURLResponse?) -> ()) -> URLSessionTask where Descriptor.Resource: Decodable {
+    public func send<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, handler: @escaping (Response<Descriptor.Resource>, HTTPURLResponse?) -> ()) -> URLSessionTask {
         
         let request = makeRequest(from: descriptor)
         
@@ -91,6 +91,7 @@ open class NetworkClient: SessionNetworking {
         
         descriptor.encoding.map({ $0.headers.forEach({ request.setValue($0.value, forHTTPHeaderField: $0.field) }) })
         descriptor.response.headers.forEach({ request.setValue($0.value, forHTTPHeaderField: $0.field) })
+        descriptor.headers?.forEach({ request.setValue($0.value, forHTTPHeaderField: $0.field) })
 
         if let params = descriptor.parameters, let encoding = descriptor.encoding {
             request.httpBody = encoding.encode(params)
