@@ -29,7 +29,7 @@
         <!--Multipart-->
         <scene sceneID="ByQ-ST-xZ5">
             <objects>
-                <viewController id="K5H-4k-Cqw" sceneMemberID="viewController">
+                <viewController id="K5H-4k-Cqw" customClass="MultipartViewController" customModule="DashdevsNetworking_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TLe-k0-yRU"/>
                         <viewControllerLayoutGuide type="bottom" id="mLD-z2-ZlG"/>
@@ -37,7 +37,20 @@
                     <view key="view" contentMode="scaleToFill" id="UCJ-zv-FC6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0e0-3L-TdV">
+                                <rect key="frame" x="140" y="16" width="95" height="30"/>
+                                <state key="normal" title="Upload Image"/>
+                                <connections>
+                                    <action selector="uploadImage" destination="K5H-4k-Cqw" eventType="touchUpInside" id="gOp-BR-3HR"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="0e0-3L-TdV" firstAttribute="centerX" secondItem="UCJ-zv-FC6" secondAttribute="centerX" id="9We-nB-NPD"/>
+                            <constraint firstItem="0e0-3L-TdV" firstAttribute="top" secondItem="TLe-k0-yRU" secondAttribute="bottom" constant="16" id="Iir-Vh-BDW"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Multipart" id="uGA-DY-oUd"/>
                 </viewController>
