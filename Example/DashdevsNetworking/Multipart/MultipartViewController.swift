@@ -28,7 +28,7 @@ class MultipartViewController: UIViewController {
     }
     
     func uploadImage(with url: URL) {
-        let fileParams = MultipartFileParameters(fileURL: url, name: "file", fileName: "image", mimeType: "image/jpeg")
+        let fileParams = MultipartFileParameters(fileURL: url, name: "file", fileName: "image", mimeType: MIMEType.imageJPEG.rawValue)
         let requestDescriptor = MultipartRequestDescriptor(parameters: fileParams)
         networkClient.send(requestDescriptor) { result, response in
             switch result {
