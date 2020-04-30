@@ -15,12 +15,12 @@ public struct BearerTokenAuth: Authorization {
     
     public init(_ token: String) {
         self.token = token
-        self.bearerToken = "Bearer \(token)"
+        self.bearerToken = "\(AuthorizationConstants.bearer) \(token)"
     }
     
     /// Adding **Authorization** header to URLRequest
     public func authorize(_ request: inout URLRequest) {
-        let authHeader = HTTPHeader(field: "Authorization", value: bearerToken)
+        let authHeader = HTTPHeader(field: AuthorizationConstants.key, value: bearerToken)
         request.addValue(authHeader.value, forHTTPHeaderField: authHeader.field)
     }
 }

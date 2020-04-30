@@ -35,7 +35,7 @@ open class UnauthorisedRequestRetrier: RequestRetrier {
         self?.queue.fullfill(with: false)
     }
     
-    public init(credentialHeaderField: String = "Authorization") {
+    public init(credentialHeaderField: String = AuthorizationConstants.key) {
         self.credentialHeaderField = credentialHeaderField
     }
         
