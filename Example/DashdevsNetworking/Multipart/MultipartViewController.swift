@@ -42,7 +42,7 @@ class MultipartViewController: UIViewController {
 }
 
 extension MultipartViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         guard let imageURL = info["UIImagePickerControllerImageURL"] as? URL else { return }
         uploadImage(with: imageURL)
         picker.dismiss(animated: true)
