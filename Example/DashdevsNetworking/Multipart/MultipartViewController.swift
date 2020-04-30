@@ -12,7 +12,7 @@ import Photos
 class MultipartViewController: UIViewController {
     // http://ptsv2.com/t/5qsb7-1588148738 - it's place where you can see that your request was successfully send
     
-    let networkClient = NetworkClient(URL(string: "http://ptsv2.com")!)
+    let networkClient = NetworkClient(URL(staticString: "http://ptsv2.com"))
     
     lazy var imagePicker: UIImagePickerController = {
         let picker = UIImagePickerController()
