@@ -68,7 +68,8 @@ open class NetworkClient: SessionNetworking {
         
         let request = makeRequest(from: descriptor)
         
-        let task = urlSession.uploadTask(with: request, from: request.httpBody) { (data, response, error) in
+        // If http body will be nil - upload task will be cancelled
+        let task = urlSession.uploadTask(with: request, from: request.httpBody ?? Data()) { (data, response, error) in
             let validated = self.validate(data: data, response: response, error: error, errorHandler: descriptor.detailedErrorHandler)
             self.retryIfNeeded(request, result: validated.result, retry: {
                 self.send(descriptor, handler: handler)
