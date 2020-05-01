@@ -28,7 +28,6 @@ open class NetworkClient: SessionNetworking {
     ///   - base: base URL to use
     ///   - sessionConfiguration: configuration of URL session to use
     ///   - authorization: authorization strategy to use
-    ///   - retrier: retry strategy to use
     public init(_ base: URL, sessionConfiguration: URLSessionConfiguration = .default, authorization: Authorization? = nil, retrier: RequestRetrier? = nil) {
         self.baseURL = base
         self.urlSession = URLSession(configuration: sessionConfiguration)
