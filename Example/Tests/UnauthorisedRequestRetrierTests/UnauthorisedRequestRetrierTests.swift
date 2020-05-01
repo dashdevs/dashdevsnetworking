@@ -160,4 +160,20 @@ class UnauthorisedRequestRetrierTests: XCTestCase {
         
         wait(for: [expectation], timeout: 30)
     }
+    
+    func testIsCredentialEqualToRequest() {
+        let requestDescriptor = MockRequestDescriptor(duration: 1)
+        let authorization = BearerTokenAuth(MockUnauthorizedCredential)
+        networkClient?.authorization = authorization
+        do {
+            let request = try XCTUnwrap(networkClient?.makeRequest(from: requestDescriptor))
+            let retrier = try XCTUnwrap(self.retrier)
+            XCTAssertFalse(retrier.isCredentialEqual(to: request))
+            
+            retrier.credential = authorization.bearerToken
+            XCTAssert(retrier.isCredentialEqual(to: request))
+        } catch {
+            XCTFail()
+        }
+    }
 }
