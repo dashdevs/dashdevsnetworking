@@ -40,15 +40,20 @@ open class NetworkClient: SessionNetworking {
     ///
     /// - Parameters:
     ///   - descriptor: object that describes outgoing request to remote location
+    ///   - retryCount: number of request retries
     ///   - handler: block of code to call after url request completes
     ///   - taskHandler: block of code to return current task, like downloading a specific resource, performed in a URL session
-    public func load<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, handler: @escaping (Response<Descriptor.Resource>, HTTPURLResponse?) -> (), taskHandler: ((URLSessionTask) -> Void)? = nil) {
+    public func load<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, retryCount: UInt = 1, handler: @escaping (Response<Descriptor.Resource>, HTTPURLResponse?) -> (), taskHandler: ((URLSessionTask) -> Void)? = nil) {
         let request = makeRequest(from: descriptor)
 
         let task = urlSession.dataTask(with: request) { (data, response, error) in
             let validated = self.validate(data: data, response: response, error: error, errorHandler: descriptor.detailedErrorHandler)
+            guard retryCount != 0 else {
+                DispatchQueue.main.async { handler(validated.result.map(descriptor.response.parse), validated.response) }
+                return
+            }
             self.retryIfNeeded(request, result: validated.result, retry: {
-                self.load(descriptor, handler: handler, taskHandler: taskHandler)
+                self.load(descriptor, retryCount: retryCount - 1, handler: handler, taskHandler: taskHandler)
             }, completion: {
                 DispatchQueue.main.async { handler(validated.result.map(descriptor.response.parse), validated.response) }
             })
@@ -61,17 +66,22 @@ open class NetworkClient: SessionNetworking {
     ///
     /// - Parameters:
     ///   - descriptor: object that describes outgoing request to remote location
+    ///   - retryCount: number of request retries
     ///   - handler: block of code to call after url request completes
     ///   - taskHandler: block of code to return current task, like downloading a specific resource, performed in a URL session
-    public func send<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, handler: @escaping (Response<Descriptor.Resource>, HTTPURLResponse?) -> (), taskHandler: ((URLSessionTask) -> Void)? = nil) {
+    public func send<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, retryCount: UInt = 1, handler: @escaping (Response<Descriptor.Resource>, HTTPURLResponse?) -> (), taskHandler: ((URLSessionTask) -> Void)? = nil) {
         
         let request = makeRequest(from: descriptor)
         
         // If http body will be nil - upload task will be cancelled
         let task = urlSession.uploadTask(with: request, from: request.httpBody ?? Data()) { (data, response, error) in
             let validated = self.validate(data: data, response: response, error: error, errorHandler: descriptor.detailedErrorHandler)
+            guard retryCount != 0 else {
+                DispatchQueue.main.async { handler(validated.result.map(descriptor.response.parse), validated.response) }
+                return
+            }
             self.retryIfNeeded(request, result: validated.result, retry: {
-                self.send(descriptor, handler: handler, taskHandler: taskHandler)
+                self.send(descriptor, retryCount: retryCount - 1, handler: handler, taskHandler: taskHandler)
             }, completion: {
                 DispatchQueue.main.async { handler(validated.result.map(descriptor.response.parse), validated.response) }
             })
