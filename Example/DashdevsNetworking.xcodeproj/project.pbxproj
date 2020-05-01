@@ -11,9 +11,12 @@
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		7582F3C22459615400FB8D1D /* MultipartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582F3C12459615400FB8D1D /* MultipartViewController.swift */; };
 		7582F3C62459814500FB8D1D /* MultipartRequestDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582F3C52459814500FB8D1D /* MultipartRequestDescriptor.swift */; };
+		75A0376C2458774F00B299D6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A03768245876D000B299D6 /* Constants.swift */; };
+		75A0376E245877C600B299D6 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0376D245877C600B299D6 /* MockURLProtocol.swift */; };
+		75A037742458792A00B299D6 /* UnauthorisedRequestRetrierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A037732458792A00B299D6 /* UnauthorisedRequestRetrierTests.swift */; };
+		75A0377624587AEC00B299D6 /* MockRequestDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0377524587AEC00B299D6 /* MockRequestDescriptor.swift */; };
 		9306DCBE32B4F78A65692338 /* Pods_DashdevsNetworking_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D550F3083558C6BB9EE906C0 /* Pods_DashdevsNetworking_Example.framework */; };
 		E8A5CC3D230AD39700F91210 /* PlainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A5CC3B230AD39600F91210 /* PlainViewController.swift */; };
 		E8A5CC3E230AD39700F91210 /* ItunesResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A5CC3C230AD39600F91210 /* ItunesResults.swift */; };
@@ -42,10 +45,13 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* DashdevsNetworking_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DashdevsNetworking_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		6E85B45638E94CCA9B8FD057 /* Pods-DashdevsNetworking_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DashdevsNetworking_Tests.debug.xcconfig"; path = "Target Support Files/Pods-DashdevsNetworking_Tests/Pods-DashdevsNetworking_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		7582F3C12459615400FB8D1D /* MultipartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartViewController.swift; sourceTree = "<group>"; };
 		7582F3C52459814500FB8D1D /* MultipartRequestDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartRequestDescriptor.swift; sourceTree = "<group>"; };
+		75A03768245876D000B299D6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		75A0376D245877C600B299D6 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
+		75A037732458792A00B299D6 /* UnauthorisedRequestRetrierTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnauthorisedRequestRetrierTests.swift; sourceTree = "<group>"; };
+		75A0377524587AEC00B299D6 /* MockRequestDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRequestDescriptor.swift; sourceTree = "<group>"; };
 		7C67FE2D13541071048C6F55 /* Pods-DashdevsNetworking_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DashdevsNetworking_Example.release.xcconfig"; path = "Target Support Files/Pods-DashdevsNetworking_Example/Pods-DashdevsNetworking_Example.release.xcconfig"; sourceTree = "<group>"; };
 		CCE89E7464977398633B86AB /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		D550F3083558C6BB9EE906C0 /* Pods_DashdevsNetworking_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DashdevsNetworking_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,7 +140,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				75A03767245876B900B299D6 /* UnauthorisedRequestRetrierTests */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -175,6 +181,17 @@
 				7582F3C52459814500FB8D1D /* MultipartRequestDescriptor.swift */,
 			);
 			path = Multipart;
+			sourceTree = "<group>";
+		};
+		75A03767245876B900B299D6 /* UnauthorisedRequestRetrierTests */ = {
+			isa = PBXGroup;
+			children = (
+				75A03768245876D000B299D6 /* Constants.swift */,
+				75A0377524587AEC00B299D6 /* MockRequestDescriptor.swift */,
+				75A0376D245877C600B299D6 /* MockURLProtocol.swift */,
+				75A037732458792A00B299D6 /* UnauthorisedRequestRetrierTests.swift */,
+			);
+			path = UnauthorisedRequestRetrierTests;
 			sourceTree = "<group>";
 		};
 		9153CF87A9B960FC49283742 /* Frameworks */ = {
@@ -369,7 +386,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				75A0376E245877C600B299D6 /* MockURLProtocol.swift in Sources */,
+				75A037742458792A00B299D6 /* UnauthorisedRequestRetrierTests.swift in Sources */,
+				75A0377624587AEC00B299D6 /* MockRequestDescriptor.swift in Sources */,
+				75A0376C2458774F00B299D6 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
