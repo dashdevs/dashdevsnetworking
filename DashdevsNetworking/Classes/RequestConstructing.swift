@@ -23,6 +23,7 @@ public enum MIMEType: String {
     case applicationJSON = "application/json"
     case plainText = "text/plain"
     case multipartFormData = "multipart/form-data"
+    case imageJPEG = "image/jpeg"
 }
 
 /// This struct describes mechanism which allows the client and the server to pass additional information with the request or the response.
