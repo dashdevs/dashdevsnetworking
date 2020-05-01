@@ -48,11 +48,7 @@ open class NetworkClient: SessionNetworking {
 
         let task = urlSession.dataTask(with: request) { (data, response, error) in
             let validated = self.validate(data: data, response: response, error: error, errorHandler: descriptor.detailedErrorHandler)
-            guard retryCount != 0 else {
-                DispatchQueue.main.async { handler(validated.result.map(descriptor.response.parse), validated.response) }
-                return
-            }
-            self.retryIfNeeded(request, result: validated.result, retry: {
+            self.retryIfNeeded(request, retryCount: retryCount, result: validated.result, retry: {
                 self.load(descriptor, retryCount: retryCount - 1, handler: handler, taskHandler: taskHandler)
             }, completion: {
                 DispatchQueue.main.async { handler(validated.result.map(descriptor.response.parse), validated.response) }
@@ -76,11 +72,7 @@ open class NetworkClient: SessionNetworking {
         // If http body will be nil - upload task will be cancelled
         let task = urlSession.uploadTask(with: request, from: request.httpBody ?? Data()) { (data, response, error) in
             let validated = self.validate(data: data, response: response, error: error, errorHandler: descriptor.detailedErrorHandler)
-            guard retryCount != 0 else {
-                DispatchQueue.main.async { handler(validated.result.map(descriptor.response.parse), validated.response) }
-                return
-            }
-            self.retryIfNeeded(request, result: validated.result, retry: {
+            self.retryIfNeeded(request, retryCount: retryCount, result: validated.result, retry: {
                 self.send(descriptor, retryCount: retryCount - 1, handler: handler, taskHandler: taskHandler)
             }, completion: {
                 DispatchQueue.main.async { handler(validated.result.map(descriptor.response.parse), validated.response) }
@@ -171,8 +163,8 @@ open class NetworkClient: SessionNetworking {
         urlSession.invalidateAndCancel()
     }
     
-    open func retryIfNeeded(_ request: URLRequest, result: Response<Data>, retry: @escaping () -> Void, completion: @escaping () -> Void) {
-        if let retrier = retrier, case let Response.failure(error) = result {
+    open func retryIfNeeded(_ request: URLRequest, retryCount: UInt, result: Response<Data>, retry: @escaping () -> Void, completion: @escaping () -> Void) {
+        if let retrier = retrier, case let Response.failure(error) = result, retryCount != 0 {
             retrier.shouldRetry(request, with: error) { shouldRetry in
                 shouldRetry ? retry() : completion()
             }
