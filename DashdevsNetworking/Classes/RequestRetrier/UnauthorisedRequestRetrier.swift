@@ -50,9 +50,9 @@ open class UnauthorisedRequestRetrier: RequestRetrier {
     open func isCredentialEqual(to request: URLRequest) -> Bool {
         if let currentCred = credential, let receivedCred = request.value(forHTTPHeaderField: credentialHeaderField) {
             return currentCred == receivedCred
-        } else {
-            return false
         }
+        
+        return false
     }
     
     // MARK: - RequestRetrier protocol implementation

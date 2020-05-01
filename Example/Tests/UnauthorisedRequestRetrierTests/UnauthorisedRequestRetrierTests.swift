@@ -176,4 +176,29 @@ class UnauthorisedRequestRetrierTests: XCTestCase {
             XCTFail()
         }
     }
+    
+    func testShouldRetry() {
+        let requestDescriptor = MockRequestDescriptor(duration: 1)
+        do {
+            let request = try XCTUnwrap(networkClient?.makeRequest(from: requestDescriptor))
+            let expectation = XCTestExpectation()
+            expectation.expectedFulfillmentCount = 2
+            
+            let serverError = NetworkError.HTTPError.client
+            retrier?.shouldRetry(request, with: serverError) { shouldRetry in
+                XCTAssertFalse(shouldRetry)
+                expectation.fulfill()
+            }
+            
+            let unknownError = NSError(domain: "com.network.unknown", code: 0, userInfo: nil)
+            retrier?.shouldRetry(request, with: unknownError) { shouldRetry in
+                XCTAssertFalse(shouldRetry)
+                expectation.fulfill()
+            }
+            
+            wait(for: [expectation], timeout: 30)
+        } catch {
+            XCTFail()
+        }
+    }
 }
