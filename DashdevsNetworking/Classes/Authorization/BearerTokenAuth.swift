@@ -21,6 +21,6 @@ public struct BearerTokenAuth: Authorization {
     /// Adding **Authorization** header to URLRequest
     public func authorize(_ request: inout URLRequest) {
         let authHeader = HTTPHeader(field: AuthorizationConstants.key, value: bearerToken)
-        request.addValue(authHeader.value, forHTTPHeaderField: authHeader.field)
+        request.setValue(authHeader.value, forHTTPHeaderField: authHeader.field)
     }
 }

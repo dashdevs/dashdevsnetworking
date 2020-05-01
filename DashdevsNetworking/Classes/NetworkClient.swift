@@ -28,6 +28,7 @@ open class NetworkClient: SessionNetworking {
     ///   - base: base URL to use
     ///   - sessionConfiguration: configuration of URL session to use
     ///   - authorization: authorization strategy to use
+    ///   - retrier: retry strategy to use
     public init(_ base: URL, sessionConfiguration: URLSessionConfiguration = .default, authorization: Authorization? = nil, retrier: RequestRetrier? = nil) {
         self.baseURL = base
         self.urlSession = URLSession(configuration: sessionConfiguration)
@@ -40,21 +41,20 @@ open class NetworkClient: SessionNetworking {
     /// - Parameters:
     ///   - descriptor: object that describes outgoing request to remote location
     ///   - handler: block of code to call after url request completes
-    /// - Returns: A task, like downloading a specific resource, performed in a URL session
-    @discardableResult
-    public func load<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, handler: @escaping (Response<Descriptor.Resource>, HTTPURLResponse?) -> ()) -> URLSessionTask {
+    ///   - taskHandler: block of code to return current task, like downloading a specific resource, performed in a URL session
+    public func load<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, handler: @escaping (Response<Descriptor.Resource>, HTTPURLResponse?) -> (), taskHandler: ((URLSessionTask) -> Void)? = nil) {
         let request = makeRequest(from: descriptor)
 
         let task = urlSession.dataTask(with: request) { (data, response, error) in
             let validated = self.validate(data: data, response: response, error: error, errorHandler: descriptor.detailedErrorHandler)
             self.retryIfNeeded(request, result: validated.result, retry: {
-                self.load(descriptor, handler: handler)
+                self.load(descriptor, handler: handler, taskHandler: taskHandler)
             }, completion: {
                 DispatchQueue.main.async { handler(validated.result.map(descriptor.response.parse), validated.response) }
             })
         }
         task.resume()
-        return task
+        taskHandler?(task)
     }
     
     /// Method which should be used to send information to remote location
@@ -62,9 +62,8 @@ open class NetworkClient: SessionNetworking {
     /// - Parameters:
     ///   - descriptor: object that describes outgoing request to remote location
     ///   - handler: block of code to call after url request completes
-    /// - Returns: A task, like downloading a specific resource, performed in a URL session
-    @discardableResult
-    public func send<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, handler: @escaping (Response<Descriptor.Resource>, HTTPURLResponse?) -> ()) -> URLSessionTask {
+    ///   - taskHandler: block of code to return current task, like downloading a specific resource, performed in a URL session
+    public func send<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, handler: @escaping (Response<Descriptor.Resource>, HTTPURLResponse?) -> (), taskHandler: ((URLSessionTask) -> Void)? = nil) {
         
         let request = makeRequest(from: descriptor)
         
@@ -72,13 +71,13 @@ open class NetworkClient: SessionNetworking {
         let task = urlSession.uploadTask(with: request, from: request.httpBody ?? Data()) { (data, response, error) in
             let validated = self.validate(data: data, response: response, error: error, errorHandler: descriptor.detailedErrorHandler)
             self.retryIfNeeded(request, result: validated.result, retry: {
-                self.send(descriptor, handler: handler)
+                self.send(descriptor, handler: handler, taskHandler: taskHandler)
             }, completion: {
                 DispatchQueue.main.async { handler(validated.result.map(descriptor.response.parse), validated.response) }
             })
         }
         task.resume()
-        return task
+        taskHandler?(task)
     }
     
     /// Method which constructs request to remote location using descriptor object

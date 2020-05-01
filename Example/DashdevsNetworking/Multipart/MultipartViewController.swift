@@ -30,14 +30,14 @@ class MultipartViewController: UIViewController {
     func uploadImage(with url: URL) {
         let fileParams = MultipartFileParameters(fileURL: url, name: "file", fileName: "image", mimeType: MIMEType.imageJPEG.rawValue)
         let requestDescriptor = MultipartRequestDescriptor(parameters: fileParams)
-        networkClient.send(requestDescriptor) { result, response in
+        networkClient.send(requestDescriptor, handler: { result, response in
             switch result {
             case .success(_):
                 print("Multipart File uploaded")
             case .failure(let error):
                 print(error)
             }
-        }
+        })
     }
 }
 

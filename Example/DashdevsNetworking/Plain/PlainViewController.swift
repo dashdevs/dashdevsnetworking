@@ -24,19 +24,19 @@ class PlainViewController: UITableViewController {
 
         let descr = AuthByEmailDescriptor(email: "email@email.com")
         
-        apiClient2.send(descr) { (result, _) in
+        apiClient2.send(descr, handler: { (result, _) in
             print(result)
-        }
+        })
         
         let descriptor = ItunesRequestDescriptor()
-        apiClient.load(descriptor) { (response, _) in
+        apiClient.load(descriptor, handler: { (response, _) in
             switch response {
             case let .success(results):
                 self.items = results.results
             case let .failure(error):
                 print(error)
             }
-        }
+        })
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
