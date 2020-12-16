@@ -8,13 +8,13 @@
 
 Pod::Spec.new do |s|
   s.name             = 'DashdevsNetworking'
-  s.version          = '0.0.7'
+  s.version          = '0.0.8'
   s.summary          = 'Library for organising network layer in iOS apps'
 
   s.homepage         = 'https://dashdevs.com'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'dashdevs llc' => 'hello@dashdevs.com' }
-  s.source           = { :git => 'https://github.com/itomych/dashdevsnetworking.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/dashdevs/dashdevsnetworking.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '9.0'
 
