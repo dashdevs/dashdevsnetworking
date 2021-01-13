@@ -11,12 +11,14 @@ import Foundation
 public protocol RequestDescriptor {
     associatedtype Parameters
     associatedtype Resource
+    associatedtype ResourceError
     
     var path: Endpoint { get }
     var method: HTTPMethod { get }
     var encoding: ParamEncoding<Parameters>? { get }
     var headers: [HTTPHeader]? { get }
     var response: Deserializator<Resource> { get }
+    var responseError: Deserializator<ResourceError> { get }
     var parameters: Parameters? { get }
     var versionPath: Path? { get }
     var detailedErrorHandler: DetailedErrorHandler? { get }

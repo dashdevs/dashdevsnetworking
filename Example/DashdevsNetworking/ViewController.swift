@@ -9,7 +9,7 @@ import UIKit
 import DashdevsNetworking
 
 class ViewController: UITableViewController {
-    let apiClient: NetworkClient = NetworkClient(URL(staticString: "https://itunes.apple.com"))
+    let apiClient1: NetworkClient = NetworkClient(URL(staticString: "https://itunes.apple.com"))
     
     let apiClient2: NetworkClient = NetworkClient(URL(staticString: "https://httpbin.org"))
     
@@ -21,20 +21,36 @@ class ViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let descr = AuthByEmailDescriptor(email: "email@email.com")
         
-        apiClient2.send(descr) { (result, _) in
-            print(result)
+        let authByEmailDescriptor = AuthByEmailDescriptor(email: "email@email.com")
+        
+        apiClient2.send(authByEmailDescriptor) { (result, _) in
+            debugPrint(result)
         }
         
-        let descriptor = ItunesRequestDescriptor()
-        apiClient.load(descriptor) { (response, _) in
+        let itunesRequestErrorDescriptor = ItunesRequestErrorDescriptor()
+        apiClient1.load(itunesRequestErrorDescriptor) { (response, _) in
             switch response {
             case let .success(results):
-                self.items = results.results
-            case let .failure(error):
-                print(error)
+                debugPrint(results.results)
+            case .failure(let model, let error):
+                if let model = model {
+                    debugPrint(model)
+                }
+                debugPrint(error)
+            }
+        }
+        
+        let itunesRequestDescriptor = ItunesRequestDescriptor()
+        apiClient1.load(itunesRequestDescriptor) { [weak self] (response, _) in
+            switch response {
+            case let .success(results):
+                self?.items = results.results
+            case .failure(let model, let error):
+                if let model = model {
+                    debugPrint(model)
+                }
+                debugPrint(error)
             }
         }
     }

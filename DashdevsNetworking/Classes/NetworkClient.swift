@@ -39,13 +39,13 @@ open class NetworkClient: SessionNetworking {
     ///   - handler: block of code to call after url request completes
     /// - Returns: A task, like downloading a specific resource, performed in a URL session
     @discardableResult
-    public func load<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, handler: @escaping (Response<Descriptor.Resource>, HTTPURLResponse?) -> ()) -> URLSessionTask where Descriptor.Resource: Decodable {
+    public func load<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, handler: @escaping (Response<Descriptor.Resource, Descriptor.ResourceError>, HTTPURLResponse?) -> ()) -> URLSessionTask where Descriptor.Resource: Decodable {
         let request = makeRequest(from: descriptor)
 
         let task = urlSession.dataTask(with: request) { (data, response, error) in
             let validated = self.validate(data: data, response: response, error: error, errorHandler: descriptor.detailedErrorHandler)
             DispatchQueue.main.async {
-                handler(validated.result.map(descriptor.response.parse), validated.response)
+                handler(validated.result.map(descriptor.response.parse, descriptor.responseError.parse), validated.response)
             }
         }
         task.resume()
@@ -59,14 +59,14 @@ open class NetworkClient: SessionNetworking {
     ///   - handler: block of code to call after url request completes
     /// - Returns: A task, like downloading a specific resource, performed in a URL session
     @discardableResult
-    public func send<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, handler: @escaping (Response<Descriptor.Resource>, HTTPURLResponse?) -> ()) -> URLSessionTask where Descriptor.Resource: Decodable, Descriptor.Parameters: Encodable {
-        
+    public func send<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, handler: @escaping (Response<Descriptor.Resource, Descriptor.ResourceError>, HTTPURLResponse?) -> ()) -> URLSessionTask where Descriptor.Resource: Decodable, Descriptor.Parameters: Encodable {
+
         let request = makeRequest(from: descriptor)
-        
+
         let task = urlSession.uploadTask(with: request, from: request.httpBody) { (data, response, error) in
             let validated = self.validate(data: data, response: response, error: error, errorHandler: descriptor.detailedErrorHandler)
             DispatchQueue.main.async {
-                handler(validated.result.map(descriptor.response.parse), validated.response)
+                handler(validated.result.map(descriptor.response.parse, descriptor.responseError.parse), validated.response)
             }
         }
         task.resume()
@@ -123,13 +123,13 @@ open class NetworkClient: SessionNetworking {
     ///   - response: An object that provides response metadata, such as HTTP headers and status code
     ///   - error: An error object that indicates why the request failed, or nil if the request was successful. Apple doc states that error will be returned in the NSURLErrorDomain
     /// - Returns: Tuple with response data and url response
-    open func validate(data: Data?, response: URLResponse?, error: Error?, errorHandler: DetailedErrorHandler?) -> (result: Response<Data>, response: HTTPURLResponse?) {
+    open func validate(data: Data?, response: URLResponse?, error: Error?, errorHandler: DetailedErrorHandler?) -> (result: Response<Data, Data>, response: HTTPURLResponse?) {
         if let error = error as? URLError {
-            return (Response.failure(error), nil)
+            return (Response.failure(data, error), nil)
         }
 
         guard let httpResponse = response as? HTTPURLResponse else {
-            return (Response.failure(NetworkError.emptyResponse), nil)
+            return (Response.failure(data, NetworkError.emptyResponse), nil)
         }
         
         let statusCode = httpResponse.statusCode
@@ -138,13 +138,13 @@ open class NetworkClient: SessionNetworking {
             let status = NetworkError.HTTPError(statusCode)
             if let hander = errorHandler {
                 let detailed = hander.detailedError(from: data, httpStatus: status)
-                return (Response.failure(detailed), httpResponse)
+                return (Response.failure(data, detailed), httpResponse)
             }
-            return (Response.failure(status), httpResponse)
+            return (Response.failure(data, status), httpResponse)
         }
         
         guard let data = data else {
-            return (Response.failure(NetworkError.emptyResponse), httpResponse)
+            return (Response.failure(nil, NetworkError.emptyResponse), httpResponse)
         }
         return (Response.success(data), httpResponse)
     }
