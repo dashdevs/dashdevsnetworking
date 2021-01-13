@@ -89,9 +89,9 @@ open class NetworkClient: SessionNetworking {
             request.httpBody = encoding.encode(params)
         }
         
-        NetworkDebugLog.log(with: request)
-
         authorization?.authorize(&request)
+        
+        NetworkDebugLog.log(with: request)
 
         return request
     }

@@ -13,7 +13,7 @@ class NetworkDebugLog {
     ///
     /// - Parameters:
     ///   - request: An object that provides request metadata
-    public static func log(with request: URLRequest) {
+    static func log(with request: URLRequest) {
         #if DEBUG
             debugPrint()
             debugPrint("==>>==========================================")
@@ -30,7 +30,7 @@ class NetworkDebugLog {
     ///   - data: The data returned by the server
     ///   - response: An object that provides response metadata, such as HTTP headers and status code
     ///   - error: An error object that indicates why the request failed, or nil if the request was successful. Apple doc states that error will be returned in the NSURLErrorDomain
-    public static func log(with data: Data?, response: URLResponse?, error: Error?) {
+    static func log(with data: Data?, response: URLResponse?, error: Error?) {
         #if DEBUG
             debugPrint()
             debugPrint("==>>==========================================")
@@ -53,7 +53,7 @@ class NetworkDebugLog {
             }
             
             if let error = error {
-                debugPrint("Error: \(error.localizedDescription)")
+                debugPrint(error.localizedDescription)
             }
             
             debugPrint("==>>==========================================")
