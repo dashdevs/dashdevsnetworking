@@ -53,7 +53,7 @@ class NetworkDebugLog {
             }
             
             if let error = error {
-                debugPrint(error.localizedDescription)
+                debugPrint("Error: \(error)")
             }
             
             debugPrint("==>>==========================================")
