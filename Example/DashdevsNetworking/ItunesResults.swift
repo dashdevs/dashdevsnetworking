@@ -73,6 +73,24 @@ struct ItunesRequestErrorDescriptor: RequestDescriptor {
     var responseError: Deserializator<ResourceError> = .json
 }
 
+// TODO: - ItunesRequestErrorVoidDescriptor
+
+struct ItunesRequestErrorVoidDescriptor: RequestDescriptor {
+    typealias Parameters = Void
+    typealias Resource = ItunesResults
+    typealias ResourceError = Void
+    
+    var path: Endpoint {
+        return Endpoint(path: "search", queryItems: [URLQueryItem(name: "media", value: "music"),
+                                                     URLQueryItem(name: "entity", value: "song1"),
+                                                     URLQueryItem(name: "term", value: "aaron smith")])
+    }
+    
+    var method: HTTPMethod { return .get }
+    var response: Deserializator<Resource> = .json
+    var responseError: Deserializator<ResourceError> = .none
+}
+
 // TODO: - AuthCodeModel model
 
 struct AuthCodeModel: Decodable {

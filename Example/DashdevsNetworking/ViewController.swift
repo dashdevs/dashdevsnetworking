@@ -41,6 +41,16 @@ class ViewController: UITableViewController {
             }
         }
         
+        let itunesRequestErrorVoidDescriptor = ItunesRequestErrorVoidDescriptor()
+        apiClient1.load(itunesRequestErrorVoidDescriptor) { (response, _) in
+            switch response {
+            case let .success(result):
+                debugPrint(result.results)
+            case .failure(_, let error):
+                debugPrint(error)
+            }
+        }
+        
         let itunesRequestDescriptor = ItunesRequestDescriptor()
         apiClient1.load(itunesRequestDescriptor) { [weak self] (response, _) in
             switch response {
