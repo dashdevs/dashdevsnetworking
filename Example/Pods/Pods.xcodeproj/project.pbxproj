@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		106A15DA25AC9E4900D0F3EB /* NetworkDebugLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106A15D925AC9E4900D0F3EB /* NetworkDebugLog.swift */; };
+		106A162F25ACB0F300D0F3EB /* URLRequest+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106A162E25ACB0F300D0F3EB /* URLRequest+Extensions.swift */; };
 		109111456FCC0A1B0F87BA9E1D5E0DA3 /* Pods-DashdevsNetworking_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB13565F7534601B746B97EE3D9A4B1 /* Pods-DashdevsNetworking_Tests-dummy.m */; };
 		2709F1A04B5C05CE16B117101E9A195A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		7544812B22D628D400B51B1D /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7544812A22D628D400B51B1D /* Authorization.swift */; };
@@ -48,6 +50,8 @@
 /* Begin PBXFileReference section */
 		00BBB3DB2874896EE00017240009B426 /* DashdevsNetworking-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "DashdevsNetworking-Info.plist"; sourceTree = "<group>"; };
 		00BDBC525020C0A31DC0D6B003461FB7 /* Pods-DashdevsNetworking_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DashdevsNetworking_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		106A15D925AC9E4900D0F3EB /* NetworkDebugLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDebugLog.swift; sourceTree = "<group>"; };
+		106A162E25ACB0F300D0F3EB /* URLRequest+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extensions.swift"; sourceTree = "<group>"; };
 		176FF1B9EAC1D300ACCE214D9997EEC6 /* DashdevsNetworking.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = DashdevsNetworking.modulemap; sourceTree = "<group>"; };
 		1F5777039CD5DF22B459A0B3DD5FE727 /* Pods-DashdevsNetworking_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DashdevsNetworking_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -178,7 +182,9 @@
 				7544812922D628D400B51B1D /* Authorization */,
 				E8A6E81F230EA09000DB4683 /* RequestDescriptor.swift */,
 				E8A9D057229D83570005B7A8 /* NetworkClient.swift */,
+				106A15D925AC9E4900D0F3EB /* NetworkDebugLog.swift */,
 				E8A9D05B229D83CB0005B7A8 /* HTTPResponse+Extensions.swift */,
+				106A162E25ACB0F300D0F3EB /* URLRequest+Extensions.swift */,
 				E8A9D050229D81AA0005B7A8 /* ErrorHandling.swift */,
 				E8A9D04F229D81AA0005B7A8 /* RequestConstructing.swift */,
 				E8A9D051229D81AA0005B7A8 /* Response.swift */,
@@ -406,9 +412,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				106A162F25ACB0F300D0F3EB /* URLRequest+Extensions.swift in Sources */,
 				E8A9D054229D81AA0005B7A8 /* RequestConstructing.swift in Sources */,
 				E8A9DEFD22B2C2F400AE4870 /* Deserialisation.swift in Sources */,
 				7544812D22D628F700B51B1D /* BearerTokenAuth.swift in Sources */,
+				106A15DA25AC9E4900D0F3EB /* NetworkDebugLog.swift in Sources */,
 				E8A9D053229D81AA0005B7A8 /* URLConstructing.swift in Sources */,
 				E8A9D05C229D83CB0005B7A8 /* HTTPResponse+Extensions.swift in Sources */,
 				E8A6E820230EA09000DB4683 /* RequestDescriptor.swift in Sources */,

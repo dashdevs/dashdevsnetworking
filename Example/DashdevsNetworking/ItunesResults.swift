@@ -24,9 +24,9 @@ struct ItunesRequestDescriptor: RequestDescriptor {
     typealias Resource = ItunesResults
     
     var path: Endpoint {
-        return Endpoint(path: "/search", queryItems: [URLQueryItem(name: "media", value: "music"),
-                                                      URLQueryItem(name: "entity", value: "song"),
-                                                      URLQueryItem(name: "term", value: "aaron smith")])
+        return Endpoint(path: "search", queryItems: [URLQueryItem(name: "media", value: "music"),
+                                                     URLQueryItem(name: "entity", value: "song"),
+                                                     URLQueryItem(name: "term", value: "aaron smith")])
     }
     
     var method: HTTPMethod { return .get }
@@ -57,7 +57,7 @@ struct AuthByEmailDescriptor: RequestDescriptor {
     
     init(email: String) {
         parameters = AuthEmailModel(email: email, source: "")
-        path = Endpoint(path: "/post")
+        path = Endpoint(path: "post")
         method = .post
         response = Deserializator<AuthCodeModel>.json
         encoding = .json
