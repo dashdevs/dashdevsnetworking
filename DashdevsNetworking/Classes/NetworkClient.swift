@@ -88,8 +88,10 @@ open class NetworkClient: SessionNetworking {
         if let params = descriptor.parameters, let encoding = descriptor.encoding {
             request.httpBody = encoding.encode(params)
         }
-
+        
         authorization?.authorize(&request)
+        
+        NetworkDebugLog.log(with: request)
 
         return request
     }
@@ -124,6 +126,8 @@ open class NetworkClient: SessionNetworking {
     ///   - error: An error object that indicates why the request failed, or nil if the request was successful. Apple doc states that error will be returned in the NSURLErrorDomain
     /// - Returns: Tuple with response data and url response
     open func validate(data: Data?, response: URLResponse?, error: Error?) -> (result: Response<Data, Data>, response: HTTPURLResponse?) {
+        NetworkDebugLog.log(with: data, response: response, error: error)
+
         if let error = error as? URLError {
             return (Response.failure(data, error), nil)
         }
