@@ -11,7 +11,7 @@ import DashdevsNetworking
 class ViewController: UITableViewController {
     let apiClient: NetworkClient = NetworkClient(URL(staticString: "https://itunes.apple.com"))
     
-    let apiClient2: NetworkClient = NetworkClient(URL(staticString: "https://httpbin.org"))
+    let apiClient2: NetworkClient = NetworkClient(URL(staticString: "https://httpbin.org"), displayNetworkDebugLog: .console)
     
     var items: [ItunesItem] = [] {
         didSet {

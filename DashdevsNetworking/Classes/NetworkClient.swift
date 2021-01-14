@@ -7,6 +7,13 @@
 
 import Foundation
 
+/// This general enum describes place where you need to display logs
+///
+/// - console: Display in console
+public enum DisplayNetworkDebugLog {
+    case console
+}
+
 /// This protocol provides describes basic networking functionality
 public protocol SessionNetworking {
     var baseURL: URL { get }
@@ -19,6 +26,7 @@ open class NetworkClient: SessionNetworking {
     public let baseURL: URL
     public let urlSession: URLSession
     public var authorization: Authorization?
+    public var displayNetworkDebugLog: DisplayNetworkDebugLog?
     
     /// Constructor method
     ///
@@ -26,10 +34,11 @@ open class NetworkClient: SessionNetworking {
     ///   - base: base URL to use
     ///   - sessionConfiguration: configuration of URL session to use
     ///   - authorization: authorization strategy to use
-    public init(_ base: URL, sessionConfiguration: URLSessionConfiguration = .default, authorization: Authorization? = nil) {
+    public init(_ base: URL, sessionConfiguration: URLSessionConfiguration = .default, authorization: Authorization? = nil, displayNetworkDebugLog: DisplayNetworkDebugLog? = nil) {
         self.baseURL = base
         self.urlSession = URLSession(configuration: sessionConfiguration)
         self.authorization = authorization
+        self.displayNetworkDebugLog = displayNetworkDebugLog
     }
     
     /// Method which should be used to load information from remote location
@@ -91,7 +100,7 @@ open class NetworkClient: SessionNetworking {
         
         authorization?.authorize(&request)
         
-        NetworkDebugLog.log(with: request)
+        NetworkDebugLog.log(with: request, displayNetworkDebugLog: displayNetworkDebugLog)
 
         return request
     }
@@ -126,7 +135,7 @@ open class NetworkClient: SessionNetworking {
     ///   - error: An error object that indicates why the request failed, or nil if the request was successful. Apple doc states that error will be returned in the NSURLErrorDomain
     /// - Returns: Tuple with response data and url response
     open func validate(data: Data?, response: URLResponse?, error: Error?, errorHandler: DetailedErrorHandler?) -> (result: Response<Data>, response: HTTPURLResponse?) {
-        NetworkDebugLog.log(with: data, response: response, error: error)
+        NetworkDebugLog.log(with: data, response: response, error: error, displayNetworkDebugLog: displayNetworkDebugLog)
         
         if let error = error as? URLError {
             return (Response.failure(error), nil)
