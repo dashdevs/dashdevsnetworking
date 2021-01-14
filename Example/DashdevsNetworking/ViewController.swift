@@ -31,8 +31,8 @@ class ViewController: UITableViewController {
         let itunesRequestErrorDescriptor = ItunesRequestErrorDescriptor()
         apiClient1.load(itunesRequestErrorDescriptor) { (response, _) in
             switch response {
-            case let .success(results):
-                debugPrint(results.results)
+            case let .success(result):
+                debugPrint(result.results)
             case .failure(let model, let error):
                 if let model = model {
                     debugPrint(model)
@@ -44,8 +44,8 @@ class ViewController: UITableViewController {
         let itunesRequestDescriptor = ItunesRequestDescriptor()
         apiClient1.load(itunesRequestDescriptor) { [weak self] (response, _) in
             switch response {
-            case let .success(results):
-                self?.items = results.results
+            case let .success(result):
+                self?.items = result.results
             case .failure(let model, let error):
                 if let model = model {
                     debugPrint(model)

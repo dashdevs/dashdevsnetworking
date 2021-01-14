@@ -21,11 +21,9 @@ public protocol RequestDescriptor {
     var responseError: Deserializator<ResourceError> { get }
     var parameters: Parameters? { get }
     var versionPath: Path? { get }
-    var detailedErrorHandler: DetailedErrorHandler? { get }
 }
 
 public extension RequestDescriptor {
-    var detailedErrorHandler: DetailedErrorHandler? { return nil }
     var versionPath: Path? { return nil }
     var headers: [HTTPHeader]? { return nil }
     var encoding: ParamEncoding<Parameters>? { return nil }
