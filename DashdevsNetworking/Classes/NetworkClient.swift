@@ -45,7 +45,7 @@ open class NetworkClient: SessionNetworking {
         let task = urlSession.dataTask(with: request) { (data, response, error) in
             let validated = self.validate(data: data, response: response, error: error)
             DispatchQueue.main.async {
-                handler(validated.result.map(descriptor.response.parse, descriptor.responseError.parse), validated.response)
+                handler(validated.result.map(descriptor.response.parse, descriptor.responseError?.parse), validated.response)
             }
         }
         task.resume()
@@ -66,7 +66,7 @@ open class NetworkClient: SessionNetworking {
         let task = urlSession.uploadTask(with: request, from: request.httpBody) { (data, response, error) in
             let validated = self.validate(data: data, response: response, error: error)
             DispatchQueue.main.async {
-                handler(validated.result.map(descriptor.response.parse, descriptor.responseError.parse), validated.response)
+                handler(validated.result.map(descriptor.response.parse, descriptor.responseError?.parse), validated.response)
             }
         }
         task.resume()

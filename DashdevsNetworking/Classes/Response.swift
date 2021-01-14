@@ -23,7 +23,7 @@ public extension Response {
     /// - Parameter parsingSuccessClosure: A mapping success closure
     /// - Parameter parsingFailureClosure: A mapping failure closure
     /// - Returns: Response object of types C and D
-    func map<C, D>(_ parsingSuccessClosure: @escaping (A) throws -> C, _ parsingFailureClosure: @escaping (B) throws -> D) -> Response<C, D> {
+    func map<C, D>(_ parsingSuccessClosure: @escaping (A) throws -> C, _ parsingFailureClosure: ((B) throws -> D)?) -> Response<C, D> {
         switch self {
         case let .success(res):
             do {
@@ -35,11 +35,11 @@ public extension Response {
             
         case .failure(let res, let error):
             do {
-                guard let res = res else {
+                guard let res = res, let failureClosure = parsingFailureClosure else {
                     return .failure(nil, error)
                 }
                 
-                let result = try parsingFailureClosure(res)
+                let result = try failureClosure(res)
                 return .failure(result, error)
             } catch {
                 return .failure(nil, error)

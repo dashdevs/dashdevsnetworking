@@ -18,7 +18,7 @@ public protocol RequestDescriptor {
     var encoding: ParamEncoding<Parameters>? { get }
     var headers: [HTTPHeader]? { get }
     var response: Deserializator<Resource> { get }
-    var responseError: Deserializator<ResourceError> { get }
+    var responseError: Deserializator<ResourceError>? { get }
     var parameters: Parameters? { get }
     var versionPath: Path? { get }
 }
@@ -27,5 +27,6 @@ public extension RequestDescriptor {
     var versionPath: Path? { return nil }
     var headers: [HTTPHeader]? { return nil }
     var encoding: ParamEncoding<Parameters>? { return nil }
+    var responseError: Deserializator<ResourceError>? { return nil }
     var parameters: Parameters? { return nil }
 }

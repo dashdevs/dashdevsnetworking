@@ -8,9 +8,9 @@
 import Foundation
 import DashdevsNetworking
 
-// TODO: - ItunesResults model
+// TODO: - ItunesResult model
 
-struct ItunesResults: Decodable {
+struct ItunesResult: Decodable {
     let results: [ItunesItem]
 }
 
@@ -21,9 +21,9 @@ struct ItunesItem: Decodable {
     let trackName: String?
 }
 
-// TODO: - ItunesErrorResults model
+// TODO: - ItunesErrorResult model
 
-struct ItunesErrorResults: Decodable {
+struct ItunesErrorResult: Decodable {
     let errorMessage: String?
     let queryParameters: QueryParametersErrorResults?
 }
@@ -41,8 +41,8 @@ struct QueryParametersErrorResults: Decodable {
 
 struct ItunesRequestDescriptor: RequestDescriptor {
     typealias Parameters = Void
-    typealias Resource = ItunesResults
-    typealias ResourceError = ItunesErrorResults
+    typealias Resource = ItunesResult
+    typealias ResourceError = ItunesErrorResult
     
     var path: Endpoint {
         return Endpoint(path: "search", queryItems: [URLQueryItem(name: "media", value: "music"),
@@ -52,15 +52,15 @@ struct ItunesRequestDescriptor: RequestDescriptor {
     
     var method: HTTPMethod { return .get }
     var response: Deserializator<Resource> = .json
-    var responseError: Deserializator<ResourceError> = .json
+    var responseError: Deserializator<ResourceError>? = .json
 }
 
-// TODO: - ItunesRequestErrorDescriptor
+// TODO: - ItunesErrorRequestDescriptor
 
-struct ItunesRequestErrorDescriptor: RequestDescriptor {
+struct ItunesErrorRequestDescriptor: RequestDescriptor {
     typealias Parameters = Void
-    typealias Resource = ItunesResults
-    typealias ResourceError = ItunesErrorResults
+    typealias Resource = ItunesResult
+    typealias ResourceError = ItunesErrorResult
     
     var path: Endpoint {
         return Endpoint(path: "search", queryItems: [URLQueryItem(name: "media", value: "music"),
@@ -70,14 +70,14 @@ struct ItunesRequestErrorDescriptor: RequestDescriptor {
     
     var method: HTTPMethod { return .get }
     var response: Deserializator<Resource> = .json
-    var responseError: Deserializator<ResourceError> = .json
+    var responseError: Deserializator<ResourceError>? = .json
 }
 
-// TODO: - ItunesRequestErrorVoidDescriptor
+// TODO: - ItunesWithoutResourceErrorRequestDescriptor
 
-struct ItunesRequestErrorVoidDescriptor: RequestDescriptor {
+struct ItunesWithoutResourceErrorRequestDescriptor: RequestDescriptor {
     typealias Parameters = Void
-    typealias Resource = ItunesResults
+    typealias Resource = ItunesResult
     typealias ResourceError = Void
     
     var path: Endpoint {
@@ -88,7 +88,6 @@ struct ItunesRequestErrorVoidDescriptor: RequestDescriptor {
     
     var method: HTTPMethod { return .get }
     var response: Deserializator<Resource> = .json
-    var responseError: Deserializator<ResourceError> = .none
 }
 
 // TODO: - AuthCodeModel model
@@ -101,9 +100,9 @@ struct AuthEmailModel: Encodable {
     let source: String
 }
 
-// TODO: - AuthByEmailDescriptor
+// TODO: - AuthByEmailRequestDescriptor
 
-struct AuthByEmailDescriptor: RequestDescriptor {
+struct AuthByEmailRequestDescriptor: RequestDescriptor {
     typealias Resource = AuthCodeModel
     typealias Parameters = AuthEmailModel
     typealias ResourceError = Void
@@ -117,7 +116,6 @@ struct AuthByEmailDescriptor: RequestDescriptor {
     var response: Deserializator<AuthCodeModel>
     var parameters: AuthEmailModel?
     var encoding: ParamEncoding<AuthEmailModel>?
-    var responseError: Deserializator<Void>
     
     init(email: String) {
         parameters = AuthEmailModel(email: email, source: "")
@@ -125,6 +123,5 @@ struct AuthByEmailDescriptor: RequestDescriptor {
         method = .post
         response = Deserializator<AuthCodeModel>.json
         encoding = .json
-        responseError = Deserializator<ResourceError>.none
     }
 }
