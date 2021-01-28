@@ -20,7 +20,7 @@ struct ItunesItem: Decodable {
 }
 
 struct ItunesRequestDescriptor: RequestDescriptor {
-    typealias Parameters = Void
+    typealias BodyParameters = Void
     typealias Resource = ItunesResults
     
     var path: Endpoint {
@@ -43,7 +43,7 @@ struct AuthEmailModel: Encodable {
 
 struct AuthByEmailDescriptor: RequestDescriptor {
     typealias Resource = AuthCodeModel
-    typealias Parameters = AuthEmailModel
+    typealias BodyParameters = AuthEmailModel
     
     private struct Constants {
         static let authSource = "IosApp"
@@ -53,7 +53,7 @@ struct AuthByEmailDescriptor: RequestDescriptor {
     var method: HTTPMethod
     var response: Deserializator<AuthCodeModel>
     var parameters: AuthEmailModel?
-    var encoding: ParamEncoding<AuthEmailModel>?
+    var encoding: BodyParamEncoding<AuthEmailModel>?
     
     init(email: String) {
         parameters = AuthEmailModel(email: email, source: "")

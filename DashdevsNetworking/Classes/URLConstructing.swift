@@ -72,27 +72,27 @@ public extension URL {
 }
 
 /// This struct describes way to encode parameters in http request body
-public struct ParamEncoding<A> {
+public struct BodyParamEncoding<BodyParameters> {
     
     /// Encoding parameters callback, may return nil if encoding fails
-    let encode: (A) -> Data?
+    let encode: (BodyParameters) -> Data?
     
     /// Headers that describe format of encoding result
     let headers: [HTTPHeader]
     
-    public init(_ encode: @escaping (A) -> Data?, headers: [HTTPHeader]) {
+    public init(_ encode: @escaping (BodyParameters) -> Data?, headers: [HTTPHeader]) {
         self.encode = encode
         self.headers = headers
     }
 }
 
-public extension ParamEncoding where A: Encodable {
+public extension BodyParamEncoding where BodyParameters: Encodable {
     
     /// Factory method which returns pre-defined object for encoding JSON parameters
     ///
     /// - Returns: object for encoding parameters
-    static var json: ParamEncoding {
-        return ParamEncoding({ encodable -> Data? in
+    static var json: BodyParamEncoding {
+        return BodyParamEncoding({ encodable -> Data? in
             try? JSONEncoder().encode(encodable)
         }, headers: [HTTPHeader.jsonContent])
     }

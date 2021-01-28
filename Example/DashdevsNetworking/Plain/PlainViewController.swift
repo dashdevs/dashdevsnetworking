@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PlainViewController.swift
 //  DashdevsNetworking
 //
 //  Copyright (c) 2019 dashdevs.com. All rights reserved.
@@ -8,7 +8,7 @@
 import UIKit
 import DashdevsNetworking
 
-class ViewController: UITableViewController {
+class PlainViewController: UITableViewController {
     let apiClient: NetworkClient = NetworkClient(URL(staticString: "https://itunes.apple.com"))
     
     let apiClient2: NetworkClient = NetworkClient(URL(staticString: "https://httpbin.org"))
@@ -24,19 +24,19 @@ class ViewController: UITableViewController {
 
         let descr = AuthByEmailDescriptor(email: "email@email.com")
         
-        apiClient2.send(descr) { (result, _) in
+        apiClient2.send(descr, handler: { (result, _) in
             print(result)
-        }
+        })
         
         let descriptor = ItunesRequestDescriptor()
-        apiClient.load(descriptor) { (response, _) in
+        apiClient.load(descriptor, handler: { (response, _) in
             switch response {
             case let .success(results):
                 self.items = results.results
             case let .failure(error):
                 print(error)
             }
-        }
+        })
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
