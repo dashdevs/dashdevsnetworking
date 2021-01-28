@@ -39,46 +39,46 @@ open class NetworkClient: SessionNetworking {
     ///
     /// - Parameters:
     ///   - descriptor: object that describes outgoing request to remote location
+    ///   - retryCount: number of request retries
     ///   - handler: block of code to call after url request completes
-    /// - Returns: A task, like downloading a specific resource, performed in a URL session
-    @discardableResult
-    public func load<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, handler: @escaping (Response<Descriptor.Resource>, HTTPURLResponse?) -> ()) -> URLSessionTask {
+    ///   - taskHandler: block of code to return current task, like downloading a specific resource, performed in a URL session
+    public func load<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, retryCount: UInt = 1, handler: @escaping (Response<Descriptor.Resource>, HTTPURLResponse?) -> (), taskHandler: ((URLSessionTask) -> Void)? = nil) {
         let request = makeRequest(from: descriptor)
 
         let task = urlSession.dataTask(with: request) { (data, response, error) in
             let validated = self.validate(data: data, response: response, error: error, errorHandler: descriptor.detailedErrorHandler)
-            self.retryIfNeeded(request, result: validated.result, retry: {
-                self.load(descriptor, handler: handler)
+            self.retryIfNeeded(request, retryCount: retryCount, result: validated.result, retry: {
+                self.load(descriptor, retryCount: retryCount - 1, handler: handler, taskHandler: taskHandler)
             }, completion: {
                 DispatchQueue.main.async { handler(validated.result.map(descriptor.response.parse), validated.response) }
             })
         }
         task.resume()
-        return task
+        taskHandler?(task)
     }
     
     /// Method which should be used to send information to remote location
     ///
     /// - Parameters:
     ///   - descriptor: object that describes outgoing request to remote location
+    ///   - retryCount: number of request retries
     ///   - handler: block of code to call after url request completes
-    /// - Returns: A task, like downloading a specific resource, performed in a URL session
-    @discardableResult
-    public func send<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, handler: @escaping (Response<Descriptor.Resource>, HTTPURLResponse?) -> ()) -> URLSessionTask {
+    ///   - taskHandler: block of code to return current task, like downloading a specific resource, performed in a URL session
+    public func send<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, retryCount: UInt = 1, handler: @escaping (Response<Descriptor.Resource>, HTTPURLResponse?) -> (), taskHandler: ((URLSessionTask) -> Void)? = nil) {
         
         let request = makeRequest(from: descriptor)
         
         // If http body will be nil - upload task will be cancelled
         let task = urlSession.uploadTask(with: request, from: request.httpBody ?? Data()) { (data, response, error) in
             let validated = self.validate(data: data, response: response, error: error, errorHandler: descriptor.detailedErrorHandler)
-            self.retryIfNeeded(request, result: validated.result, retry: {
-                self.send(descriptor, handler: handler)
+            self.retryIfNeeded(request, retryCount: retryCount, result: validated.result, retry: {
+                self.send(descriptor, retryCount: retryCount - 1, handler: handler, taskHandler: taskHandler)
             }, completion: {
                 DispatchQueue.main.async { handler(validated.result.map(descriptor.response.parse), validated.response) }
             })
         }
         task.resume()
-        return task
+        taskHandler?(task)
     }
     
     /// Method which constructs request to remote location using descriptor object
@@ -162,8 +162,8 @@ open class NetworkClient: SessionNetworking {
         urlSession.invalidateAndCancel()
     }
     
-    open func retryIfNeeded(_ request: URLRequest, result: Response<Data>, retry: @escaping () -> Void, completion: @escaping () -> Void) {
-        if let retrier = retrier, case let Response.failure(error) = result {
+    open func retryIfNeeded(_ request: URLRequest, retryCount: UInt, result: Response<Data>, retry: @escaping () -> Void, completion: @escaping () -> Void) {
+        if let retrier = retrier, case let Response.failure(error) = result, retryCount != 0 {
             retrier.shouldRetry(request, with: error) { shouldRetry in
                 shouldRetry ? retry() : completion()
             }
