@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YDp-TD-04Z">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="rqw-ZJ-83K">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Plain-->
         <scene sceneID="5nO-gT-vuu">
             <objects>
-                <tableViewController id="YDp-TD-04Z" customClass="ViewController" customModule="DashdevsNetworking_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="YDp-TD-04Z" customClass="PlainViewController" customModule="DashdevsNetworking_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="euD-fn-eCh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,10 +20,61 @@
                             <outlet property="delegate" destination="YDp-TD-04Z" id="DER-WA-0Ts"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Plain" id="9OM-RL-cML"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jfs-JE-7FV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="255" y="-180"/>
+            <point key="canvasLocation" x="-396" y="584"/>
+        </scene>
+        <!--Multipart-->
+        <scene sceneID="ByQ-ST-xZ5">
+            <objects>
+                <viewController id="K5H-4k-Cqw" customClass="MultipartViewController" customModule="DashdevsNetworking_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TLe-k0-yRU"/>
+                        <viewControllerLayoutGuide type="bottom" id="mLD-z2-ZlG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UCJ-zv-FC6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0e0-3L-TdV">
+                                <rect key="frame" x="140" y="16" width="95" height="30"/>
+                                <state key="normal" title="Upload Image"/>
+                                <connections>
+                                    <action selector="uploadImage" destination="K5H-4k-Cqw" eventType="touchUpInside" id="gOp-BR-3HR"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="0e0-3L-TdV" firstAttribute="centerX" secondItem="UCJ-zv-FC6" secondAttribute="centerX" id="9We-nB-NPD"/>
+                            <constraint firstItem="0e0-3L-TdV" firstAttribute="top" secondItem="TLe-k0-yRU" secondAttribute="bottom" constant="16" id="Iir-Vh-BDW"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Multipart" id="uGA-DY-oUd"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mvY-0p-F0b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="822" y="583"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="gbt-YJ-Dcc">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="rqw-ZJ-83K" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aOm-Ma-z94">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="YDp-TD-04Z" kind="relationship" relationship="viewControllers" id="jXG-II-quq"/>
+                        <segue destination="K5H-4k-Cqw" kind="relationship" relationship="viewControllers" id="CvD-Kq-81U"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="viC-vO-wEh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="253.59999999999999" y="-180.35982008995504"/>
         </scene>
     </scenes>
 </document>

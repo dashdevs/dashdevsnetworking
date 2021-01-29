@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PlainViewController.swift
 //  DashdevsNetworking
 //
 //  Copyright (c) 2019 dashdevs.com. All rights reserved.
@@ -8,7 +8,7 @@
 import UIKit
 import DashdevsNetworking
 
-final class ViewController: UITableViewController {
+final class PlainViewController: UITableViewController {
     private let apiClient1: NetworkClient = NetworkClient(URL(staticString: "https://itunes.apple.com"))
     private let apiClient2: NetworkClient = NetworkClient(URL(staticString: "https://httpbin.org"))
     
@@ -20,7 +20,6 @@ final class ViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         firstExample()
         secondExample()
         thirdExample()
@@ -50,18 +49,18 @@ final class ViewController: UITableViewController {
 
 // TODO: - Examples
 
-extension ViewController {
+extension PlainViewController {
     private func firstExample() {
         let requestDescriptor = AuthByEmailRequestDescriptor(email: "email@email.com")
-        
+
         apiClient2.send(requestDescriptor) { (result, _) in
             debugPrint(result)
         }
     }
-    
+
     private func secondExample() {
         let requestDescriptor = ItunesErrorRequestDescriptor()
-        
+
         apiClient1.load(requestDescriptor) { (response, _) in
             switch response {
             case let .success(result):
@@ -74,10 +73,10 @@ extension ViewController {
             }
         }
     }
-    
+
     private func thirdExample() {
         let requestDescriptor = ItunesWithoutResourceErrorRequestDescriptor()
-        
+
         apiClient1.load(requestDescriptor) { (response, _) in
             switch response {
             case let .success(result):
@@ -90,10 +89,10 @@ extension ViewController {
             }
         }
     }
-    
+
     private func fourthExample() {
         let requestDescriptor = ItunesRequestDescriptor()
-        
+
         apiClient1.load(requestDescriptor) { [weak self] (response, _) in
             switch response {
             case let .success(result):

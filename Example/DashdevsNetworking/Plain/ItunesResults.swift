@@ -40,7 +40,7 @@ struct QueryParametersErrorResults: Decodable {
 // TODO: - ItunesRequestDescriptor
 
 struct ItunesRequestDescriptor: RequestDescriptor {
-    typealias Parameters = Void
+    typealias BodyParameters = Void
     typealias Resource = ItunesResult
     typealias ResourceError = ItunesErrorResult
     
@@ -58,7 +58,7 @@ struct ItunesRequestDescriptor: RequestDescriptor {
 // TODO: - ItunesErrorRequestDescriptor
 
 struct ItunesErrorRequestDescriptor: RequestDescriptor {
-    typealias Parameters = Void
+    typealias BodyParameters = Void
     typealias Resource = ItunesResult
     typealias ResourceError = ItunesErrorResult
     
@@ -76,7 +76,7 @@ struct ItunesErrorRequestDescriptor: RequestDescriptor {
 // TODO: - ItunesWithoutResourceErrorRequestDescriptor
 
 struct ItunesWithoutResourceErrorRequestDescriptor: RequestDescriptor {
-    typealias Parameters = Void
+    typealias BodyParameters = Void
     typealias Resource = ItunesResult
     typealias ResourceError = Void
     
@@ -104,7 +104,7 @@ struct AuthEmailModel: Encodable {
 
 struct AuthByEmailRequestDescriptor: RequestDescriptor {
     typealias Resource = AuthCodeModel
-    typealias Parameters = AuthEmailModel
+    typealias BodyParameters = AuthEmailModel
     typealias ResourceError = Void
     
     private struct Constants {
@@ -115,7 +115,7 @@ struct AuthByEmailRequestDescriptor: RequestDescriptor {
     var method: HTTPMethod
     var response: Deserializator<AuthCodeModel>
     var parameters: AuthEmailModel?
-    var encoding: ParamEncoding<AuthEmailModel>?
+    var encoding: BodyParamEncoding<AuthEmailModel>?
     
     init(email: String) {
         parameters = AuthEmailModel(email: email, source: "")
