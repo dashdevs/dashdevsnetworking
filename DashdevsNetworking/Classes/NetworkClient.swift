@@ -19,6 +19,7 @@ public protocol SessionNetworking {
     var baseURL: URL { get }
     var urlSession: URLSession { get }
     var authorization: Authorization? { get }
+    var retrier: RequestRetrier? { get }
 }
 
 /// This class uses URLSession for organising networking
@@ -26,6 +27,7 @@ open class NetworkClient: SessionNetworking {
     public let baseURL: URL
     public let urlSession: URLSession
     public var authorization: Authorization?
+    public var retrier: RequestRetrier?
     public var displayNetworkDebugLog: DisplayNetworkDebugLog?
     
     /// Constructor method
@@ -34,10 +36,11 @@ open class NetworkClient: SessionNetworking {
     ///   - base: base URL to use
     ///   - sessionConfiguration: configuration of URL session to use
     ///   - authorization: authorization strategy to use
-    public init(_ base: URL, sessionConfiguration: URLSessionConfiguration = .default, authorization: Authorization? = nil, displayNetworkDebugLog: DisplayNetworkDebugLog? = nil) {
+    public init(_ base: URL, sessionConfiguration: URLSessionConfiguration = .default, authorization: Authorization? = nil, retrier: RequestRetrier? = nil,  displayNetworkDebugLog: DisplayNetworkDebugLog? = nil) {
         self.baseURL = base
         self.urlSession = URLSession(configuration: sessionConfiguration)
         self.authorization = authorization
+        self.retrier = retrier
         self.displayNetworkDebugLog = displayNetworkDebugLog
     }
     
@@ -45,41 +48,46 @@ open class NetworkClient: SessionNetworking {
     ///
     /// - Parameters:
     ///   - descriptor: object that describes outgoing request to remote location
+    ///   - retryCount: number of request retries
     ///   - handler: block of code to call after url request completes
-    /// - Returns: A task, like downloading a specific resource, performed in a URL session
-    @discardableResult
-    public func load<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, handler: @escaping (Response<Descriptor.Resource>, HTTPURLResponse?) -> ()) -> URLSessionTask where Descriptor.Resource: Decodable {
+    ///   - taskHandler: block of code to return current task, like downloading a specific resource, performed in a URL session
+    public func load<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, retryCount: UInt = 1, handler: @escaping (Response<Descriptor.Resource, Descriptor.ResourceError>, HTTPURLResponse?) -> (), taskHandler: ((URLSessionTask) -> Void)? = nil) {
         let request = makeRequest(from: descriptor)
 
         let task = urlSession.dataTask(with: request) { (data, response, error) in
-            let validated = self.validate(data: data, response: response, error: error, errorHandler: descriptor.detailedErrorHandler)
-            DispatchQueue.main.async {
-                handler(validated.result.map(descriptor.response.parse), validated.response)
-            }
+            let validated = self.validate(data: data, response: response, error: error)
+            self.retryIfNeeded(request, retryCount: retryCount, result: validated.result, retry: {
+                self.load(descriptor, retryCount: retryCount - 1, handler: handler, taskHandler: taskHandler)
+            }, completion: {
+                DispatchQueue.main.async { handler(validated.result.map(descriptor.response.parse, descriptor.responseError?.parse), validated.response) }
+            })
         }
         task.resume()
-        return task
+        taskHandler?(task)
     }
     
     /// Method which should be used to send information to remote location
     ///
     /// - Parameters:
     ///   - descriptor: object that describes outgoing request to remote location
+    ///   - retryCount: number of request retries
     ///   - handler: block of code to call after url request completes
-    /// - Returns: A task, like downloading a specific resource, performed in a URL session
-    @discardableResult
-    public func send<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, handler: @escaping (Response<Descriptor.Resource>, HTTPURLResponse?) -> ()) -> URLSessionTask where Descriptor.Resource: Decodable, Descriptor.Parameters: Encodable {
+    ///   - taskHandler: block of code to return current task, like downloading a specific resource, performed in a URL session
+    public func send<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, retryCount: UInt = 1, handler: @escaping (Response<Descriptor.Resource, Descriptor.ResourceError>, HTTPURLResponse?) -> (), taskHandler: ((URLSessionTask) -> Void)? = nil) {
         
         let request = makeRequest(from: descriptor)
         
-        let task = urlSession.uploadTask(with: request, from: request.httpBody) { (data, response, error) in
-            let validated = self.validate(data: data, response: response, error: error, errorHandler: descriptor.detailedErrorHandler)
-            DispatchQueue.main.async {
-                handler(validated.result.map(descriptor.response.parse), validated.response)
-            }
+        // If http body will be nil - upload task will be cancelled
+        let task = urlSession.uploadTask(with: request, from: request.httpBody ?? Data()) { (data, response, error) in
+            let validated = self.validate(data: data, response: response, error: error)
+            self.retryIfNeeded(request, retryCount: retryCount, result: validated.result, retry: {
+                self.send(descriptor, retryCount: retryCount - 1, handler: handler, taskHandler: taskHandler)
+            }, completion: {
+                DispatchQueue.main.async { handler(validated.result.map(descriptor.response.parse, descriptor.responseError?.parse), validated.response) }
+            })
         }
         task.resume()
-        return task
+        taskHandler?(task)
     }
     
     /// Method which constructs request to remote location using descriptor object
@@ -93,6 +101,7 @@ open class NetworkClient: SessionNetworking {
         
         descriptor.encoding.map({ $0.headers.forEach({ request.setValue($0.value, forHTTPHeaderField: $0.field) }) })
         descriptor.response.headers.forEach({ request.setValue($0.value, forHTTPHeaderField: $0.field) })
+        descriptor.headers?.forEach({ request.setValue($0.value, forHTTPHeaderField: $0.field) })
 
         if let params = descriptor.parameters, let encoding = descriptor.encoding {
             request.httpBody = encoding.encode(params)
@@ -134,35 +143,41 @@ open class NetworkClient: SessionNetworking {
     ///   - response: An object that provides response metadata, such as HTTP headers and status code
     ///   - error: An error object that indicates why the request failed, or nil if the request was successful. Apple doc states that error will be returned in the NSURLErrorDomain
     /// - Returns: Tuple with response data and url response
-    open func validate(data: Data?, response: URLResponse?, error: Error?, errorHandler: DetailedErrorHandler?) -> (result: Response<Data>, response: HTTPURLResponse?) {
+    open func validate(data: Data?, response: URLResponse?, error: Error?) -> (result: Response<Data, Data>, response: HTTPURLResponse?) {
         NetworkDebugLog.log(with: data, response: response, error: error, displayNetworkDebugLog: displayNetworkDebugLog)
         
         if let error = error as? URLError {
-            return (Response.failure(error), nil)
+            return (Response.failure(data, error), nil)
         }
 
         guard let httpResponse = response as? HTTPURLResponse else {
-            return (Response.failure(NetworkError.emptyResponse), nil)
+            return (Response.failure(data, NetworkError.emptyResponse), nil)
         }
         
         let statusCode = httpResponse.statusCode
         
         guard acceptableHTTPCodes.contains(statusCode) else {
             let status = NetworkError.HTTPError(statusCode)
-            if let hander = errorHandler {
-                let detailed = hander.detailedError(from: data, httpStatus: status)
-                return (Response.failure(detailed), httpResponse)
-            }
-            return (Response.failure(status), httpResponse)
+            return (Response.failure(data, status), httpResponse)
         }
         
         guard let data = data else {
-            return (Response.failure(NetworkError.emptyResponse), httpResponse)
+            return (Response.failure(nil, NetworkError.emptyResponse), httpResponse)
         }
         return (Response.success(data), httpResponse)
     }
     
     deinit {
         urlSession.invalidateAndCancel()
+    }
+    
+    open func retryIfNeeded(_ request: URLRequest, retryCount: UInt, result: Response<Data, Data>, retry: @escaping () -> Void, completion: @escaping () -> Void) {
+        if let retrier = retrier, case let Response.failure(_, error) = result, retryCount != .zero {
+            retrier.shouldRetry(request, with: error) { shouldRetry in
+                shouldRetry ? retry() : completion()
+            }
+        } else {
+            completion()
+        }
     }
 }
