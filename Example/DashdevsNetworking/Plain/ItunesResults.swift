@@ -8,7 +8,7 @@
 import Foundation
 import DashdevsNetworking
 
-// TODO: - ItunesResult model
+// MARK: - ItunesResult model
 
 struct ItunesResult: Decodable {
     let results: [ItunesItem]
@@ -21,7 +21,7 @@ struct ItunesItem: Decodable {
     let trackName: String?
 }
 
-// TODO: - ItunesErrorResult model
+// MARK: - ItunesErrorResult model
 
 struct ItunesErrorResult: Decodable {
     let errorMessage: String?
@@ -37,7 +37,7 @@ struct QueryParametersErrorResults: Decodable {
     let lang: String?
 }
 
-// TODO: - ItunesRequestDescriptor
+// MARK: - ItunesRequestDescriptor
 
 struct ItunesRequestDescriptor: RequestDescriptor {
     typealias BodyParameters = Void
@@ -55,7 +55,7 @@ struct ItunesRequestDescriptor: RequestDescriptor {
     var responseError: Deserializator<ResourceError>? = .json
 }
 
-// TODO: - ItunesErrorRequestDescriptor
+// MARK: - ItunesErrorRequestDescriptor
 
 struct ItunesErrorRequestDescriptor: RequestDescriptor {
     typealias BodyParameters = Void
@@ -73,7 +73,7 @@ struct ItunesErrorRequestDescriptor: RequestDescriptor {
     var responseError: Deserializator<ResourceError>? = .json
 }
 
-// TODO: - ItunesWithoutResourceErrorRequestDescriptor
+// MARK: - ItunesWithoutResourceErrorRequestDescriptor
 
 struct ItunesWithoutResourceErrorRequestDescriptor: RequestDescriptor {
     typealias BodyParameters = Void
@@ -90,7 +90,7 @@ struct ItunesWithoutResourceErrorRequestDescriptor: RequestDescriptor {
     var response: Deserializator<Resource> = .json
 }
 
-// TODO: - AuthCodeModel model
+// MARK: - AuthCodeModel model
 
 struct AuthCodeModel: Decodable {
 }
@@ -100,7 +100,7 @@ struct AuthEmailModel: Encodable {
     let source: String
 }
 
-// TODO: - AuthByEmailRequestDescriptor
+// MARK: - AuthByEmailRequestDescriptor
 
 struct AuthByEmailRequestDescriptor: RequestDescriptor {
     typealias Resource = AuthCodeModel

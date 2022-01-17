@@ -9,6 +9,9 @@ import Foundation
 
 /// This class is used to display the debug log of the network layer
 class NetworkDebugLog {
+    
+    private static let separator = "==>>=========================================="
+    
     /// This method is used to display debug log for request the server
     ///
     /// - Parameters:
@@ -18,10 +21,10 @@ class NetworkDebugLog {
         switch displayNetworkDebugLog {
         case .console:
             debugPrint()
-            debugPrint("==>>==========================================")
+            debugPrint(separator)
             debugPrint("REQUEST")
             debugPrint("\(request.curlString)")
-            debugPrint("==>>==========================================")
+            debugPrint(separator)
             debugPrint()
         case .none:
             break
@@ -39,7 +42,7 @@ class NetworkDebugLog {
         switch displayNetworkDebugLog {
         case .console:
             debugPrint()
-            debugPrint("==>>==========================================")
+            debugPrint(separator)
             debugPrint("RESPONSE")
             
             if let response = response as? HTTPURLResponse {
@@ -62,7 +65,7 @@ class NetworkDebugLog {
                 debugPrint("Error: \(error)")
             }
             
-            debugPrint("==>>==========================================")
+            debugPrint(separator)
         case .none:
             break
         }

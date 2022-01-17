@@ -47,7 +47,7 @@ final class PlainViewController: UITableViewController {
     }    
 }
 
-// TODO: - Examples
+// MARK: - Examples
 
 extension PlainViewController {
     private func firstExample() {
