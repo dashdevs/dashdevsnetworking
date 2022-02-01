@@ -10,7 +10,13 @@ import DashdevsNetworking
 
 final class PlainViewController: UITableViewController {
     private let apiClient1: NetworkClient = NetworkClient(URL(staticString: "https://itunes.apple.com"))
-    private let apiClient2: NetworkClient = NetworkClient(URL(staticString: "https://httpbin.org"), displayNetworkDebugLog: .console)
+    private let apiClient2: NetworkClient = NetworkClient(
+        URL(staticString: "https://httpbin.org"),
+        displayNetworkDebugLog: .console)
+    private let apiClient3: NetworkClient = NetworkClient(
+        URL(staticString: "https://itunes.apple.com"),
+        retrier: TimeoutRetrier(),
+        displayNetworkDebugLog: .console)
     
     private var items: [ItunesItem] = [] {
         didSet {
@@ -24,6 +30,8 @@ final class PlainViewController: UITableViewController {
         secondExample()
         thirdExample()
         fourthExample()
+        
+        timeoutExample()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,7 +61,7 @@ extension PlainViewController {
     private func firstExample() {
         let requestDescriptor = AuthByEmailRequestDescriptor(email: "email@email.com")
 
-        apiClient2.send(requestDescriptor) { (result, _) in
+        apiClient2.send(requestDescriptor, retryCount: 3) { (result, _) in
             debugPrint(result)
         }
     }
@@ -97,6 +105,22 @@ extension PlainViewController {
             switch response {
             case let .success(result):
                 self?.items = result.results
+            case .failure(let model, let error):
+                if let model = model {
+                    debugPrint(model)
+                }
+                debugPrint(error)
+            }
+        }
+    }
+    
+    private func timeoutExample() {
+        let requestDescriptor = ItunesRequestDescriptor()
+
+        apiClient3.load(requestDescriptor) { (response, _) in
+            switch response {
+            case let .success(result):
+                debugPrint(result.results)
             case .failure(let model, let error):
                 if let model = model {
                     debugPrint(model)

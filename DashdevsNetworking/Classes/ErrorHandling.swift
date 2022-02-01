@@ -31,6 +31,7 @@ public enum NetworkError: LocalizedError {
         case notFound
         case forbidden
         case server
+        case timeout
         case unknown(Int)
         
         public init(_ statusCode: Int) {
@@ -43,6 +44,8 @@ public enum NetworkError: LocalizedError {
                 self = .notFound
             case 403:
                 self = .forbidden
+            case 408:
+                self = .timeout
             case 500..<600:
                 self = .server
             default:
