@@ -1,8 +1,7 @@
 {
   "name": "DashdevsNetworking",
-  "version": "0.1.0",
-  "summary": "A short description of DashdevsNetworking.",
-  "description": "TODO: Add long description of the pod here.",
+  "version": "0.0.8",
+  "summary": "Library for organising network layer in iOS apps",
   "homepage": "https://dashdevs.com",
   "license": {
     "type": "MIT",
@@ -12,11 +11,13 @@
     "dashdevs llc": "hello@dashdevs.com"
   },
   "source": {
-    "git": "https://bitbucket.org/itomych/DashdevsNetworking.git",
-    "tag": "0.1.0"
+    "git": "https://github.com/dashdevs/dashdevsnetworking.git",
+    "tag": "0.0.8"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.0"
   },
-  "source_files": "DashdevsNetworking/Classes/**/*"
+  "swift_versions": "4.0",
+  "source_files": "DashdevsNetworking/Classes/**/*",
+  "swift_version": "4.0"
 }

@@ -1,5 +1,5 @@
 PODS:
-  - DashdevsNetworking (0.1.0)
+  - DashdevsNetworking (0.0.8)
 
 DEPENDENCIES:
   - DashdevsNetworking (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  DashdevsNetworking: 5697760ff9e6a2ac52bc88d62899ce36aa7962fb
+  DashdevsNetworking: 314d690c9da99eb1f5648935ac9548c948b9c9d6
 
 PODFILE CHECKSUM: 2be2200ac172d7389afec7faed29c09c3f7141a0
 
-COCOAPODS: 1.7.0
+COCOAPODS: 1.10.0
