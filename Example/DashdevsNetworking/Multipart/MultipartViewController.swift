@@ -34,8 +34,11 @@ class MultipartViewController: UIViewController {
             switch result {
             case .success(_):
                 print("Multipart File uploaded")
-            case .failure(let error):
-                print(error)
+            case .failure(let model, let error):
+                if let model = model {
+                    debugPrint(model)
+                }
+                debugPrint(error)
             }
         })
     }

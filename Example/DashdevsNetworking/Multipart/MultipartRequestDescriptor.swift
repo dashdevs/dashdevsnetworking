@@ -11,6 +11,7 @@ import DashdevsNetworking
 struct MultipartRequestDescriptor: RequestDescriptor {
     typealias BodyParameters = MultipartFileParameters
     typealias Resource = Void
+    typealias ResourceError = Void
     
     let parameters: MultipartFileParameters?
 

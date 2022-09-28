@@ -8,12 +8,11 @@
 import UIKit
 import DashdevsNetworking
 
-class PlainViewController: UITableViewController {
-    let apiClient: NetworkClient = NetworkClient(URL(staticString: "https://itunes.apple.com"))
+final class PlainViewController: UITableViewController {
+    private let apiClient1: NetworkClient = NetworkClient(URL(staticString: "https://itunes.apple.com"))
+    private let apiClient2: NetworkClient = NetworkClient(URL(staticString: "https://httpbin.org"), displayNetworkDebugLog: .console)
     
-    let apiClient2: NetworkClient = NetworkClient(URL(staticString: "https://httpbin.org"))
-    
-    var items: [ItunesItem] = [] {
+    private var items: [ItunesItem] = [] {
         didSet {
             tableView.reloadData()
         }
@@ -21,22 +20,10 @@ class PlainViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let descr = AuthByEmailDescriptor(email: "email@email.com")
-        
-        apiClient2.send(descr, handler: { (result, _) in
-            print(result)
-        })
-        
-        let descriptor = ItunesRequestDescriptor()
-        apiClient.load(descriptor, handler: { (response, _) in
-            switch response {
-            case let .success(results):
-                self.items = results.results
-            case let .failure(error):
-                print(error)
-            }
-        })
+        firstExample()
+        secondExample()
+        thirdExample()
+        fourthExample()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,4 +45,64 @@ class PlainViewController: UITableViewController {
         
         return cell!
     }    
+}
+
+// MARK: - Examples
+
+extension PlainViewController {
+    private func firstExample() {
+        let requestDescriptor = AuthByEmailRequestDescriptor(email: "email@email.com")
+
+        apiClient2.send(requestDescriptor) { (result, _) in
+            debugPrint(result)
+        }
+    }
+
+    private func secondExample() {
+        let requestDescriptor = ItunesErrorRequestDescriptor()
+
+        apiClient1.load(requestDescriptor) { (response, _) in
+            switch response {
+            case let .success(result):
+                debugPrint(result.results)
+            case .failure(let model, let error):
+                if let model = model {
+                    debugPrint(model)
+                }
+                debugPrint(error)
+            }
+        }
+    }
+
+    private func thirdExample() {
+        let requestDescriptor = ItunesWithoutResourceErrorRequestDescriptor()
+
+        apiClient1.load(requestDescriptor) { (response, _) in
+            switch response {
+            case let .success(result):
+                debugPrint(result.results)
+            case .failure(let model, let error):
+                if let model = model {
+                    debugPrint(model)
+                }
+                debugPrint(error)
+            }
+        }
+    }
+
+    private func fourthExample() {
+        let requestDescriptor = ItunesRequestDescriptor()
+
+        apiClient1.load(requestDescriptor) { [weak self] (response, _) in
+            switch response {
+            case let .success(result):
+                self?.items = result.results
+            case .failure(let model, let error):
+                if let model = model {
+                    debugPrint(model)
+                }
+                debugPrint(error)
+            }
+        }
+    }
 }

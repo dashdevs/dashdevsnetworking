@@ -10,6 +10,7 @@ import DashdevsNetworking
 struct MockRequestDescriptor: RequestDescriptor {
     typealias BodyParameters = Void
     typealias Resource = Void
+    typealias ResourceError = Void
     
     let duration: Int
     

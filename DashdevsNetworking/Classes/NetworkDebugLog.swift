@@ -9,19 +9,26 @@ import Foundation
 
 /// This class is used to display the debug log of the network layer
 class NetworkDebugLog {
+    
+    private static let separator = "==>>=========================================="
+    
     /// This method is used to display debug log for request the server
     ///
     /// - Parameters:
     ///   - request: An object that provides request metadata
-    static func log(with request: URLRequest) {
-        #if DEBUG
+    ///   - displayNetworkDebugLog: An object that provides a location for displaying logs
+    static func log(with request: URLRequest, displayNetworkDebugLog: DisplayNetworkDebugLog?) {
+        switch displayNetworkDebugLog {
+        case .console:
             debugPrint()
-            debugPrint("==>>==========================================")
+            debugPrint(separator)
             debugPrint("REQUEST")
             debugPrint("\(request.curlString)")
-            debugPrint("==>>==========================================")
+            debugPrint(separator)
             debugPrint()
-        #endif
+        case .none:
+            break
+        }
     }
     
     /// This method is used to display debug log for response the server
@@ -30,10 +37,12 @@ class NetworkDebugLog {
     ///   - data: The data returned by the server
     ///   - response: An object that provides response metadata, such as HTTP headers and status code
     ///   - error: An error object that indicates why the request failed, or nil if the request was successful. Apple doc states that error will be returned in the NSURLErrorDomain
-    static func log(with data: Data?, response: URLResponse?, error: Error?) {
-        #if DEBUG
+    ///   - displayNetworkDebugLog: An object that provides a location for displaying logs
+    static func log(with data: Data?, response: URLResponse?, error: Error?, displayNetworkDebugLog: DisplayNetworkDebugLog?) {
+        switch displayNetworkDebugLog {
+        case .console:
             debugPrint()
-            debugPrint("==>>==========================================")
+            debugPrint(separator)
             debugPrint("RESPONSE")
             
             if let response = response as? HTTPURLResponse {
@@ -56,7 +65,9 @@ class NetworkDebugLog {
                 debugPrint("Error: \(error)")
             }
             
-            debugPrint("==>>==========================================")
-        #endif
+            debugPrint(separator)
+        case .none:
+            break
+        }
     }
 }
