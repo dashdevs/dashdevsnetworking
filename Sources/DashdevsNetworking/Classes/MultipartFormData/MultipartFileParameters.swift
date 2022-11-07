@@ -5,6 +5,8 @@
 //  Copyright (c) 2019 dashdevs.com. All rights reserved.
 //
 
+import Foundation
+
 /// Struct which is used to describe media parameters (e.g. video or image) for multipart requests
 /// - fileURL:  The URL of the file whose content will be encoded into the multipart form data.
 /// - name:     The name to associate with the data in the `Content-Disposition` HTTP header.

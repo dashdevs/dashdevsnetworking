@@ -5,6 +5,8 @@
 //  Copyright (c) 2019 dashdevs.com. All rights reserved.
 //
 
+import Foundation
+
 /// This general enum describes domain of network errors
 ///
 /// - emptyResponse: Server returned empty response

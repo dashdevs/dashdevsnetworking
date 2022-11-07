@@ -5,6 +5,8 @@
 //  Copyright (c) 2019 dashdevs.com. All rights reserved.
 //
 
+import Foundation
+
 /// This struct is used for updating URLRequest with bearer token authorization
 public struct BearerTokenAuth: Authorization {
     /// Token without **Bearer** prefix

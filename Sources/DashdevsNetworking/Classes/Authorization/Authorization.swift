@@ -5,6 +5,8 @@
 //  Copyright (c) 2019 dashdevs.com. All rights reserved.
 //
 
+import Foundation
+
 public struct AuthorizationConstants {
     public static let key = "Authorization"
     public static let bearer = "Bearer"
