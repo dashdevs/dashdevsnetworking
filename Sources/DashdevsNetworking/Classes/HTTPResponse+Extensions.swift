@@ -5,6 +5,8 @@
 //  Copyright (c) 2019 dashdevs.com. All rights reserved.
 //
 
+import Foundation
+
 public extension HTTPURLResponse {
     
     /// Method for validating HTTP URL response status code

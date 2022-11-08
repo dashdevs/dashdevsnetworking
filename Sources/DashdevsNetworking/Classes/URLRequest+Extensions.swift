@@ -5,6 +5,8 @@
 //  Copyright (c) 2021 dashdevs.com. All rights reserved.
 //
 
+import Foundation
+
 public extension URLRequest {
     
     /// Property returns a cURL command representation of this URL request.

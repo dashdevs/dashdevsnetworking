@@ -7,6 +7,8 @@
 
 import Foundation
 
+import Combine
+
 /// This general enum describes place where you need to display logs
 ///
 /// - console: Display in console

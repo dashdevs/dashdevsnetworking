@@ -24,9 +24,9 @@ public protocol RequestDescriptor {
 }
 
 public extension RequestDescriptor {
-    var versionPath: Path? { return nil }
-    var headers: [HTTPHeader]? { return nil }
-    var encoding: BodyParamEncoding<BodyParameters>? { return nil }
-    var responseError: Deserializator<ResourceError>? { return nil }
-    var parameters: BodyParameters? { return nil }
+    var versionPath: Path? { nil }
+    var headers: [HTTPHeader]? { nil }
+    var encoding: BodyParamEncoding<BodyParameters>? { nil }
+    var responseError: Deserializator<ResourceError>? { nil }
+    var parameters: BodyParameters? { nil }
 }

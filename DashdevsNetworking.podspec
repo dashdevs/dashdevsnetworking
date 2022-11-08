@@ -20,5 +20,5 @@ Pod::Spec.new do |s|
 
   s.swift_version = '4.0'
 
-  s.source_files = 'DashdevsNetworking/Classes/**/*'
+  s.source_files = 'Sources/DashdevsNetworking/Classes/**/*'
 end
