@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  DashdevsNetworking: 314d690c9da99eb1f5648935ac9548c948b9c9d6
+  DashdevsNetworking: 1d6c694ccb4631cf6cbb1067eab4e27f9ff037bc
 
 PODFILE CHECKSUM: 2be2200ac172d7389afec7faed29c09c3f7141a0
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.11.3

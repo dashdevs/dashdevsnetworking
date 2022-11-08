@@ -7,145 +7,135 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03F7123D54B536ABBB4F24367675D5F4 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D270CA6143793264FF8871E3C33F10AF /* Authorization.swift */; };
-		12F05A81AB86285E23F384055455EA8A /* DashdevsNetworking-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B13A5B9B40D61730503B6886FFE9524D /* DashdevsNetworking-dummy.m */; };
-		167362232C5A03395CACC87A93D94043 /* BearerTokenAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B60496BE91E701CB0F643B9CC02B38E /* BearerTokenAuth.swift */; };
-		1986DD8226CAB82D7687DC54A6B35A5B /* RequestRetrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD875A3159FCC4E59A269511F42B44B5 /* RequestRetrier.swift */; };
-		1EC3B235A4F5303494C2EAE9C2E261DB /* MultipartFileParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1EEDD54A16993E1A8BB17C6C9527F5 /* MultipartFileParameters.swift */; };
-		2508CF7EC5FA868374040D3D1698B799 /* URLConstructing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4830BDCE927081BE857485C4D3B3D634 /* URLConstructing.swift */; };
-		3011FB733AB18A19C4C66349B6C037F6 /* BodyParamsEncoding+Multipart.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6317317EE0A2790699CF0790A8F879 /* BodyParamsEncoding+Multipart.swift */; };
-		3B9BC934637757C092DB7F0265F32733 /* DashdevsNetworking-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3310F1CD0C8CDE3A09625CE436FFC2CF /* DashdevsNetworking-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3C01C8D49F5D6C645C8C3A9F0F52B8D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		5A136A37062414271B8604C0667D34A9 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F7CB9E13AED28FDE590DA4559E30E1 /* Response.swift */; };
-		5E7DBCCB4165976EE8049134B085310E /* NetworkDebugLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF56A39ECACDC397EDAA89B6687B6E5 /* NetworkDebugLog.swift */; };
-		635DB5653873DF97BC363AA55D9B2129 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D0388950E66D0722A85EBFAD65FE53 /* NetworkClient.swift */; };
-		675C4AA8A372C422CCF90FC05CC0321D /* Pods-DashdevsNetworking_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1784F42941733A4F3DE313D2885741 /* Pods-DashdevsNetworking_Example-dummy.m */; };
-		6771B7B227A802E0006062A4 /* TimeoutRetrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6771B7B127A802E0006062A4 /* TimeoutRetrier.swift */; };
-		721C5360192B3AAC5FD0F4D7B135CA1F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		7ECF5FAE5AF24219D7A725B3E6666365 /* Deserialisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224533CE870FE807B0EACAEA79CE5F47 /* Deserialisation.swift */; };
-		8977B288A45A690AFC1D19823885C98F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		8F03957BD7C8C544748491BEF32AE12E /* MultipartBuilders.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAD1F09EB50A9C55A7783CC6F916A6E /* MultipartBuilders.swift */; };
-		957A5FB9FC4C19FFF59812E64F4BDB3B /* Pods-DashdevsNetworking_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB13565F7534601B746B97EE3D9A4B1 /* Pods-DashdevsNetworking_Tests-dummy.m */; };
-		AABEA288DB29F87D54B6F4E3A7B83C76 /* RequestDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE76D7C8AF60427D318ED396525908D /* RequestDescriptor.swift */; };
-		B771B890073D152EBA952A105078F069 /* HTTPResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09FA524506909215478F244EC01D04B /* HTTPResponse+Extensions.swift */; };
-		B79FADE6952BEB4F88FEFA236D87C0AF /* UnauthorisedRequestRetrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52976D9F1EE3045AEE8E165C22D6E20 /* UnauthorisedRequestRetrier.swift */; };
-		CDEBA23F9AFA97B70E3A014DFD885816 /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969EF86A27F43F315BD8BFBE8C939B98 /* ErrorHandling.swift */; };
-		D7636595E803341D4BAE2DA18254EE3F /* SafeQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9602A5AFA46E37917125E5163921B922 /* SafeQueue.swift */; };
-		E28E0E5BA372DA5D3FC17547A6C9E29C /* URLRequest+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10027C7196183F54930F08F32FE700D /* URLRequest+Extensions.swift */; };
-		E9A4BBA9CBBE8CE184DE574743F49119 /* Pods-DashdevsNetworking_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 68795A987A94A8FDA2C477ECB0B9A357 /* Pods-DashdevsNetworking_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EFA58856E5B7764EECEBFF9E02D6029E /* Pods-DashdevsNetworking_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 39963BC2E8EB180F9F3ED6AC16E4AF23 /* Pods-DashdevsNetworking_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5C366C01D0A9852984FEF1058A9FC58 /* RequestConstructing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26156953E07EAFB3E73C1D490874D812 /* RequestConstructing.swift */; };
+		0FB9B95A529B448C2C468E0482E64EF7 /* Deserialisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC64BC0E3F488F79A31EE6FFB5581180 /* Deserialisation.swift */; };
+		1948E9966AD0B1FE8ED8C986A52E2B92 /* RequestDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126254324CB463624A4205D454FA007B /* RequestDescriptor.swift */; };
+		1E0F5894479BB38E2243D25567F44100 /* Pods-DashdevsNetworking_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 39963BC2E8EB180F9F3ED6AC16E4AF23 /* Pods-DashdevsNetworking_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BC0BF29AED286906FE090E82A0C2659 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358FA9B947930DEB44F6E62F7F6EFF8E /* Authorization.swift */; };
+		31F73EA6C0658ED0FF7EAD29AEF953F3 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCBB774A9A8A05F89B7BEC270ABA967 /* Response.swift */; };
+		3FE0F5162A33760298134C791F11DF4C /* URLConstructing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F75B1BB6871FB0B1D6C483B1AD0504D /* URLConstructing.swift */; };
+		4B290715BA2A5DA911749515AAAB6902 /* HTTPResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630943B2975AB30180F5EF212FD4FA31 /* HTTPResponse+Extensions.swift */; };
+		518FC42A3675A80EC338F4B48274C91B /* UnauthorisedRequestRetrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3347A4D2E866B347FA3ADC8E0BA8F64 /* UnauthorisedRequestRetrier.swift */; };
+		527FDF536A79396567D9455C985C6A7C /* RequestRetrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6EF9379796B6ADBFC079909973F37 /* RequestRetrier.swift */; };
+		5523874D7A812B742FAF0A687ED69ABD /* BearerTokenAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0422874B986695253B05AE24BFF12666 /* BearerTokenAuth.swift */; };
+		5FBA6FF0FF84FB4540B1ABD24E2D6DE6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		638020D0842D626289C7841C5DED8A4F /* MultipartFileParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A78A79BAF777F1756C225F8872A143 /* MultipartFileParameters.swift */; };
+		6922170DF939497F9C30139614A5E18B /* DashdevsNetworking-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 702E3A146741CB011D789035CA9B8B3F /* DashdevsNetworking-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6962A27BF5383D6391C37D812067B468 /* TimeoutRetrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A1A13A89C2889645DA991F897FE430 /* TimeoutRetrier.swift */; };
+		6E68F3AD58CD33B6C76A89A6D10CA8A5 /* Pods-DashdevsNetworking_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB13565F7534601B746B97EE3D9A4B1 /* Pods-DashdevsNetworking_Tests-dummy.m */; };
+		6E8E6151A875BF2EEB8FF912F00F7474 /* MultipartBuilders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E102A7C94C1B183D42FDEDEFF6481B /* MultipartBuilders.swift */; };
+		81288913C783FCA1474C84AC9F98E555 /* RequestConstructing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151B25F653CBE5002E0AE783B5DA8101 /* RequestConstructing.swift */; };
+		89810B6FC711EDD37FF08B15A843DBCE /* Pods-DashdevsNetworking_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1784F42941733A4F3DE313D2885741 /* Pods-DashdevsNetworking_Example-dummy.m */; };
+		943A364D4E6F1F038D6A14238F832711 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		A68BBBA947F06827319CA12FEE00DB57 /* URLRequest+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D22CD7363AA04E8C690AC534B14D07 /* URLRequest+Extensions.swift */; };
+		AC30A691FB61EA4BEB3B1366AE32524C /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA03783DAA2A381EC4CD2A6C0E488D /* ErrorHandling.swift */; };
+		B656BBDD78C33928C5C114906FB4647A /* SafeQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9036D719B9EDEC5B1828F0194FD61B26 /* SafeQueue.swift */; };
+		D91492B5C4D4384B36E6AD941D2B32F6 /* NetworkDebugLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0001E2D4424C521D62E0FEEB63FB7EB2 /* NetworkDebugLog.swift */; };
+		DB32B0DD787D2A5A81D4BF9507C2E71A /* Pods-DashdevsNetworking_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 68795A987A94A8FDA2C477ECB0B9A357 /* Pods-DashdevsNetworking_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DE21B68A7215923EEABD7869A597002A /* BodyParamsEncoding+Multipart.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5BBBD6C1540DEC1AE42FE0EC0510EB /* BodyParamsEncoding+Multipart.swift */; };
+		DE91700D55951C67A098EE98463B0448 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3564FDF3CAC81D53CDBC3AAAF5D9B3 /* NetworkClient.swift */; };
+		E7C703935A38B90528A9AF0F2CD7F404 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		E9AD17856EC3DE5E9BB0DE30232ABC1E /* DashdevsNetworking-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFAD1CAA70162DBD28B601A14E92108 /* DashdevsNetworking-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		39F06F53F6823A067E2782AB4B55AE5B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8BE7275BCED54C51D605C14074315FCA;
-			remoteInfo = DashdevsNetworking;
-		};
-		E9A2C7AC7BF22B79ACFBDBF8DE24CEE3 /* PBXContainerItemProxy */ = {
+		1AE458C4E8264E71D5048FBB5E65CD40 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 755D50BADAAD8BAC979C1A66EB0F6CA1;
 			remoteInfo = "Pods-DashdevsNetworking_Example";
 		};
+		F572669CC3B92AFD847F47DE12EEAD7A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8BE7275BCED54C51D605C14074315FCA;
+			remoteInfo = DashdevsNetworking;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0001E2D4424C521D62E0FEEB63FB7EB2 /* NetworkDebugLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkDebugLog.swift; path = Sources/DashdevsNetworking/Classes/NetworkDebugLog.swift; sourceTree = "<group>"; };
 		00BDBC525020C0A31DC0D6B003461FB7 /* Pods-DashdevsNetworking_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DashdevsNetworking_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		0405AB90BC3C82A20AF7123BB813B017 /* DashdevsNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DashdevsNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		07CB5CD791023349D4288779D845B078 /* DashdevsNetworking.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = DashdevsNetworking.modulemap; sourceTree = "<group>"; };
-		0805044D8EB96CC077761BCA85817A02 /* Pods_DashdevsNetworking_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DashdevsNetworking_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		12D0388950E66D0722A85EBFAD65FE53 /* NetworkClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkClient.swift; path = DashdevsNetworking/Classes/NetworkClient.swift; sourceTree = "<group>"; };
-		137FCBD80BE306A6AF81D578A8F0C512 /* Pods_DashdevsNetworking_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DashdevsNetworking_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1ACA63F618A9B26467818E89D138FB6F /* DashdevsNetworking-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "DashdevsNetworking-Info.plist"; sourceTree = "<group>"; };
+		02A276DB242416827B1881655F90E306 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		0405AB90BC3C82A20AF7123BB813B017 /* DashdevsNetworking */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DashdevsNetworking; path = DashdevsNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0422874B986695253B05AE24BFF12666 /* BearerTokenAuth.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BearerTokenAuth.swift; sourceTree = "<group>"; };
+		0805044D8EB96CC077761BCA85817A02 /* Pods-DashdevsNetworking_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-DashdevsNetworking_Example"; path = Pods_DashdevsNetworking_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BFAD1CAA70162DBD28B601A14E92108 /* DashdevsNetworking-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DashdevsNetworking-dummy.m"; sourceTree = "<group>"; };
+		126254324CB463624A4205D454FA007B /* RequestDescriptor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestDescriptor.swift; path = Sources/DashdevsNetworking/Classes/RequestDescriptor.swift; sourceTree = "<group>"; };
+		137FCBD80BE306A6AF81D578A8F0C512 /* Pods-DashdevsNetworking_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-DashdevsNetworking_Tests"; path = Pods_DashdevsNetworking_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		151B25F653CBE5002E0AE783B5DA8101 /* RequestConstructing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestConstructing.swift; path = Sources/DashdevsNetworking/Classes/RequestConstructing.swift; sourceTree = "<group>"; };
+		1A3564FDF3CAC81D53CDBC3AAAF5D9B3 /* NetworkClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkClient.swift; path = Sources/DashdevsNetworking/Classes/NetworkClient.swift; sourceTree = "<group>"; };
 		1F5777039CD5DF22B459A0B3DD5FE727 /* Pods-DashdevsNetworking_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DashdevsNetworking_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		224533CE870FE807B0EACAEA79CE5F47 /* Deserialisation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Deserialisation.swift; path = DashdevsNetworking/Classes/Deserialisation.swift; sourceTree = "<group>"; };
-		26156953E07EAFB3E73C1D490874D812 /* RequestConstructing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestConstructing.swift; path = DashdevsNetworking/Classes/RequestConstructing.swift; sourceTree = "<group>"; };
-		28F7CB9E13AED28FDE590DA4559E30E1 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = DashdevsNetworking/Classes/Response.swift; sourceTree = "<group>"; };
-		3310F1CD0C8CDE3A09625CE436FFC2CF /* DashdevsNetworking-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DashdevsNetworking-umbrella.h"; sourceTree = "<group>"; };
+		1F75B1BB6871FB0B1D6C483B1AD0504D /* URLConstructing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = URLConstructing.swift; path = Sources/DashdevsNetworking/Classes/URLConstructing.swift; sourceTree = "<group>"; };
+		30A1A13A89C2889645DA991F897FE430 /* TimeoutRetrier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TimeoutRetrier.swift; sourceTree = "<group>"; };
+		32BD2582D8A4311400E8D10190067D1A /* DashdevsNetworking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DashdevsNetworking.release.xcconfig; sourceTree = "<group>"; };
+		33C22601FDFB458DB9042470A67B63D4 /* DashdevsNetworking.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = DashdevsNetworking.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		358FA9B947930DEB44F6E62F7F6EFF8E /* Authorization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
 		371C068F2FAB1CBC8A81556B9956D6D9 /* Pods-DashdevsNetworking_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-DashdevsNetworking_Example.modulemap"; sourceTree = "<group>"; };
+		37E102A7C94C1B183D42FDEDEFF6481B /* MultipartBuilders.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MultipartBuilders.swift; sourceTree = "<group>"; };
 		39963BC2E8EB180F9F3ED6AC16E4AF23 /* Pods-DashdevsNetworking_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-DashdevsNetworking_Example-umbrella.h"; sourceTree = "<group>"; };
 		418661E87AE3A9CE104C498C658E6140 /* Pods-DashdevsNetworking_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-DashdevsNetworking_Tests.modulemap"; sourceTree = "<group>"; };
 		441BA74DF51A5AE0AEA9A7777EC50FCB /* Pods-DashdevsNetworking_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DashdevsNetworking_Tests-Info.plist"; sourceTree = "<group>"; };
-		4830BDCE927081BE857485C4D3B3D634 /* URLConstructing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = URLConstructing.swift; path = DashdevsNetworking/Classes/URLConstructing.swift; sourceTree = "<group>"; };
 		5AEC41700D929983BBAA20C35BE7DC0B /* Pods-DashdevsNetworking_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DashdevsNetworking_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		5B60496BE91E701CB0F643B9CC02B38E /* BearerTokenAuth.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BearerTokenAuth.swift; sourceTree = "<group>"; };
-		5B9561BFC65679797BC5A91997A58B58 /* DashdevsNetworking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DashdevsNetworking.debug.xcconfig; sourceTree = "<group>"; };
 		5BDBFAFCD0E9BACE7FB088CC7EFBFD92 /* Pods-DashdevsNetworking_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DashdevsNetworking_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		5CF56A39ECACDC397EDAA89B6687B6E5 /* NetworkDebugLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkDebugLog.swift; path = DashdevsNetworking/Classes/NetworkDebugLog.swift; sourceTree = "<group>"; };
-		5F9642DE097B64CDE8CFC706F137668B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		630943B2975AB30180F5EF212FD4FA31 /* HTTPResponse+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "HTTPResponse+Extensions.swift"; path = "Sources/DashdevsNetworking/Classes/HTTPResponse+Extensions.swift"; sourceTree = "<group>"; };
 		6511F24369F6DBDF273E01BC4BAAA468 /* Pods-DashdevsNetworking_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DashdevsNetworking_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		6771B7B127A802E0006062A4 /* TimeoutRetrier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeoutRetrier.swift; sourceTree = "<group>"; };
+		654B624B595476E2B9B0002E8AC581AC /* DashdevsNetworking.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = DashdevsNetworking.modulemap; sourceTree = "<group>"; };
 		68795A987A94A8FDA2C477ECB0B9A357 /* Pods-DashdevsNetworking_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-DashdevsNetworking_Tests-umbrella.h"; sourceTree = "<group>"; };
-		71FFF6041B4F287E0D40F8F986E8C629 /* DashdevsNetworking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DashdevsNetworking.release.xcconfig; sourceTree = "<group>"; };
+		702E3A146741CB011D789035CA9B8B3F /* DashdevsNetworking-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DashdevsNetworking-umbrella.h"; sourceTree = "<group>"; };
 		7269E7411AB7AC610174BC5E2059F43D /* Pods-DashdevsNetworking_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DashdevsNetworking_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		76AA03783DAA2A381EC4CD2A6C0E488D /* ErrorHandling.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ErrorHandling.swift; path = Sources/DashdevsNetworking/Classes/ErrorHandling.swift; sourceTree = "<group>"; };
 		77FD93115640328F28903541BDCA98FC /* Pods-DashdevsNetworking_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DashdevsNetworking_Example.release.xcconfig"; sourceTree = "<group>"; };
 		7D1784F42941733A4F3DE313D2885741 /* Pods-DashdevsNetworking_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DashdevsNetworking_Example-dummy.m"; sourceTree = "<group>"; };
 		7EB13565F7534601B746B97EE3D9A4B1 /* Pods-DashdevsNetworking_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DashdevsNetworking_Tests-dummy.m"; sourceTree = "<group>"; };
 		7F1DE07CDB1E696E10A69ADD5E2CC0CA /* Pods-DashdevsNetworking_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DashdevsNetworking_Example-Info.plist"; sourceTree = "<group>"; };
-		9602A5AFA46E37917125E5163921B922 /* SafeQueue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SafeQueue.swift; sourceTree = "<group>"; };
-		969EF86A27F43F315BD8BFBE8C939B98 /* ErrorHandling.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ErrorHandling.swift; path = DashdevsNetworking/Classes/ErrorHandling.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		AD65F997A71BAA5DEABF311AA2EFDE80 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		AD875A3159FCC4E59A269511F42B44B5 /* RequestRetrier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestRetrier.swift; sourceTree = "<group>"; };
-		B10027C7196183F54930F08F32FE700D /* URLRequest+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "URLRequest+Extensions.swift"; path = "DashdevsNetworking/Classes/URLRequest+Extensions.swift"; sourceTree = "<group>"; };
-		B13A5B9B40D61730503B6886FFE9524D /* DashdevsNetworking-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DashdevsNetworking-dummy.m"; sourceTree = "<group>"; };
-		BC6317317EE0A2790699CF0790A8F879 /* BodyParamsEncoding+Multipart.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "BodyParamsEncoding+Multipart.swift"; sourceTree = "<group>"; };
+		9036D719B9EDEC5B1828F0194FD61B26 /* SafeQueue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SafeQueue.swift; sourceTree = "<group>"; };
+		95D22CD7363AA04E8C690AC534B14D07 /* URLRequest+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "URLRequest+Extensions.swift"; path = "Sources/DashdevsNetworking/Classes/URLRequest+Extensions.swift"; sourceTree = "<group>"; };
+		9CCBB774A9A8A05F89B7BEC270ABA967 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Sources/DashdevsNetworking/Classes/Response.swift; sourceTree = "<group>"; };
+		9CE6EF9379796B6ADBFC079909973F37 /* RequestRetrier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestRetrier.swift; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		AC64BC0E3F488F79A31EE6FFB5581180 /* Deserialisation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Deserialisation.swift; path = Sources/DashdevsNetworking/Classes/Deserialisation.swift; sourceTree = "<group>"; };
+		AF5BBBD6C1540DEC1AE42FE0EC0510EB /* BodyParamsEncoding+Multipart.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "BodyParamsEncoding+Multipart.swift"; sourceTree = "<group>"; };
+		AF63AEEC65C0F55DD7298272DC2B4B2D /* DashdevsNetworking-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "DashdevsNetworking-Info.plist"; sourceTree = "<group>"; };
+		BA91321DED305D81907476629D9149E5 /* DashdevsNetworking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DashdevsNetworking.debug.xcconfig; sourceTree = "<group>"; };
 		C3CA557C29715368779EA8FD6897ADFC /* Pods-DashdevsNetworking_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DashdevsNetworking_Example-frameworks.sh"; sourceTree = "<group>"; };
-		C52976D9F1EE3045AEE8E165C22D6E20 /* UnauthorisedRequestRetrier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UnauthorisedRequestRetrier.swift; sourceTree = "<group>"; };
 		C57944F9A08B6937D5BC32235D448678 /* Pods-DashdevsNetworking_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DashdevsNetworking_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		C8FC8813E6921F0068D4257CB89BF95C /* DashdevsNetworking-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DashdevsNetworking-prefix.pch"; sourceTree = "<group>"; };
-		CBE76D7C8AF60427D318ED396525908D /* RequestDescriptor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestDescriptor.swift; path = DashdevsNetworking/Classes/RequestDescriptor.swift; sourceTree = "<group>"; };
-		D270CA6143793264FF8871E3C33F10AF /* Authorization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
-		DCAD1F09EB50A9C55A7783CC6F916A6E /* MultipartBuilders.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MultipartBuilders.swift; sourceTree = "<group>"; };
-		E09FA524506909215478F244EC01D04B /* HTTPResponse+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "HTTPResponse+Extensions.swift"; path = "DashdevsNetworking/Classes/HTTPResponse+Extensions.swift"; sourceTree = "<group>"; };
-		E9037AA4BB90CAA0F80371DD0B610487 /* DashdevsNetworking.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = DashdevsNetworking.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		EA1EEDD54A16993E1A8BB17C6C9527F5 /* MultipartFileParameters.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MultipartFileParameters.swift; sourceTree = "<group>"; };
+		C9C706E6B7EFB4D4AFB58AA8CA7737C5 /* DashdevsNetworking-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DashdevsNetworking-prefix.pch"; sourceTree = "<group>"; };
+		D0A78A79BAF777F1756C225F8872A143 /* MultipartFileParameters.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MultipartFileParameters.swift; sourceTree = "<group>"; };
+		D3347A4D2E866B347FA3ADC8E0BA8F64 /* UnauthorisedRequestRetrier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UnauthorisedRequestRetrier.swift; sourceTree = "<group>"; };
+		D40DC389E5DCF426F94A4E4F0CDE60B0 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1342860C94E41EBF086417B6894E0323 /* Frameworks */ = {
+		8C93E5E2A7786ABFAAF7B35428FF6048 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C01C8D49F5D6C645C8C3A9F0F52B8D5 /* Foundation.framework in Frameworks */,
+				E7C703935A38B90528A9AF0F2CD7F404 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A45B045E337D22522B0C3CBECACE2B16 /* Frameworks */ = {
+		98FE54701E48CF97953557501BFD0D51 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				721C5360192B3AAC5FD0F4D7B135CA1F /* Foundation.framework in Frameworks */,
+				943A364D4E6F1F038D6A14238F832711 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ECB3B929593071AE23F47DFDD46DE743 /* Frameworks */ = {
+		BFF1E561F062EF0F9B352C6417146BE2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8977B288A45A690AFC1D19823885C98F /* Foundation.framework in Frameworks */,
+				5FBA6FF0FF84FB4540B1ABD24E2D6DE6 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		016DCD338A50A65D99412A9E98C97A04 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				0405AB90BC3C82A20AF7123BB813B017 /* DashdevsNetworking.framework */,
-				0805044D8EB96CC077761BCA85817A02 /* Pods_DashdevsNetworking_Example.framework */,
-				137FCBD80BE306A6AF81D578A8F0C512 /* Pods_DashdevsNetworking_Tests.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		06D44D0FCC46971FACE43BFCF79151F7 /* Pods-DashdevsNetworking_Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,14 +152,14 @@
 			path = "Target Support Files/Pods-DashdevsNetworking_Tests";
 			sourceTree = "<group>";
 		};
-		0EEDD0A09238061BD114C4A4721A902C /* Authorization */ = {
+		0D2B8C4D54C0ABD3AEFC18188D9E0030 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D270CA6143793264FF8871E3C33F10AF /* Authorization.swift */,
-				5B60496BE91E701CB0F643B9CC02B38E /* BearerTokenAuth.swift */,
+				0405AB90BC3C82A20AF7123BB813B017 /* DashdevsNetworking */,
+				0805044D8EB96CC077761BCA85817A02 /* Pods-DashdevsNetworking_Example */,
+				137FCBD80BE306A6AF81D578A8F0C512 /* Pods-DashdevsNetworking_Tests */,
 			);
-			name = Authorization;
-			path = DashdevsNetworking/Classes/Authorization;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
@@ -189,83 +179,58 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		5A6FB5BFE92A0FFF85DBE347EBF38358 /* Pod */ = {
+		699EF60C1930FC4D04908AA65DCD7224 /* MultipartFormData */ = {
 			isa = PBXGroup;
 			children = (
-				E9037AA4BB90CAA0F80371DD0B610487 /* DashdevsNetworking.podspec */,
-				AD65F997A71BAA5DEABF311AA2EFDE80 /* LICENSE */,
-				5F9642DE097B64CDE8CFC706F137668B /* README.md */,
+				AF5BBBD6C1540DEC1AE42FE0EC0510EB /* BodyParamsEncoding+Multipart.swift */,
+				37E102A7C94C1B183D42FDEDEFF6481B /* MultipartBuilders.swift */,
+				D0A78A79BAF777F1756C225F8872A143 /* MultipartFileParameters.swift */,
 			);
-			name = Pod;
+			name = MultipartFormData;
+			path = Sources/DashdevsNetworking/Classes/MultipartFormData;
 			sourceTree = "<group>";
 		};
 		79895FA28FE5AD230D8312A2369AD4F9 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A9EBB294D1D0ADD3AC901941691A52A4 /* DashdevsNetworking */,
+				FCABEA49A1E7B132782234993F7D2490 /* DashdevsNetworking */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		7B083AE16900885B522F83401DC841EF /* Support Files */ = {
+		80B0AA8F761DE9F553E6D93E86EC8012 /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
-				07CB5CD791023349D4288779D845B078 /* DashdevsNetworking.modulemap */,
-				B13A5B9B40D61730503B6886FFE9524D /* DashdevsNetworking-dummy.m */,
-				1ACA63F618A9B26467818E89D138FB6F /* DashdevsNetworking-Info.plist */,
-				C8FC8813E6921F0068D4257CB89BF95C /* DashdevsNetworking-prefix.pch */,
-				3310F1CD0C8CDE3A09625CE436FFC2CF /* DashdevsNetworking-umbrella.h */,
-				5B9561BFC65679797BC5A91997A58B58 /* DashdevsNetworking.debug.xcconfig */,
-				71FFF6041B4F287E0D40F8F986E8C629 /* DashdevsNetworking.release.xcconfig */,
+				358FA9B947930DEB44F6E62F7F6EFF8E /* Authorization.swift */,
+				0422874B986695253B05AE24BFF12666 /* BearerTokenAuth.swift */,
+			);
+			name = Authorization;
+			path = Sources/DashdevsNetworking/Classes/Authorization;
+			sourceTree = "<group>";
+		};
+		ABE9151F0625DD68E23768ACCED59CF2 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				654B624B595476E2B9B0002E8AC581AC /* DashdevsNetworking.modulemap */,
+				0BFAD1CAA70162DBD28B601A14E92108 /* DashdevsNetworking-dummy.m */,
+				AF63AEEC65C0F55DD7298272DC2B4B2D /* DashdevsNetworking-Info.plist */,
+				C9C706E6B7EFB4D4AFB58AA8CA7737C5 /* DashdevsNetworking-prefix.pch */,
+				702E3A146741CB011D789035CA9B8B3F /* DashdevsNetworking-umbrella.h */,
+				BA91321DED305D81907476629D9149E5 /* DashdevsNetworking.debug.xcconfig */,
+				32BD2582D8A4311400E8D10190067D1A /* DashdevsNetworking.release.xcconfig */,
 			);
 			name = "Support Files";
 			path = "Example/Pods/Target Support Files/DashdevsNetworking";
 			sourceTree = "<group>";
 		};
-		A9EBB294D1D0ADD3AC901941691A52A4 /* DashdevsNetworking */ = {
+		B4AAAD17C64FCE75D0764ECC1B28FF03 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				224533CE870FE807B0EACAEA79CE5F47 /* Deserialisation.swift */,
-				969EF86A27F43F315BD8BFBE8C939B98 /* ErrorHandling.swift */,
-				E09FA524506909215478F244EC01D04B /* HTTPResponse+Extensions.swift */,
-				12D0388950E66D0722A85EBFAD65FE53 /* NetworkClient.swift */,
-				5CF56A39ECACDC397EDAA89B6687B6E5 /* NetworkDebugLog.swift */,
-				26156953E07EAFB3E73C1D490874D812 /* RequestConstructing.swift */,
-				CBE76D7C8AF60427D318ED396525908D /* RequestDescriptor.swift */,
-				28F7CB9E13AED28FDE590DA4559E30E1 /* Response.swift */,
-				4830BDCE927081BE857485C4D3B3D634 /* URLConstructing.swift */,
-				B10027C7196183F54930F08F32FE700D /* URLRequest+Extensions.swift */,
-				0EEDD0A09238061BD114C4A4721A902C /* Authorization */,
-				B89D2AFF92EF993BEE23FF1F6236C50E /* MultipartFormData */,
-				5A6FB5BFE92A0FFF85DBE347EBF38358 /* Pod */,
-				ADE77678E0BEFAED79A7C88464F22422 /* RequestRetrier */,
-				7B083AE16900885B522F83401DC841EF /* Support Files */,
+				33C22601FDFB458DB9042470A67B63D4 /* DashdevsNetworking.podspec */,
+				02A276DB242416827B1881655F90E306 /* LICENSE */,
+				D40DC389E5DCF426F94A4E4F0CDE60B0 /* README.md */,
 			);
-			name = DashdevsNetworking;
-			path = ../..;
-			sourceTree = "<group>";
-		};
-		ADE77678E0BEFAED79A7C88464F22422 /* RequestRetrier */ = {
-			isa = PBXGroup;
-			children = (
-				AD875A3159FCC4E59A269511F42B44B5 /* RequestRetrier.swift */,
-				9602A5AFA46E37917125E5163921B922 /* SafeQueue.swift */,
-				C52976D9F1EE3045AEE8E165C22D6E20 /* UnauthorisedRequestRetrier.swift */,
-				6771B7B127A802E0006062A4 /* TimeoutRetrier.swift */,
-			);
-			name = RequestRetrier;
-			path = DashdevsNetworking/Classes/RequestRetrier;
-			sourceTree = "<group>";
-		};
-		B89D2AFF92EF993BEE23FF1F6236C50E /* MultipartFormData */ = {
-			isa = PBXGroup;
-			children = (
-				BC6317317EE0A2790699CF0790A8F879 /* BodyParamsEncoding+Multipart.swift */,
-				DCAD1F09EB50A9C55A7783CC6F916A6E /* MultipartBuilders.swift */,
-				EA1EEDD54A16993E1A8BB17C6C9527F5 /* MultipartFileParameters.swift */,
-			);
-			name = MultipartFormData;
-			path = DashdevsNetworking/Classes/MultipartFormData;
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		BD8CAD8D5106E8C3F1DCEE7996856AEC /* Pods-DashdevsNetworking_Example */ = {
@@ -285,13 +250,25 @@
 			path = "Target Support Files/Pods-DashdevsNetworking_Example";
 			sourceTree = "<group>";
 		};
+		C7D9A38A5449CE629AB4E7302B7B170C /* RequestRetrier */ = {
+			isa = PBXGroup;
+			children = (
+				9CE6EF9379796B6ADBFC079909973F37 /* RequestRetrier.swift */,
+				9036D719B9EDEC5B1828F0194FD61B26 /* SafeQueue.swift */,
+				30A1A13A89C2889645DA991F897FE430 /* TimeoutRetrier.swift */,
+				D3347A4D2E866B347FA3ADC8E0BA8F64 /* UnauthorisedRequestRetrier.swift */,
+			);
+			name = RequestRetrier;
+			path = Sources/DashdevsNetworking/Classes/RequestRetrier;
+			sourceTree = "<group>";
+		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				79895FA28FE5AD230D8312A2369AD4F9 /* Development Pods */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				016DCD338A50A65D99412A9E98C97A04 /* Products */,
+				0D2B8C4D54C0ABD3AEFC18188D9E0030 /* Products */,
 				59351671448BE473DD8B78B409DA7D4D /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
@@ -304,30 +281,53 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FCABEA49A1E7B132782234993F7D2490 /* DashdevsNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				AC64BC0E3F488F79A31EE6FFB5581180 /* Deserialisation.swift */,
+				76AA03783DAA2A381EC4CD2A6C0E488D /* ErrorHandling.swift */,
+				630943B2975AB30180F5EF212FD4FA31 /* HTTPResponse+Extensions.swift */,
+				1A3564FDF3CAC81D53CDBC3AAAF5D9B3 /* NetworkClient.swift */,
+				0001E2D4424C521D62E0FEEB63FB7EB2 /* NetworkDebugLog.swift */,
+				151B25F653CBE5002E0AE783B5DA8101 /* RequestConstructing.swift */,
+				126254324CB463624A4205D454FA007B /* RequestDescriptor.swift */,
+				9CCBB774A9A8A05F89B7BEC270ABA967 /* Response.swift */,
+				1F75B1BB6871FB0B1D6C483B1AD0504D /* URLConstructing.swift */,
+				95D22CD7363AA04E8C690AC534B14D07 /* URLRequest+Extensions.swift */,
+				80B0AA8F761DE9F553E6D93E86EC8012 /* Authorization */,
+				699EF60C1930FC4D04908AA65DCD7224 /* MultipartFormData */,
+				B4AAAD17C64FCE75D0764ECC1B28FF03 /* Pod */,
+				C7D9A38A5449CE629AB4E7302B7B170C /* RequestRetrier */,
+				ABE9151F0625DD68E23768ACCED59CF2 /* Support Files */,
+			);
+			name = DashdevsNetworking;
+			path = ../..;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		1ADD24D2570F214C3044F8A08E60B1EF /* Headers */ = {
+		0E3E933A30AE8FF3C58D3CD9101002CD /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B9BC934637757C092DB7F0265F32733 /* DashdevsNetworking-umbrella.h in Headers */,
+				1E0F5894479BB38E2243D25567F44100 /* Pods-DashdevsNetworking_Example-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		24F2BE8AF49CFC05820233C7269E15A8 /* Headers */ = {
+		9AB523430987F7273DEACD0AEA8C8789 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFA58856E5B7764EECEBFF9E02D6029E /* Pods-DashdevsNetworking_Example-umbrella.h in Headers */,
+				6922170DF939497F9C30139614A5E18B /* DashdevsNetworking-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		38716FB1A6117BF41AF2D42A5FC987D6 /* Headers */ = {
+		A7406826DAE1E13A4A0D2560B527FA9E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9A4BBA9CBBE8CE184DE574743F49119 /* Pods-DashdevsNetworking_Tests-umbrella.h in Headers */,
+				DB32B0DD787D2A5A81D4BF9507C2E71A /* Pods-DashdevsNetworking_Tests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,31 +336,31 @@
 /* Begin PBXNativeTarget section */
 		755D50BADAAD8BAC979C1A66EB0F6CA1 /* Pods-DashdevsNetworking_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 275045A6DF1BA1FB6F9F7B882B198DA9 /* Build configuration list for PBXNativeTarget "Pods-DashdevsNetworking_Example" */;
+			buildConfigurationList = C4A604C8CFD9AE03395442F78C675CF5 /* Build configuration list for PBXNativeTarget "Pods-DashdevsNetworking_Example" */;
 			buildPhases = (
-				24F2BE8AF49CFC05820233C7269E15A8 /* Headers */,
-				ABF96CB16242CA6102E03620C1C8C176 /* Sources */,
-				ECB3B929593071AE23F47DFDD46DE743 /* Frameworks */,
-				94A33F355EF023C328ABBB44F36A8AC4 /* Resources */,
+				0E3E933A30AE8FF3C58D3CD9101002CD /* Headers */,
+				FA0DCF09F5642B6303C21D9B5D958438 /* Sources */,
+				8C93E5E2A7786ABFAAF7B35428FF6048 /* Frameworks */,
+				DD53B55B15180A3FED49A53FA2A17375 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				4AB37263F9BDDFC6476518602901FFD2 /* PBXTargetDependency */,
+				3058A29E10B55A9EDB901FBA5B48F194 /* PBXTargetDependency */,
 			);
 			name = "Pods-DashdevsNetworking_Example";
-			productName = "Pods-DashdevsNetworking_Example";
-			productReference = 0805044D8EB96CC077761BCA85817A02 /* Pods_DashdevsNetworking_Example.framework */;
+			productName = Pods_DashdevsNetworking_Example;
+			productReference = 0805044D8EB96CC077761BCA85817A02 /* Pods-DashdevsNetworking_Example */;
 			productType = "com.apple.product-type.framework";
 		};
 		8BE7275BCED54C51D605C14074315FCA /* DashdevsNetworking */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8066D6EFEE81DAB850A9B7B77C474063 /* Build configuration list for PBXNativeTarget "DashdevsNetworking" */;
+			buildConfigurationList = 799962D1287C545E5E530CD1D5E90EEE /* Build configuration list for PBXNativeTarget "DashdevsNetworking" */;
 			buildPhases = (
-				1ADD24D2570F214C3044F8A08E60B1EF /* Headers */,
-				8BC66758AAC69352B73036709F6A5A09 /* Sources */,
-				A45B045E337D22522B0C3CBECACE2B16 /* Frameworks */,
-				4DA924F4DF07FDBD67B0FFF2BB1DD6E8 /* Resources */,
+				9AB523430987F7273DEACD0AEA8C8789 /* Headers */,
+				E507F97C9704D3246C0833578916B2B8 /* Sources */,
+				98FE54701E48CF97953557501BFD0D51 /* Frameworks */,
+				53EABD1B2023715C2A61745AC3DC748F /* Resources */,
 			);
 			buildRules = (
 			);
@@ -368,26 +368,26 @@
 			);
 			name = DashdevsNetworking;
 			productName = DashdevsNetworking;
-			productReference = 0405AB90BC3C82A20AF7123BB813B017 /* DashdevsNetworking.framework */;
+			productReference = 0405AB90BC3C82A20AF7123BB813B017 /* DashdevsNetworking */;
 			productType = "com.apple.product-type.framework";
 		};
 		E765A7C9CA6443291D30C51158CEDA51 /* Pods-DashdevsNetworking_Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3A006E75F09AEC5EC628E57FE0979196 /* Build configuration list for PBXNativeTarget "Pods-DashdevsNetworking_Tests" */;
+			buildConfigurationList = 9253B8ABAB039462D8F3FF72C9644A92 /* Build configuration list for PBXNativeTarget "Pods-DashdevsNetworking_Tests" */;
 			buildPhases = (
-				38716FB1A6117BF41AF2D42A5FC987D6 /* Headers */,
-				6D29FE11438FC6EA4AD827FCD39E4125 /* Sources */,
-				1342860C94E41EBF086417B6894E0323 /* Frameworks */,
-				87DF3581616157A3C4197D97D20AE1C7 /* Resources */,
+				A7406826DAE1E13A4A0D2560B527FA9E /* Headers */,
+				9998A02C925C2B273DD94ECE5AF13A1E /* Sources */,
+				BFF1E561F062EF0F9B352C6417146BE2 /* Frameworks */,
+				09B9F9BCD9931C5CAF548D589C0855AC /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				3C59B3CB4B54534FBDB0FA1221574889 /* PBXTargetDependency */,
+				549746F94D98E87F0B11421AAB355691 /* PBXTargetDependency */,
 			);
 			name = "Pods-DashdevsNetworking_Tests";
-			productName = "Pods-DashdevsNetworking_Tests";
-			productReference = 137FCBD80BE306A6AF81D578A8F0C512 /* Pods_DashdevsNetworking_Tests.framework */;
+			productName = Pods_DashdevsNetworking_Tests;
+			productReference = 137FCBD80BE306A6AF81D578A8F0C512 /* Pods-DashdevsNetworking_Tests */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -396,19 +396,19 @@
 		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = 016DCD338A50A65D99412A9E98C97A04 /* Products */;
+			productRefGroup = 0D2B8C4D54C0ABD3AEFC18188D9E0030 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -420,21 +420,21 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		4DA924F4DF07FDBD67B0FFF2BB1DD6E8 /* Resources */ = {
+		09B9F9BCD9931C5CAF548D589C0855AC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		87DF3581616157A3C4197D97D20AE1C7 /* Resources */ = {
+		53EABD1B2023715C2A61745AC3DC748F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		94A33F355EF023C328ABBB44F36A8AC4 /* Resources */ = {
+		DD53B55B15180A3FED49A53FA2A17375 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -444,68 +444,101 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		6D29FE11438FC6EA4AD827FCD39E4125 /* Sources */ = {
+		9998A02C925C2B273DD94ECE5AF13A1E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				957A5FB9FC4C19FFF59812E64F4BDB3B /* Pods-DashdevsNetworking_Tests-dummy.m in Sources */,
+				6E68F3AD58CD33B6C76A89A6D10CA8A5 /* Pods-DashdevsNetworking_Tests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8BC66758AAC69352B73036709F6A5A09 /* Sources */ = {
+		E507F97C9704D3246C0833578916B2B8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03F7123D54B536ABBB4F24367675D5F4 /* Authorization.swift in Sources */,
-				167362232C5A03395CACC87A93D94043 /* BearerTokenAuth.swift in Sources */,
-				3011FB733AB18A19C4C66349B6C037F6 /* BodyParamsEncoding+Multipart.swift in Sources */,
-				12F05A81AB86285E23F384055455EA8A /* DashdevsNetworking-dummy.m in Sources */,
-				7ECF5FAE5AF24219D7A725B3E6666365 /* Deserialisation.swift in Sources */,
-				CDEBA23F9AFA97B70E3A014DFD885816 /* ErrorHandling.swift in Sources */,
-				B771B890073D152EBA952A105078F069 /* HTTPResponse+Extensions.swift in Sources */,
-				8F03957BD7C8C544748491BEF32AE12E /* MultipartBuilders.swift in Sources */,
-				1EC3B235A4F5303494C2EAE9C2E261DB /* MultipartFileParameters.swift in Sources */,
-				635DB5653873DF97BC363AA55D9B2129 /* NetworkClient.swift in Sources */,
-				5E7DBCCB4165976EE8049134B085310E /* NetworkDebugLog.swift in Sources */,
-				F5C366C01D0A9852984FEF1058A9FC58 /* RequestConstructing.swift in Sources */,
-				AABEA288DB29F87D54B6F4E3A7B83C76 /* RequestDescriptor.swift in Sources */,
-				1986DD8226CAB82D7687DC54A6B35A5B /* RequestRetrier.swift in Sources */,
-				5A136A37062414271B8604C0667D34A9 /* Response.swift in Sources */,
-				D7636595E803341D4BAE2DA18254EE3F /* SafeQueue.swift in Sources */,
-				B79FADE6952BEB4F88FEFA236D87C0AF /* UnauthorisedRequestRetrier.swift in Sources */,
-				2508CF7EC5FA868374040D3D1698B799 /* URLConstructing.swift in Sources */,
-				6771B7B227A802E0006062A4 /* TimeoutRetrier.swift in Sources */,
-				E28E0E5BA372DA5D3FC17547A6C9E29C /* URLRequest+Extensions.swift in Sources */,
+				2BC0BF29AED286906FE090E82A0C2659 /* Authorization.swift in Sources */,
+				5523874D7A812B742FAF0A687ED69ABD /* BearerTokenAuth.swift in Sources */,
+				DE21B68A7215923EEABD7869A597002A /* BodyParamsEncoding+Multipart.swift in Sources */,
+				E9AD17856EC3DE5E9BB0DE30232ABC1E /* DashdevsNetworking-dummy.m in Sources */,
+				0FB9B95A529B448C2C468E0482E64EF7 /* Deserialisation.swift in Sources */,
+				AC30A691FB61EA4BEB3B1366AE32524C /* ErrorHandling.swift in Sources */,
+				4B290715BA2A5DA911749515AAAB6902 /* HTTPResponse+Extensions.swift in Sources */,
+				6E8E6151A875BF2EEB8FF912F00F7474 /* MultipartBuilders.swift in Sources */,
+				638020D0842D626289C7841C5DED8A4F /* MultipartFileParameters.swift in Sources */,
+				DE91700D55951C67A098EE98463B0448 /* NetworkClient.swift in Sources */,
+				D91492B5C4D4384B36E6AD941D2B32F6 /* NetworkDebugLog.swift in Sources */,
+				81288913C783FCA1474C84AC9F98E555 /* RequestConstructing.swift in Sources */,
+				1948E9966AD0B1FE8ED8C986A52E2B92 /* RequestDescriptor.swift in Sources */,
+				527FDF536A79396567D9455C985C6A7C /* RequestRetrier.swift in Sources */,
+				31F73EA6C0658ED0FF7EAD29AEF953F3 /* Response.swift in Sources */,
+				B656BBDD78C33928C5C114906FB4647A /* SafeQueue.swift in Sources */,
+				6962A27BF5383D6391C37D812067B468 /* TimeoutRetrier.swift in Sources */,
+				518FC42A3675A80EC338F4B48274C91B /* UnauthorisedRequestRetrier.swift in Sources */,
+				3FE0F5162A33760298134C791F11DF4C /* URLConstructing.swift in Sources */,
+				A68BBBA947F06827319CA12FEE00DB57 /* URLRequest+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ABF96CB16242CA6102E03620C1C8C176 /* Sources */ = {
+		FA0DCF09F5642B6303C21D9B5D958438 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				675C4AA8A372C422CCF90FC05CC0321D /* Pods-DashdevsNetworking_Example-dummy.m in Sources */,
+				89810B6FC711EDD37FF08B15A843DBCE /* Pods-DashdevsNetworking_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3C59B3CB4B54534FBDB0FA1221574889 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Pods-DashdevsNetworking_Example";
-			target = 755D50BADAAD8BAC979C1A66EB0F6CA1 /* Pods-DashdevsNetworking_Example */;
-			targetProxy = E9A2C7AC7BF22B79ACFBDBF8DE24CEE3 /* PBXContainerItemProxy */;
-		};
-		4AB37263F9BDDFC6476518602901FFD2 /* PBXTargetDependency */ = {
+		3058A29E10B55A9EDB901FBA5B48F194 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = DashdevsNetworking;
 			target = 8BE7275BCED54C51D605C14074315FCA /* DashdevsNetworking */;
-			targetProxy = 39F06F53F6823A067E2782AB4B55AE5B /* PBXContainerItemProxy */;
+			targetProxy = F572669CC3B92AFD847F47DE12EEAD7A /* PBXContainerItemProxy */;
+		};
+		549746F94D98E87F0B11421AAB355691 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-DashdevsNetworking_Example";
+			target = 755D50BADAAD8BAC979C1A66EB0F6CA1 /* Pods-DashdevsNetworking_Example */;
+			targetProxy = 1AE458C4E8264E71D5048FBB5E65CD40 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		3804DFC583536748F66120932AA123DB /* Debug */ = {
+		001CC4C6DD23596B97DB0EB659B6999B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77FD93115640328F28903541BDCA98FC /* Pods-DashdevsNetworking_Example.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-DashdevsNetworking_Example/Pods-DashdevsNetworking_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-DashdevsNetworking_Example/Pods-DashdevsNetworking_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		1897493D53785429FE58246A14BD726C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1F5777039CD5DF22B459A0B3DD5FE727 /* Pods-DashdevsNetworking_Tests.debug.xcconfig */;
 			buildSettings = {
@@ -536,39 +569,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		38A27F405FD0DF46F9CB3E1D6001A2D6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 00BDBC525020C0A31DC0D6B003461FB7 /* Pods-DashdevsNetworking_Tests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-DashdevsNetworking_Tests/Pods-DashdevsNetworking_Tests-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-DashdevsNetworking_Tests/Pods-DashdevsNetworking_Tests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
 		};
 		431BA2B8298F0EE71735B9E0114E1955 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -620,20 +620,21 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
 		};
-		5EDA3EF5C48E547F7E87F7F693BAC467 /* Debug */ = {
+		58E00EACF7DED903366F338944D72701 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B9561BFC65679797BC5A91997A58B58 /* DashdevsNetworking.debug.xcconfig */;
+			baseConfigurationReference = BA91321DED305D81907476629D9149E5 /* DashdevsNetworking.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -646,7 +647,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/DashdevsNetworking/DashdevsNetworking-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/DashdevsNetworking/DashdevsNetworking-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/DashdevsNetworking/DashdevsNetworking.modulemap";
 				PRODUCT_MODULE_NAME = DashdevsNetworking;
@@ -661,11 +662,10 @@
 			};
 			name = Debug;
 		};
-		706EC90B26267FC8E0E4BC6DA0B0788E /* Release */ = {
+		5DD87FCF2396D050DB2C76BB5C3B61D0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 77FD93115640328F28903541BDCA98FC /* Pods-DashdevsNetworking_Example.release.xcconfig */;
+			baseConfigurationReference = 32BD2582D8A4311400E8D10190067D1A /* DashdevsNetworking.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -674,19 +674,18 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-DashdevsNetworking_Example/Pods-DashdevsNetworking_Example-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/DashdevsNetworking/DashdevsNetworking-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/DashdevsNetworking/DashdevsNetworking-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-DashdevsNetworking_Example/Pods-DashdevsNetworking_Example.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				MODULEMAP_FILE = "Target Support Files/DashdevsNetworking/DashdevsNetworking.modulemap";
+				PRODUCT_MODULE_NAME = DashdevsNetworking;
+				PRODUCT_NAME = DashdevsNetworking;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -747,7 +746,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -760,10 +759,11 @@
 			};
 			name = Debug;
 		};
-		E09A4BFAB1D2A1C9E1B84BB3936C5FFC /* Release */ = {
+		9BD5B5E7A9246C3F79367C297AC47DEA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 71FFF6041B4F287E0D40F8F986E8C629 /* DashdevsNetworking.release.xcconfig */;
+			baseConfigurationReference = 00BDBC525020C0A31DC0D6B003461FB7 /* Pods-DashdevsNetworking_Tests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -772,18 +772,19 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/DashdevsNetworking/DashdevsNetworking-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/DashdevsNetworking/DashdevsNetworking-Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-DashdevsNetworking_Tests/Pods-DashdevsNetworking_Tests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/DashdevsNetworking/DashdevsNetworking.modulemap";
-				PRODUCT_MODULE_NAME = DashdevsNetworking;
-				PRODUCT_NAME = DashdevsNetworking;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-DashdevsNetworking_Tests/Pods-DashdevsNetworking_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -791,7 +792,7 @@
 			};
 			name = Release;
 		};
-		FF7E9FC8243E0D929BAD4DBBF21CE693 /* Debug */ = {
+		EE509982B0CCDEBA82A96C8FB3AC5FE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5BDBFAFCD0E9BACE7FB088CC7EFBFD92 /* Pods-DashdevsNetworking_Example.debug.xcconfig */;
 			buildSettings = {
@@ -826,24 +827,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		275045A6DF1BA1FB6F9F7B882B198DA9 /* Build configuration list for PBXNativeTarget "Pods-DashdevsNetworking_Example" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FF7E9FC8243E0D929BAD4DBBF21CE693 /* Debug */,
-				706EC90B26267FC8E0E4BC6DA0B0788E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3A006E75F09AEC5EC628E57FE0979196 /* Build configuration list for PBXNativeTarget "Pods-DashdevsNetworking_Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3804DFC583536748F66120932AA123DB /* Debug */,
-				38A27F405FD0DF46F9CB3E1D6001A2D6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -853,11 +836,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8066D6EFEE81DAB850A9B7B77C474063 /* Build configuration list for PBXNativeTarget "DashdevsNetworking" */ = {
+		799962D1287C545E5E530CD1D5E90EEE /* Build configuration list for PBXNativeTarget "DashdevsNetworking" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5EDA3EF5C48E547F7E87F7F693BAC467 /* Debug */,
-				E09A4BFAB1D2A1C9E1B84BB3936C5FFC /* Release */,
+				58E00EACF7DED903366F338944D72701 /* Debug */,
+				5DD87FCF2396D050DB2C76BB5C3B61D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9253B8ABAB039462D8F3FF72C9644A92 /* Build configuration list for PBXNativeTarget "Pods-DashdevsNetworking_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1897493D53785429FE58246A14BD726C /* Debug */,
+				9BD5B5E7A9246C3F79367C297AC47DEA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C4A604C8CFD9AE03395442F78C675CF5 /* Build configuration list for PBXNativeTarget "Pods-DashdevsNetworking_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE509982B0CCDEBA82A96C8FB3AC5FE4 /* Debug */,
+				001CC4C6DD23596B97DB0EB659B6999B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
