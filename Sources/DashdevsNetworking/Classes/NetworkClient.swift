@@ -68,6 +68,35 @@ open class NetworkClient: SessionNetworking {
         taskHandler?(task)
     }
     
+    @available(iOS 13.0.0, *)
+    /// Method which should be used to load information from remote location using swift concurrency
+    /// - Parameters:
+    ///   - descriptor: object that describes outgoing request to remote location
+    ///   - retryCount: number of request retries
+    /// - Returns: Tuple of objects  with Response and HTTPURLResponse types
+    public func load<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, retryCount: UInt = 1) async -> (Response<Descriptor.Resource, Descriptor.ResourceError>, HTTPURLResponse?) {
+        var data: Data?
+        var response: URLResponse?
+        var error: NSError?
+
+        let request = makeRequest(from: descriptor)
+        do {
+            let resultData = try await urlSession.data(for: request)
+            data = resultData.0
+            response = resultData.1
+        } catch let resultError {
+            error = resultError as NSError
+        }
+        
+        let validated = self.validate(data: data, response: response, error: error)
+        
+        if let result = await self.retryIfNeeded(descriptor, request, retryCount: retryCount, result: validated.result) {
+            return result
+        } else {
+            return (validated.result.map(descriptor.response.parse, descriptor.responseError?.parse), validated.response)
+        }
+    }
+    
     /// Method which should be used to send information to remote location
     ///
     /// - Parameters:
@@ -180,6 +209,22 @@ open class NetworkClient: SessionNetworking {
             }
         } else {
             completion()
+        }
+    }
+    
+    @available(iOS 13.0.0, *)
+    open func retryIfNeeded<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, _ request: URLRequest, retryCount: UInt, result: Response<Data, Data>) async -> (Response<Descriptor.Resource, Descriptor.ResourceError>, HTTPURLResponse?)? {
+        guard let retrier = retrier, case let Response.failure(_, error) = result, retryCount != .zero else { return nil }
+        return try? await withCheckedThrowingContinuation { continuation in
+            retrier.shouldRetry(request, with: error) { shouldRetry in
+                if shouldRetry {
+                    Task {
+                        continuation.resume(returning: await self.load(descriptor, retryCount: retryCount - 1))
+                    }
+                } else {
+                    continuation.resume(throwing: NetworkError.emptyResponse)
+                }
+            }
         }
     }
 }
