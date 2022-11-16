@@ -50,4 +50,26 @@ class TimeoutRequestRetrierTests: XCTestCase {
         wait(for: [expectation], timeout: 30)
         XCTAssert(retryCount == 3)
     }
+    
+    @available(iOS 13.0.0, *)
+    func testTimeoutRequestsRetryUsingConcurrency() throws {
+        let requestDescriptor = MockRequestDescriptor(duration: 200)
+
+        let expectation = XCTestExpectation()
+        expectation.expectedFulfillmentCount = 1
+        
+        var retryCount = 0
+        retrier?.onRetry = {
+            retryCount += 1
+        }
+                
+        Task {
+            let response = await networkClient?.load(requestDescriptor, retryCount: 3)
+            XCTAssertNotNil(response?.1)
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 30)
+        XCTAssert(retryCount == 3)
+    }
 }
