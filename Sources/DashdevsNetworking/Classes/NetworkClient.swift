@@ -75,7 +75,7 @@ open class NetworkClient: SessionNetworking {
     ///   - descriptor: object that describes outgoing request to remote location
     ///   - retryCount: number of request retries
     /// - Returns: Tuple of objects  with Response and HTTPURLResponse types
-    public func load<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, retryCount: UInt = 1) async -> (Response<Descriptor.Resource, Descriptor.ResourceError>, HTTPURLResponse?) {
+    public func load<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, retryCount: UInt = 1) async -> (result: Response<Descriptor.Resource, Descriptor.ResourceError>, response: HTTPURLResponse?) {
         var data: Data?
         var response: URLResponse?
         var error: NSError?
@@ -129,7 +129,7 @@ open class NetworkClient: SessionNetworking {
     ///   - descriptor: object that describes outgoing request to remote location
     ///   - retryCount: number of request retries
     /// - Returns: Tuple of objects  with Response and HTTPURLResponse types
-    public func send<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, retryCount: UInt = 1) async -> (Response<Descriptor.Resource, Descriptor.ResourceError>, HTTPURLResponse?) {
+    public func send<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, retryCount: UInt = 1) async -> (result: Response<Descriptor.Resource, Descriptor.ResourceError>, response: HTTPURLResponse?) {
         var data: Data?
         var response: URLResponse?
         var error: NSError?
@@ -254,7 +254,7 @@ open class NetworkClient: SessionNetworking {
                         continuation.resume(returning: await self.load(descriptor, retryCount: retryCount - 1))
                     }
                 } else {
-                    continuation.resume(throwing: NetworkError.emptyResponse)
+                    continuation.resume(throwing: error)
                 }
             }
         }
