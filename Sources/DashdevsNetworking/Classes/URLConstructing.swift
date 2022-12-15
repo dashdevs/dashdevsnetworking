@@ -99,3 +99,13 @@ public extension BodyParamEncoding where BodyParameters: Encodable {
         }, headers: [HTTPHeader.jsonContent])
     }
 }
+
+public extension BodyParamEncoding where BodyParameters == [String: String] {
+    static var xWWWFormEncodable: BodyParamEncoding {
+        BodyParamEncoding({ queryItems in
+            var components = URLComponents()
+            components.queryItems = queryItems.map { URLQueryItem(name: $0, value: $1) }
+            return components.query?.data(using: .utf8)
+        }, headers: [.xWWWFormURLEncodedContent])
+    }
+}

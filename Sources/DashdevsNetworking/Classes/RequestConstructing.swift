@@ -24,6 +24,7 @@ public enum MIMEType: String {
     case plainText = "text/plain"
     case multipartFormData = "multipart/form-data"
     case imageJPEG = "image/jpeg"
+    case applicationXWWWFormUrlEncoded = "application/x-www-form-urlencoded"
 }
 
 /// This struct describes mechanism which allows the client and the server to pass additional information with the request or the response.
@@ -64,4 +65,7 @@ extension HTTPHeader {
         return HTTPHeader(field: "Accept", value: MIMEType.plainText.rawValue)
     }
 
+    static var xWWWFormURLEncodedContent: HTTPHeader {
+        HTTPHeader(field: "Content-Type", value: MIMEType.applicationXWWWFormUrlEncoded.rawValue)
+    }
 }
