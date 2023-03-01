@@ -123,6 +123,7 @@ open class NetworkClient: SessionNetworking {
     }
     
     @available(iOS 13.0.0, *)
+    @available(macOS 10.15.0, *)
     /// Method which should be used to send information to remote location
     ///
     /// - Parameters:
@@ -245,6 +246,7 @@ open class NetworkClient: SessionNetworking {
     }
     
     @available(iOS 13.0.0, *)
+    @available(macOS 10.15.0, *)
     open func retryIfNeeded<Descriptor: RequestDescriptor>(_ descriptor: Descriptor, _ request: URLRequest, retryCount: UInt, result: Response<Data, Data>) async -> (Response<Descriptor.Resource, Descriptor.ResourceError>, HTTPURLResponse?)? {
         guard let retrier = retrier, case let Response.failure(_, error) = result, retryCount != .zero else { return nil }
         return try? await withCheckedThrowingContinuation { continuation in
