@@ -69,6 +69,7 @@ open class NetworkClient: SessionNetworking {
     }
     
     @available(iOS 13.0.0, *)
+    @available(macOS 10.15.0, *)
     /// Method which should be used to load information from remote location using swift concurrency
     /// 
     /// - Parameters:
