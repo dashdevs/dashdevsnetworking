@@ -10,6 +10,7 @@ import Foundation
 public struct AuthorizationConstants {
     public static let key = "Authorization"
     public static let bearer = "Bearer"
+    public static let basic = "Basic"
 }
 
 /// This protocol declare method for updating URLRequest with authorization parameters

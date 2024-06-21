@@ -11,6 +11,7 @@
 		1948E9966AD0B1FE8ED8C986A52E2B92 /* RequestDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126254324CB463624A4205D454FA007B /* RequestDescriptor.swift */; };
 		1E0F5894479BB38E2243D25567F44100 /* Pods-DashdevsNetworking_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 39963BC2E8EB180F9F3ED6AC16E4AF23 /* Pods-DashdevsNetworking_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2BC0BF29AED286906FE090E82A0C2659 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358FA9B947930DEB44F6E62F7F6EFF8E /* Authorization.swift */; };
+		308568172C25AA1A0008D155 /* BasicTokenAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308568162C25AA1A0008D155 /* BasicTokenAuth.swift */; };
 		31F73EA6C0658ED0FF7EAD29AEF953F3 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCBB774A9A8A05F89B7BEC270ABA967 /* Response.swift */; };
 		3FE0F5162A33760298134C791F11DF4C /* URLConstructing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F75B1BB6871FB0B1D6C483B1AD0504D /* URLConstructing.swift */; };
 		4B290715BA2A5DA911749515AAAB6902 /* HTTPResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630943B2975AB30180F5EF212FD4FA31 /* HTTPResponse+Extensions.swift */; };
@@ -57,7 +58,7 @@
 /* Begin PBXFileReference section */
 		0001E2D4424C521D62E0FEEB63FB7EB2 /* NetworkDebugLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkDebugLog.swift; path = Sources/DashdevsNetworking/Classes/NetworkDebugLog.swift; sourceTree = "<group>"; };
 		00BDBC525020C0A31DC0D6B003461FB7 /* Pods-DashdevsNetworking_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DashdevsNetworking_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		02A276DB242416827B1881655F90E306 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		02A276DB242416827B1881655F90E306 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		0405AB90BC3C82A20AF7123BB813B017 /* DashdevsNetworking */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DashdevsNetworking; path = DashdevsNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0422874B986695253B05AE24BFF12666 /* BearerTokenAuth.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BearerTokenAuth.swift; sourceTree = "<group>"; };
 		0805044D8EB96CC077761BCA85817A02 /* Pods-DashdevsNetworking_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-DashdevsNetworking_Example"; path = Pods_DashdevsNetworking_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,9 +69,10 @@
 		1A3564FDF3CAC81D53CDBC3AAAF5D9B3 /* NetworkClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkClient.swift; path = Sources/DashdevsNetworking/Classes/NetworkClient.swift; sourceTree = "<group>"; };
 		1F5777039CD5DF22B459A0B3DD5FE727 /* Pods-DashdevsNetworking_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DashdevsNetworking_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		1F75B1BB6871FB0B1D6C483B1AD0504D /* URLConstructing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = URLConstructing.swift; path = Sources/DashdevsNetworking/Classes/URLConstructing.swift; sourceTree = "<group>"; };
+		308568162C25AA1A0008D155 /* BasicTokenAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTokenAuth.swift; sourceTree = "<group>"; };
 		30A1A13A89C2889645DA991F897FE430 /* TimeoutRetrier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TimeoutRetrier.swift; sourceTree = "<group>"; };
 		32BD2582D8A4311400E8D10190067D1A /* DashdevsNetworking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DashdevsNetworking.release.xcconfig; sourceTree = "<group>"; };
-		33C22601FDFB458DB9042470A67B63D4 /* DashdevsNetworking.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = DashdevsNetworking.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		33C22601FDFB458DB9042470A67B63D4 /* DashdevsNetworking.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = DashdevsNetworking.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		358FA9B947930DEB44F6E62F7F6EFF8E /* Authorization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
 		371C068F2FAB1CBC8A81556B9956D6D9 /* Pods-DashdevsNetworking_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-DashdevsNetworking_Example.modulemap"; sourceTree = "<group>"; };
 		37E102A7C94C1B183D42FDEDEFF6481B /* MultipartBuilders.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MultipartBuilders.swift; sourceTree = "<group>"; };
@@ -95,7 +97,7 @@
 		95D22CD7363AA04E8C690AC534B14D07 /* URLRequest+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "URLRequest+Extensions.swift"; path = "Sources/DashdevsNetworking/Classes/URLRequest+Extensions.swift"; sourceTree = "<group>"; };
 		9CCBB774A9A8A05F89B7BEC270ABA967 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Sources/DashdevsNetworking/Classes/Response.swift; sourceTree = "<group>"; };
 		9CE6EF9379796B6ADBFC079909973F37 /* RequestRetrier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestRetrier.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		AC64BC0E3F488F79A31EE6FFB5581180 /* Deserialisation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Deserialisation.swift; path = Sources/DashdevsNetworking/Classes/Deserialisation.swift; sourceTree = "<group>"; };
 		AF5BBBD6C1540DEC1AE42FE0EC0510EB /* BodyParamsEncoding+Multipart.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "BodyParamsEncoding+Multipart.swift"; sourceTree = "<group>"; };
 		AF63AEEC65C0F55DD7298272DC2B4B2D /* DashdevsNetworking-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "DashdevsNetworking-Info.plist"; sourceTree = "<group>"; };
@@ -105,7 +107,7 @@
 		C9C706E6B7EFB4D4AFB58AA8CA7737C5 /* DashdevsNetworking-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DashdevsNetworking-prefix.pch"; sourceTree = "<group>"; };
 		D0A78A79BAF777F1756C225F8872A143 /* MultipartFileParameters.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MultipartFileParameters.swift; sourceTree = "<group>"; };
 		D3347A4D2E866B347FA3ADC8E0BA8F64 /* UnauthorisedRequestRetrier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UnauthorisedRequestRetrier.swift; sourceTree = "<group>"; };
-		D40DC389E5DCF426F94A4E4F0CDE60B0 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		D40DC389E5DCF426F94A4E4F0CDE60B0 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +205,7 @@
 			children = (
 				358FA9B947930DEB44F6E62F7F6EFF8E /* Authorization.swift */,
 				0422874B986695253B05AE24BFF12666 /* BearerTokenAuth.swift */,
+				308568162C25AA1A0008D155 /* BasicTokenAuth.swift */,
 			);
 			name = Authorization;
 			path = Sources/DashdevsNetworking/Classes/Authorization;
@@ -456,6 +459,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				308568172C25AA1A0008D155 /* BasicTokenAuth.swift in Sources */,
 				2BC0BF29AED286906FE090E82A0C2659 /* Authorization.swift in Sources */,
 				5523874D7A812B742FAF0A687ED69ABD /* BearerTokenAuth.swift in Sources */,
 				DE21B68A7215923EEABD7869A597002A /* BodyParamsEncoding+Multipart.swift in Sources */,
@@ -625,8 +629,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
