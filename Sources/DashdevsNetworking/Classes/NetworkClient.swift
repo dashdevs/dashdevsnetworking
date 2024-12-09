@@ -212,7 +212,7 @@ open class NetworkClient: SessionNetworking {
         NetworkDebugLog.log(with: data, response: response, error: error, displayNetworkDebugLog: displayNetworkDebugLog)
         
         if let error = error as? URLError {
-            return (Response.failure(data, error), nil)
+            return (Response.failure(data, NetworkError.custom(message: error.localizedDescription)), nil)
         }
 
         guard let httpResponse = response as? HTTPURLResponse else {
@@ -222,13 +222,14 @@ open class NetworkClient: SessionNetworking {
         let statusCode = httpResponse.statusCode
         
         guard acceptableHTTPCodes.contains(statusCode) else {
-            let status = NetworkError.HTTPError(statusCode)
-            return (Response.failure(data, status), httpResponse)
+            let networkError = NetworkError.httpError(NetworkError.APIServiceError(statusCode: statusCode, data: data))
+            return (Response.failure(data, networkError), httpResponse)
         }
         
         guard let data = data else {
             return (Response.failure(nil, NetworkError.emptyResponse), httpResponse)
         }
+        
         return (Response.success(data), httpResponse)
     }
     
