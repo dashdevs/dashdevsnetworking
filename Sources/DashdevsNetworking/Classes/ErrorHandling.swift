@@ -12,7 +12,7 @@ import Foundation
 /// - emptyResponse: Server returned empty response
 public enum NetworkError: LocalizedError {
     case emptyResponse
-    case httpError(CognitoError)
+    case httpError(APIServiceError)
     case custom(message: String)
     
     public var errorDescription: String? {
@@ -21,8 +21,8 @@ public enum NetworkError: LocalizedError {
                 return "The server returned an empty response."
             case .custom(let message):
                 return message
-            case .httpError(let cognitoError):
-                return cognitoError.localizedDescription
+            case .httpError(let serverError):
+                return serverError.localizedDescription
         }
     }
     
@@ -36,7 +36,7 @@ public enum NetworkError: LocalizedError {
         }
         
         public var errorDescription: String? {
-            if let data = data, let decodedMessage = CognitoError.decodeMessage(from: data) {
+            if let data = data, let decodedMessage = APIServiceError.decodeMessage(from: data) {
                 return decodedMessage
             }
             return "HTTP Error \(statusCode)"
