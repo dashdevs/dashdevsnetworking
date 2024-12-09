@@ -12,6 +12,47 @@ import Foundation
 /// - emptyResponse: Server returned empty response
 public enum NetworkError: LocalizedError {
     case emptyResponse
+    case httpError(APIServiceError)
+    case custom(message: String)
+    
+    public var errorDescription: String? {
+        switch self {
+            case .emptyResponse:
+                return "The server returned an empty response."
+            case .custom(let message):
+                return message
+            case .httpError(let serverError):
+                return serverError.localizedDescription
+        }
+    }
+    
+    public struct APIServiceError: LocalizedError {
+        let statusCode: Int
+        let data: Data?
+        
+        public init(statusCode: Int, data: Data? = nil) {
+            self.statusCode = statusCode
+            self.data = data
+        }
+        
+        public var errorDescription: String? {
+            if let data = data, let decodedMessage = APIServiceError.decodeMessage(from: data) {
+                return decodedMessage
+            }
+            return "HTTP Error \(statusCode)"
+        }
+        
+        private static func decodeMessage(from data: Data) -> String? {
+            struct ErrorResponse: Decodable {
+                let message: [String]
+            }
+            
+            if let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
+                return errorResponse.message.first
+            }
+            return nil
+        }
+    }
     
     /// Describes domain of errors that occur while deserialising data
     ///
